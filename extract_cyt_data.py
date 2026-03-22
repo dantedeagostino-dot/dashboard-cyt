@@ -295,23 +295,79 @@ def classify_eje(title: str, objeto: str, full_text: str) -> tuple[str, int]:
 
 
 def extract_title_clean(text: str, meta_title: str | None) -> str:
+    # Strategy 1: Use meta_title from PDF metadata if available and useful
     if meta_title and not meta_title.startswith(("El Senado", "EL SENADO", "La Honorable", "La Cámara")):
         clean = re.sub(r"^(?:PL\s*-\s*|Pr\s+de\s+Ley\s+|Proyecto\s+de\s+Ley\s*-?\s*)", "", meta_title.strip(), flags=re.IGNORECASE)
         if len(clean) > 10:
             return clean.strip()
 
+    # Strategy 2: Look for ALL CAPS title lines in the text (common in Argentine law PDFs)
+    lines = [l.strip() for l in text.split('\n') if l.strip()]
+    skip_patterns = [
+        r'^\d{4}\s*-\s*año', r'^proyecto de ley', r'^el senado',
+        r'^la c[aá]mara', r'^sancionan', r'^"', r'^art[íi]culo',
+        r'^\d+$', r'^naci[oó]n', r'^www\.', r'^honorable',
+        r'^buenos aires', r'^expediente', r'^mesa de entradas',
+        r'^trámite', r'^comisi[oó]n', r'^n[uú]mero',
+        r'^la honorable', r'^rep[uú]blica', r'^poder ejecutivo',
+    ]
+    title_parts = []
+    found_title = False
+    for line in lines[:40]:
+        line_clean = line.strip()
+        if not line_clean:
+            if found_title and title_parts:
+                break
+            continue
+        skip = any(re.match(p, line_clean.lower()) for p in skip_patterns)
+        if skip:
+            continue
+        # Title lines are usually in ALL CAPS
+        if line_clean == line_clean.upper() and len(line_clean) > 8 and not line_clean.startswith(('ARTÍCULO', 'ARTICULO', 'ART.')):
+            title_parts.append(line_clean)
+            found_title = True
+        elif found_title:
+            break
+
+    if title_parts:
+        return " ".join(title_parts).title()[:200]
+
+    # Strategy 3: Extract from Objeto (Article 1) with broader patterns
     objeto = extract_objeto(text)
     if objeto:
-        m = re.search(r"(?:tiene por objeto|por objeto)\s+(.*?)(?:\.|,\s*con)", objeto, re.IGNORECASE)
-        if m:
-            core = m.group(1).strip()
-            if 15 < len(core) < 200:
-                return core[:150]
+        # Try multiple patterns for extracting the core subject
+        objeto_patterns = [
+            r"(?:tiene por objeto|por objeto)\s+(.*?)(?:\.|,\s*(?:con|que|en|a)\s)",
+            r"(?:Créase|Créese|Establécese|Institúyese|Declárase)\s+(.*?)(?:\.|$)",
+            r"(?:créase|créese|establécese|institúyese|declárase)\s+(.*?)(?:\.|$)",
+            r"(?:La presente ley tiene por (?:objeto|fin|finalidad))\s+(.*?)(?:\.|$)",
+        ]
+        for pat in objeto_patterns:
+            m = re.search(pat, objeto, re.IGNORECASE)
+            if m:
+                core = m.group(1).strip()
+                if 10 < len(core) < 200:
+                    return core[:150]
 
+        # If we have an Objeto but no pattern matched, use first sentence
+        first_sentence = re.split(r'\.\s', objeto)[0].strip()
+        if len(first_sentence) > 15:
+            return first_sentence[:150]
+
+    # Strategy 4: Use meta_title even if short
     if meta_title:
         clean = re.sub(r"^(?:PL\s*-\s*|Pr\s+de\s+Ley\s+)", "", meta_title.strip(), flags=re.IGNORECASE)
         if len(clean) > 5:
             return clean.strip()
+
+    # Strategy 5: First meaningful non-boilerplate line from the text
+    boilerplate = {'proyecto de ley', 'el senado', 'la cámara', 'sancionan con fuerza',
+                   'honorable', 'buenos aires', 'expediente', 'nación argentina'}
+    for line in lines[:30]:
+        l = line.strip()
+        if len(l) > 15 and not any(bp in l.lower() for bp in boilerplate):
+            if not re.match(r'^(art[íi]culo|\d+[°º\.\-])', l, re.IGNORECASE):
+                return l[:150]
 
     return "Proyecto sin título disponible"
 

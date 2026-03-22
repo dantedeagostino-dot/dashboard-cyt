@@ -988,6 +988,217 @@
             margin: 0 auto;
             padding: 32px;
         }
+
+        /* ─── SEMÁFORO DE COINCIDENCIAS ─────────────────── */
+        .semaforo-view-wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 32px;
+        }
+        .semaforo-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .semaforo-header h2 {
+            font-family: var(--font-serif);
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--navy-800);
+            margin-bottom: 8px;
+        }
+        .semaforo-header p {
+            font-size: 14px;
+            color: var(--gray-500);
+            max-width: 680px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .semaforo-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .semaforo-row {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            overflow: hidden;
+            display: flex;
+            min-height: 200px;
+        }
+        .semaforo-row-stripe {
+            width: 8px;
+            flex-shrink: 0;
+        }
+        .semaforo-row.green .semaforo-row-stripe { background: #22c55e; }
+        .semaforo-row.yellow .semaforo-row-stripe { background: #eab308; }
+        .semaforo-row.red .semaforo-row-stripe { background: #ef4444; }
+        .semaforo-row-label {
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            padding: 12px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+        }
+        .semaforo-row.green .semaforo-row-label { color: #16a34a; background: #f0fdf4; }
+        .semaforo-row.yellow .semaforo-row-label { color: #a16207; background: #fefce8; }
+        .semaforo-row.red .semaforo-row-label { color: #dc2626; background: #fef2f2; }
+
+        .semaforo-row-panel {
+            flex: 1;
+            display: flex;
+            gap: 0;
+        }
+        .semaforo-stage {
+            position: relative;
+            width: 240px;
+            min-width: 200px;
+            padding: 20px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .semaforo-stage-card {
+            position: absolute;
+            width: 200px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+            padding: 16px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+        .semaforo-stage-card.back {
+            transform: scale(0.9) translateY(8px);
+            opacity: 0.5;
+            z-index: 1;
+        }
+        .semaforo-stage-card.front {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            z-index: 2;
+        }
+        .semaforo-stage-card:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .semaforo-card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy-800);
+            margin-bottom: 4px;
+        }
+        .semaforo-card-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+        }
+        .semaforo-row.green .semaforo-card-badge { background: #dcfce7; color: #166534; }
+        .semaforo-row.yellow .semaforo-card-badge { background: #fef9c3; color: #854d0e; }
+        .semaforo-row.red .semaforo-card-badge { background: #fee2e2; color: #991b1b; }
+
+        .semaforo-detail {
+            flex: 1;
+            padding: 24px;
+            border-left: 1px solid var(--gray-100);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .semaforo-detail-title {
+            font-family: var(--font-serif);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--navy-800);
+            margin-bottom: 10px;
+        }
+        .semaforo-detail-summary {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--gray-600);
+            margin-bottom: 16px;
+        }
+        .semaforo-detail-meta {
+            font-size: 12px;
+            color: var(--gray-400);
+            display: flex;
+            gap: 16px;
+        }
+        .semaforo-nav {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+            justify-content: center;
+        }
+        .semaforo-nav button {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--gray-200);
+            background: var(--white);
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .semaforo-nav button:hover {
+            background: var(--navy-50);
+            border-color: var(--navy-300);
+        }
+        @keyframes cardFlipIn {
+            from { transform: scale(0.85) translateY(12px); opacity: 0; }
+            to   { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .semaforo-stage-card.flip-in {
+            animation: cardFlipIn 0.35s ease-out;
+        }
+
+        /* Semaforo project list in detail panel */
+        .semaforo-proj-list {
+            max-height: 120px;
+            overflow-y: auto;
+            margin-top: 10px;
+            padding-right: 8px;
+        }
+        .semaforo-proj-list::-webkit-scrollbar { width: 4px; }
+        .semaforo-proj-list::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 2px; }
+        .semaforo-proj-item {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-bottom: 2px;
+            transition: background 0.2s;
+            cursor: pointer;
+        }
+        .semaforo-proj-item:hover {
+            background: var(--gray-50);
+        }
+        .semaforo-proj-item .proj-id {
+            font-weight: 600;
+            color: var(--navy-600);
+            margin-right: 6px;
+        }
+        .semaforo-proj-item .proj-title {
+            color: var(--gray-600);
+        }
+
+        @media (max-width: 900px) {
+            .semaforo-row { flex-direction: column; min-height: auto; }
+            .semaforo-row-label { writing-mode: horizontal-tb; transform: none; padding: 8px 16px; min-width: auto; }
+            .semaforo-row-panel { flex-direction: column; }
+            .semaforo-stage { width: 100%; min-width: auto; height: 180px; }
+            .semaforo-detail { border-left: none; border-top: 1px solid var(--gray-100); }
+        }
     </style>
 </head>
 <body>
@@ -1010,6 +1221,7 @@
         <div class="header-nav">
             <button class="header-nav-tab active" onclick="switchView('legislativo', this)">📋 Proyectos de Ley</button>
             <button class="header-nav-tab" onclick="switchView('estado', this)">🔬 Estado de la Ciencia</button>
+            <button class="header-nav-tab" onclick="switchView('semaforo', this)">🚦 Semáforo</button>
         </div>
         <div class="filters-bar" id="filters-bar">
             <label>Filtros:</label>
@@ -1332,6 +1544,32 @@
     </div>
     </div><!-- /estado-view-wrapper -->
     </div><!-- /view-estado -->
+
+    <!-- ═══ SEMÁFORO DE COINCIDENCIAS ═══ -->
+    <div id="view-semaforo" class="view-container">
+    <div class="semaforo-view-wrapper">
+        <div class="semaforo-header">
+            <h2>🚦 Semáforo de Coincidencias</h2>
+            <p>Clasificación de los ejes temáticos según el grado de convergencia entre los proyectos de ley presentados en la Comisión de Ciencia, Tecnología e Innovación Productiva.</p>
+        </div>
+
+        <div class="semaforo-wrap">
+            <div class="semaforo-row green" id="rowVerde">
+                <div class="semaforo-row-stripe"></div>
+                <div class="semaforo-row-label">Convergencia</div>
+            </div>
+            <div class="semaforo-row yellow" id="rowAmarillo">
+                <div class="semaforo-row-stripe"></div>
+                <div class="semaforo-row-label">Parcial</div>
+            </div>
+            <div class="semaforo-row red" id="rowRojo">
+                <div class="semaforo-row-stripe"></div>
+                <div class="semaforo-row-label">Divergencia</div>
+            </div>
+        </div>
+    </div>
+    </div><!-- /view-semaforo -->
+
 
     <!-- Modal -->
     <div class="modal-overlay" id="modal-overlay">
@@ -1950,12 +2188,17 @@
           btn.classList.add('active');
           document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
           document.getElementById('view-' + view).classList.add('active');
-          // Hide filters bar when on estado view
+          // Hide filters bar when not on legislativo view
           document.getElementById('filters-bar').style.display = view === 'legislativo' ? 'flex' : 'none';
           // Lazy-init estado charts on first view to avoid hidden canvas rendering issues
           if (view === 'estado' && !estadoChartsInitialized) {
             estadoChartsInitialized = true;
             initEstadoCharts();
+          }
+          // Lazy-init semáforo on first view
+          if (view === 'semaforo' && !semaforoInitialized) {
+            semaforoInitialized = true;
+            renderSemaforo();
           }
         }
 
@@ -2150,6 +2393,181 @@
             data: { labels: Object.keys(EST_DATA.refefoSt), datasets: [{ data: Object.values(EST_DATA.refefoSt), backgroundColor: [EC.emerald,EC.rose,EC.amber,EC.orange,EC.pink], borderWidth: 0, cutout: '58%' }] },
             options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
           });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // SEMÁFORO DE COINCIDENCIAS
+        // ═══════════════════════════════════════════════════════
+        let semaforoInitialized = false;
+
+        const SEMAFORO_BASE = {
+          verde: [
+            {
+              key: 'financiamiento-ciencia',
+              cardTitle: 'Financiamiento CyT',
+              title: 'Sostenimiento y financiamiento de la ciencia y la tecnología',
+              summary: 'Existe un amplio consenso transversal en torno a la necesidad de recomponer y sostener el financiamiento del sistema científico-tecnológico argentino. Múltiples proyectos de distintos bloques abordan la emergencia presupuestaria, la restitución de partidas y la creación de fondos específicos para I+D. La Ley 27.614 de financiamiento progresivo del sistema científico constituye un punto de referencia compartido.',
+              keywords: ['financiamiento','presupuesto','fondo nacional','inversión','i+d','emergencia presupuestaria','ley 27.614','sostenimiento','beca','conicet','incentivo']
+            },
+            {
+              key: 'educacion-stem',
+              cardTitle: 'Educación STEM',
+              title: 'Formación en ciencias y tecnología en el sistema educativo',
+              summary: 'Se observa convergencia significativa en la necesidad de incorporar contenidos de ciencia, tecnología, programación y robótica en las currículas escolares de todos los niveles. Varios proyectos proponen la creación de programas nacionales de alfabetización digital y clubes de ciencia, con apoyo de distintos sectores políticos.',
+              keywords: ['educación','currícula','formación','escuela','docente','programación','robótica','clubes de ciencia','alfabetización digital','stem']
+            },
+            {
+              key: 'soberania-tech',
+              cardTitle: 'Soberanía Tecnológica',
+              title: 'Protección de activos estratégicos en ciencia y tecnología',
+              summary: 'Existe acuerdo en considerar como activos estratégicos nacionales a organismos como INVAP, CONAE, CNEA y ARSAT. Proyectos de diversos orígenes partidarios coinciden en la necesidad de proteger la infraestructura crítica de ciencia y tecnología frente a procesos de privatización o desguace, garantizando la continuidad de capacidades soberanas.',
+              keywords: ['activo estratégico','soberanía','invap','conae','cnea','arsat','nuclear','espacial','satélite','defensa','infraestructura crítica']
+            },
+          ],
+          amarillo: [
+            {
+              key: 'gobernanza-cyt',
+              cardTitle: 'Gobernanza CyT',
+              title: 'Diseño institucional y gobernanza del sistema de ciencia y tecnología',
+              summary: 'Si bien hay consenso en la necesidad de mejorar la institucionalidad del sistema CyT, existen diferencias respecto de la estructura de gobierno de los organismos (composición de directorios, mecanismos de designación), el grado de autonomía de las agencias y la relación entre el sistema científico y el sector productivo. Algunos proyectos priorizan la eficiencia y otros la representatividad.',
+              keywords: ['directorio','agencia','observatorio','ministerio','consejo','organismo','planificación','derogación','decreto','gobernanza','institucional']
+            },
+            {
+              key: 'regulacion-ia',
+              cardTitle: 'Regulación de IA',
+              title: 'Marco regulatorio para la inteligencia artificial',
+              summary: 'Existen múltiples proyectos que abordan la regulación de la inteligencia artificial, con coincidencias en la necesidad de establecer principios éticos y transparencia algorítmica. Sin embargo, persisten diferencias sobre la intensidad regulatoria, los mecanismos de control, la clasificación de riesgos y el alcance de las obligaciones para desarrolladores y proveedores de sistemas de IA.',
+              keywords: ['inteligencia artificial','algoritmo','deepfake','reconocimiento facial','sesgo','transparencia','ética','regulación','ia','machine learning']
+            },
+            {
+              key: 'datos-privacidad',
+              cardTitle: 'Datos y Privacidad',
+              title: 'Protección de datos personales y neurodatos',
+              summary: 'Se identifican coincidencias en la necesidad de actualizar el marco normativo de protección de datos personales, especialmente ante el avance de tecnologías como la inteligencia artificial y las neurotecnologías. Sin embargo, el alcance de las regulaciones sobre neurodatos y la definición de los derechos cognitivos son aspectos con menor consenso.',
+              keywords: ['datos personales','protección de datos','privacidad','ciberseguridad','neurodatos','neuroderechos','neurotecnología','privacidad mental']
+            },
+          ],
+          rojo: [
+            {
+              key: 'enfoque-regulatorio',
+              cardTitle: 'Enfoque Regulatorio',
+              title: 'Grado de intervención estatal en ciencia y tecnología',
+              summary: 'Se observan diferencias fundamentales entre quienes promueven un rol estatal más activo y prescriptivo en la regulación de nuevas tecnologías (con organismos de control, registros obligatorios y sanciones detalladas) y quienes proponen esquemas más flexibles y orientados al mercado, priorizando la autorregulación y los incentivos al sector privado.',
+              keywords: ['regulación','intervención','control','registro','sanción','autorregulación','mercado','incentivo','prescriptivo','flexible']
+            },
+            {
+              key: 'modelo-cientifico',
+              cardTitle: 'Modelo Científico',
+              title: 'Orientación del sistema científico: investigación básica vs. aplicada',
+              summary: 'Persisten tensiones entre quienes priorizan la investigación básica y la autonomía de los investigadores, y quienes enfatizan la necesidad de orientar el sistema científico hacia la innovación aplicada, la transferencia tecnológica y las demandas del sector productivo. Este debate impacta en la asignación de recursos, los criterios de evaluación y las políticas de becas.',
+              keywords: ['investigación básica','investigación aplicada','transferencia','innovación','sector productivo','startup','emprendedor','industria']
+            },
+          ]
+        };
+
+        const semaforoSlideIndex = { verde: 0, amarillo: 0, rojo: 0 };
+
+        function resolveSemaforoProjects(group) {
+          const kws = (group.keywords || []).map(k => k.toLowerCase());
+          if (!kws.length || !DATA || !DATA.bills) return [];
+          return DATA.bills.filter(b => {
+            const txt = `${b.titulo || ''} ${b.resumen || ''} ${b.eje || ''}`.toLowerCase();
+            return kws.some(k => txt.includes(k));
+          });
+        }
+
+        function buildSemaforoSlides(bucketName, groups) {
+          const slides = [];
+          groups.forEach(group => {
+            const bills = resolveSemaforoProjects(group);
+            slides.push({
+              groupKey: group.key,
+              title: group.title,
+              cardTitle: group.cardTitle || group.title,
+              quote: group.summary,
+              projects: bills.length,
+              bucketName,
+            });
+          });
+          return slides;
+        }
+
+        function renderSemaforoBucket(bucketName, rowId, groups) {
+          const row = document.getElementById(rowId);
+          if (!row) return;
+
+          const slides = buildSemaforoSlides(bucketName, groups);
+          if (!slides.length) {
+            row.insertAdjacentHTML('beforeend', '<div style="padding:16px;font-size:12px;color:var(--gray-400)">Sin datos cargados.</div>');
+            return;
+          }
+
+          if (semaforoSlideIndex[bucketName] >= slides.length) semaforoSlideIndex[bucketName] = 0;
+          if (semaforoSlideIndex[bucketName] < 0) semaforoSlideIndex[bucketName] = slides.length - 1;
+
+          const idx = semaforoSlideIndex[bucketName];
+          const current = slides[idx];
+          const next = slides[(idx + 1) % slides.length];
+
+          // Remove existing panel and detail
+          const existingPanel = row.querySelector('.semaforo-row-panel');
+          if (existingPanel) existingPanel.remove();
+
+          // Resolve projects for current group
+          const currentGroup = groups.find(g => g.key === current.groupKey);
+          const matchedBills = currentGroup ? resolveSemaforoProjects(currentGroup) : [];
+
+          const panelHTML = `
+            <div class="semaforo-row-panel">
+              <div class="semaforo-stage">
+                <div class="semaforo-stage-card back">
+                  <div class="semaforo-card-title">${next.cardTitle}</div>
+                  <span class="semaforo-card-badge">${next.projects} proyectos</span>
+                </div>
+                <div class="semaforo-stage-card front flip-in">
+                  <div class="semaforo-card-title">${current.cardTitle}</div>
+                  <span class="semaforo-card-badge">${current.projects} proyectos</span>
+                </div>
+                ${slides.length > 1 ? `
+                <div class="semaforo-nav">
+                  <button onclick="stepSemaforoSlide('${bucketName}', '${rowId}', -1)">‹</button>
+                  <button onclick="stepSemaforoSlide('${bucketName}', '${rowId}', 1)">›</button>
+                </div>` : ''}
+              </div>
+              <div class="semaforo-detail">
+                <div class="semaforo-detail-title">${current.title}</div>
+                <div class="semaforo-detail-summary">${current.quote}</div>
+                <div class="semaforo-detail-meta">
+                  <span>📊 ${current.projects} proyectos relacionados</span>
+                  <span>📄 Slide ${idx + 1} / ${slides.length}</span>
+                </div>
+                ${matchedBills.length > 0 ? `
+                <div class="semaforo-proj-list">
+                  ${matchedBills.slice(0, 8).map(b => `
+                    <div class="semaforo-proj-item" onclick="openModal('${b.id}')">
+                      <span class="proj-id">${b.id}</span>
+                      <span class="proj-title">${truncate(b.titulo, 50)}</span>
+                    </div>
+                  `).join('')}
+                  ${matchedBills.length > 8 ? `<div style="font-size:11px;color:var(--gray-400);padding:4px 8px;">+${matchedBills.length - 8} más...</div>` : ''}
+                </div>` : ''}
+              </div>
+            </div>
+          `;
+
+          row.insertAdjacentHTML('beforeend', panelHTML);
+        }
+
+        function stepSemaforoSlide(bucketName, rowId, dir) {
+          semaforoSlideIndex[bucketName] += dir;
+          const groups = SEMAFORO_BASE[bucketName];
+          renderSemaforoBucket(bucketName, rowId, groups);
+        }
+
+        function renderSemaforo() {
+          renderSemaforoBucket('verde', 'rowVerde', SEMAFORO_BASE.verde);
+          renderSemaforoBucket('amarillo', 'rowAmarillo', SEMAFORO_BASE.amarillo);
+          renderSemaforoBucket('rojo', 'rowRojo', SEMAFORO_BASE.rojo);
         }
     </script>
 </body>
