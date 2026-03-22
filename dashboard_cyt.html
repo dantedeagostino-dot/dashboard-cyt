@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Estado Nacional de Ciencia y Tecnología</title>
+<meta name="description" content="Dashboard interactivo del estado de la ciencia y tecnología en Argentina. Datos de SICYTAR, ENACOM, ARSAT y DACYTAR.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #111827;
+  --bg-card: rgba(17, 24, 39, 0.7);
+  --border: rgba(99, 102, 241, 0.15);
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --accent-1: #6366f1;
+  --accent-2: #8b5cf6;
+  --accent-3: #06b6d4;
+  --accent-4: #10b981;
+  --accent-5: #f59e0b;
+  --accent-6: #ef4444;
+  --accent-7: #ec4899;
+  --glow-1: rgba(99, 102, 241, 0.3);
+  --glow-2: rgba(139, 92, 246, 0.3);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(99,102,241,0.06) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(139,92,246,0.04) 0%, transparent 50%),
+              radial-gradient(circle at 50% 50%, rgba(6,182,212,0.03) 0%, transparent 60%);
+  z-index: 0;
+  pointer-events: none;
+}
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 48px 0 36px;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-1), var(--accent-2), transparent);
+}
+.header-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1));
+  border: 1px solid rgba(99,102,241,0.2);
+  border-radius: 24px;
+  padding: 6px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-3);
+  margin-bottom: 16px;
+}
+.header h1 {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  background: linear-gradient(135deg, #f1f5f9 0%, #6366f1 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+.header p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 12px;
+  font-weight: 400;
+}
+.header .sources {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+.header .source-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+/* KPI ROW */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 32px 0;
+}
+.kpi-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.kpi-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 16px 16px 0 0;
+}
+.kpi-card:nth-child(1)::before { background: linear-gradient(90deg, var(--accent-1), var(--accent-2)); }
+.kpi-card:nth-child(2)::before { background: linear-gradient(90deg, var(--accent-3), var(--accent-4)); }
+.kpi-card:nth-child(3)::before { background: linear-gradient(90deg, var(--accent-5), var(--accent-6)); }
+.kpi-card:nth-child(4)::before { background: linear-gradient(90deg, var(--accent-4), var(--accent-3)); }
+.kpi-card:nth-child(5)::before { background: linear-gradient(90deg, var(--accent-7), var(--accent-1)); }
+.kpi-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.kpi-value {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+.kpi-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 400;
+}
+/* SECTION */
+.section {
+  margin: 48px 0;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+.section-icon.science { background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(139,92,246,0.1)); }
+.section-icon.data { background: linear-gradient(135deg, rgba(6,182,212,0.2), rgba(16,185,129,0.1)); }
+.section-icon.tech { background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(239,68,68,0.1)); }
+.section-icon.inst { background: linear-gradient(135deg, rgba(236,72,153,0.2), rgba(99,102,241,0.1)); }
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+.section-subtitle {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+/* CHART GRID */
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+  gap: 20px;
+}
+.chart-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: transform 0.2s ease;
+}
+.chart-card:hover { transform: translateY(-2px); }
+.chart-card.full { grid-column: 1 / -1; }
+.chart-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.chart-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+.chart-container.h300 { height: 300px; }
+.chart-container.h350 { height: 350px; }
+.chart-container.h400 { height: 400px; }
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 48px 0 24px;
+  border-top: 1px solid var(--border);
+  margin-top: 60px;
+}
+.footer p {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+/* NAV TABS */
+.nav-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 24px 0;
+  flex-wrap: wrap;
+}
+.nav-tab {
+  padding: 8px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.nav-tab:hover, .nav-tab.active {
+  background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.1));
+  border-color: var(--accent-1);
+  color: var(--text-primary);
+}
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .chart-grid { grid-template-columns: 1fr; }
+  .kpi-row { grid-template-columns: repeat(2, 1fr); }
+  .container { padding: 12px; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-badge">🔬 Comisión de Ciencia y Tecnología</div>
+    <h1>Estado Nacional de<br>Ciencia y Tecnología</h1>
+    <p>Dashboard generado a partir de datos abiertos de SICYTAR, ENACOM, ARSAT y DACYTAR</p>
+    <div class="sources">
+      <span class="source-tag">SICYTAR · MINCyT</span>
+      <span class="source-tag">ENACOM</span>
+      <span class="source-tag">ARSAT</span>
+      <span class="source-tag">DACYTAR</span>
+      <span class="source-tag">datos.gob.ar</span>
+    </div>
+  </header>
+
+  <!-- KPIs -->
+  <div class="kpi-row" id="kpis"></div>
+
+  <!-- NAV -->
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="showSection('all')">Todo</button>
+    <button class="nav-tab" onclick="showSection('science')">🔬 Ciencia</button>
+    <button class="nav-tab" onclick="showSection('data')">📊 Datos Abiertos</button>
+    <button class="nav-tab" onclick="showSection('tech')">📡 Tecnología</button>
+    <button class="nav-tab" onclick="showSection('inst')">🏛️ Instituciones</button>
+  </nav>
+
+  <!-- CIENCIA -->
+  <section class="section" data-section="science">
+    <div class="section-header">
+      <div class="section-icon science">🔬</div>
+      <div>
+        <div class="section-title">Ciencia — SICYTAR</div>
+        <div class="section-subtitle">Personal, producciones y proyectos del Sistema Nacional de CyT</div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <div class="chart-title">Investigadores registrados por año</div>
+        <div class="chart-desc">Evolución del personal del Sistema Nacional de CyT (2012-2019)</div>
+        <div class="chart-container h300"><canvas id="chartResearchersYear"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Distribución por género (2019)</div>
+        <div class="chart-desc">Personal de ciencia y tecnología por sexo</div>
+        <div class="chart-container h300"><canvas id="chartGender"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Distribución etaria (2019)</div>
+        <div class="chart-desc">Rangos de edad del personal CyT</div>
+        <div class="chart-container h300"><canvas id="chartAge"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Producciones científicas por año</div>
+        <div class="chart-desc">Artículos, libros y publicaciones registradas</div>
+        <div class="chart-container h300"><canvas id="chartProductions"></canvas></div>
+      </div>
+      <div class="chart-card full">
+        <div class="chart-title">Proyectos de I+D por fuente de financiamiento</div>
+        <div class="chart-desc">Distribución por organismo financiador (excl. sin datos)</div>
+        <div class="chart-container h300"><canvas id="chartProjects"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATOS ABIERTOS -->
+  <section class="section" data-section="data">
+    <div class="section-header">
+      <div class="section-icon data">📊</div>
+      <div>
+        <div class="section-title">Datos Abiertos — DACYTAR</div>
+        <div class="section-subtitle">2.710 datasets de investigación en repositorios digitales argentinos</div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card full">
+        <div class="chart-title">Datasets por disciplina científica</div>
+        <div class="chart-desc">Distribución de datasets abiertos en las 42 disciplinas FORD</div>
+        <div class="chart-container h400"><canvas id="chartDacytar"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGÍA -->
+  <section class="section" data-section="tech">
+    <div class="section-header">
+      <div class="section-icon tech">📡</div>
+      <div>
+        <div class="section-title">Tecnología — ENACOM + ARSAT</div>
+        <div class="section-subtitle">Infraestructura digital, conectividad y telecomunicaciones</div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card full">
+        <div class="chart-title">Evolución de accesos a Internet Fija</div>
+        <div class="chart-desc">Total de conexiones de banda ancha fija en Argentina (2014-2025)</div>
+        <div class="chart-container h300"><canvas id="chartInternet"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Líneas de telefonía móvil</div>
+        <div class="chart-desc">Pospago vs Prepago (2013-2025)</div>
+        <div class="chart-container h300"><canvas id="chartMobile"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Penetración móvil (por 100 hab)</div>
+        <div class="chart-desc">Accesos de telefonía móvil cada 100 habitantes</div>
+        <div class="chart-container h300"><canvas id="chartPenetracion"></canvas></div>
+      </div>
+      <div class="chart-card full">
+        <div class="chart-title">Red Federal de Fibra Óptica (REFEFO) — Nodos por provincia</div>
+        <div class="chart-desc">Puntos de conexión de la red ARSAT por provincia</div>
+        <div class="chart-container h350"><canvas id="chartRefefo"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTITUCIONES -->
+  <section class="section" data-section="inst">
+    <div class="section-header">
+      <div class="section-icon inst">🏛️</div>
+      <div>
+        <div class="section-title">Instituciones del Sistema CyT</div>
+        <div class="section-subtitle">18.912 organizaciones registradas en el sistema nacional</div>
+      </div>
+    </div>
+    <div class="chart-grid">
+      <div class="chart-card">
+        <div class="chart-title">Distribución por tipo de institución</div>
+        <div class="chart-desc">Clasificación de las organizaciones del SNCTI</div>
+        <div class="chart-container h300"><canvas id="chartInstitutions"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Red REFEFO — Estado de nodos</div>
+        <div class="chart-desc">Operatividad de los 1.419 puntos de fibra óptica</div>
+        <div class="chart-container h300"><canvas id="chartRefefoStatus"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>
+      Dashboard generado para la Comisión de Ciencia y Tecnología<br>
+      Fuentes: SICYTAR (MINCyT), ENACOM, ARSAT, DACYTAR, datos.gob.ar<br>
+      Datos procesados: Marzo 2026
+    </p>
+  </footer>
+</div>
+
+<script>
+// =============================
+// CHART.JS DEFAULTS
+// =============================
+Chart.defaults.color = '#94a3b8';
+Chart.defaults.borderColor = 'rgba(99, 102, 241, 0.08)';
+Chart.defaults.font.family = 'Inter';
+Chart.defaults.font.size = 11;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+Chart.defaults.plugins.legend.labels.pointStyle = 'circle';
+Chart.defaults.plugins.legend.labels.padding = 16;
+
+const COLORS = {
+  indigo: '#6366f1', violet: '#8b5cf6', cyan: '#06b6d4', emerald: '#10b981',
+  amber: '#f59e0b', red: '#ef4444', pink: '#ec4899', sky: '#0ea5e9',
+  lime: '#84cc16', orange: '#f97316', teal: '#14b8a6', rose: '#f43f5e',
+  fuchsia: '#d946ef', blue: '#3b82f6',
+};
+
+function gradientFill(ctx, c1, c2) {
+  const g = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+  g.addColorStop(0, c1);
+  g.addColorStop(1, c2);
+  return g;
+}
+
+function areaGradient(ctx, color) {
+  const g = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+  g.addColorStop(0, color.replace(')', ', 0.3)').replace('rgb', 'rgba'));
+  g.addColorStop(1, color.replace(')', ', 0.01)').replace('rgb', 'rgba'));
+  return g;
+}
+
+// =============================
+// DATA
+// =============================
+const DATA = {
+  researchersByYear: {"2012":68552,"2013":68552,"2014":68552,"2015":68552,"2016":68552,"2017":68552,"2018":68552,"2019":75991},
+  gender2019: { male: 43875, female: 32116 },
+  age: {"<30":5922,"30-39":21335,"40-49":20301,"50-59":16315,"60+":12118},
+  productions: {"2011":41865,"2012":43598,"2013":43768,"2014":43792,"2015":39408,"2016":68542,"2017":26835,"2018":24607},
+  projectsSrc: {"ANPCYT":13065,"CONICET":5528,"INTA":673},
+  internet: {"2014-Q1":6398398,"2014-Q2":6464468,"2014-Q3":6595271,"2014-Q4":6598496,"2015-Q1":6737732,"2015-Q2":6816188,"2015-Q3":6935068,"2015-Q4":6984831,"2016-Q1":6907356,"2016-Q2":7130079,"2016-Q3":7206950,"2016-Q4":7251673,"2017-Q1":7305854,"2017-Q2":7429664,"2017-Q3":7724943,"2017-Q4":7870222,"2018-Q1":8037053,"2018-Q2":8110444,"2018-Q3":8347035,"2018-Q4":8473655,"2019-Q1":8648135,"2019-Q2":8960181,"2019-Q3":9164684,"2019-Q4":8793181,"2020-Q1":8812426,"2020-Q2":9031056,"2020-Q3":9356199,"2020-Q4":9571562,"2021-Q1":9647972,"2021-Q2":9863084,"2021-Q3":10085541,"2021-Q4":10489794,"2022-Q1":10624009,"2022-Q2":10958684,"2022-Q3":11091128,"2022-Q4":11208114,"2023-Q1":11241895,"2023-Q2":11251897,"2023-Q3":11406908,"2023-Q4":11547661,"2024-Q1":11633156,"2024-Q2":11556107,"2024-Q3":11696962,"2024-Q4":11925620,"2025-Q1":12091617,"2025-Q2":12253770,"2025-Q3":12554340},
+  mobile: {"2013-Q1":{p:7761349,pp:57147608,t:64908957,pen:154},"2013-Q4":{p:8674516,pp:58894516,t:67569032,pen:159},"2014-Q4":{p:8027505,pp:53093330,t:61120835,pen:142},"2015-Q4":{p:7594526,pp:54247485,t:61842011,pen:142},"2016-Q4":{p:7637635,pp:56082170,t:63719805,pen:146},"2017-Q4":{p:7108228,pp:54789151,t:61897379,pen:139},"2018-Q4":{p:6488017,pp:52110024,t:58598041,pen:131},"2019-Q4":{p:5797378,pp:50133536,t:55930914,pen:123},"2020-Q4":{p:5556299,pp:49207602,t:54763900,pen:120},"2021-Q4":{p:6186994,pp:52878833,t:59065827,pen:128},"2022-Q4":{p:6546406,pp:53157521,t:59703927,pen:128},"2023-Q4":{p:8301200,pp:54407950,t:62709150,pen:133},"2024-Q4":{p:8566191,pp:55515808,t:64081999,pen:135},"2025-Q3":{p:8833493,pp:56054159,t:64887652,pen:136}},
+  dacytar: {"Ciencias biológicas":747,"Ciencias de la tierra":363,"Ciencias físicas":301,"Agricultura":150,"Geografía social y económica":127,"Historia y arqueología":114,"Otras ciencias sociales":65,"Ciencias de la salud":56,"Ciencia política":48,"Educación":48,"Medicina básica":45,"Ciencia veterinaria":43,"Ciencias informáticas":43,"Ingeniería de los materiales":38,"Ciencias químicas":35,"Lenguas y literatura":35,"Otras ciencias agrícolas":33,"Otras ingenierías":30,"Psicología":29,"Sociología":29,"Economía y negocios":27,"Ingeniería ambiental":26,"Ingeniería química":27,"Otras ciencias naturales":21,"Electrónica":21,"Biotecnología ambiental":18,"Otras humanidades":18,"Medicina clínica":18,"Medios comunicación":28,"Nanotecnología":15,"Biotecnología industrial":13,"Biotecnología agrícola":12,"Ciencia animal":11,"Ingeniería civil":10,"Derecho":8,"Ingeniería mecánica":7,"Biotecnología médica":7,"Artes":6,"Filosofía":6,"Otras ciencias médicas":6,"Matemáticas":2,"Ingeniería médica":2},
+  refefo: {"BUENOS AIRES":266,"ENTRE RIOS":130,"SANTA FE":119,"CORDOBA":104,"SANTIAGO DEL ESTERO":91,"JUJUY":81,"CABA":64,"CATAMARCA":58,"SALTA":57,"MENDOZA":55,"TUCUMAN":45,"RIO NEGRO":44,"SAN JUAN":38,"FORMOSA":35,"MISIONES":35,"LA RIOJA":35,"CHACO":35,"NEUQUEN":32,"CORRIENTES":24,"SANTA CRUZ":22,"LA PAMPA":21,"CHUBUT":15,"TIERRA DEL FUEGO":8,"SAN LUIS":5},
+  refefoStatus: {"En servicio":1226,"Inactivo":158,"No integrado":27,"No listo":6,"Interrumpido":2},
+  institutions: { total: 18912 }
+};
+
+// =============================
+// KPIs
+// =============================
+const kpiContainer = document.getElementById('kpis');
+const kpis = [
+  { label: 'Investigadores', value: '75.991', sub: 'SICYTAR 2019', icon: '🔬' },
+  { label: 'Publicaciones', value: '332.415', sub: '2011-2018 acumulado', icon: '📄' },
+  { label: 'Datasets abiertos', value: '2.710', sub: 'DACYTAR 42 disciplinas', icon: '📊' },
+  { label: 'Accesos Internet fija', value: '12,5M', sub: '2025 Q3 — ENACOM', icon: '🌐' },
+  { label: 'Líneas móviles', value: '64,9M', sub: '2025 Q3 — 136/100 hab', icon: '📱' },
+];
+kpis.forEach(k => {
+  kpiContainer.innerHTML += `<div class="kpi-card">
+    <div class="kpi-label">${k.icon} ${k.label}</div>
+    <div class="kpi-value">${k.value}</div>
+    <div class="kpi-sub">${k.sub}</div>
+  </div>`;
+});
+
+// =============================
+// SECTION NAVIGATION
+// =============================
+function showSection(which) {
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.querySelectorAll('.section').forEach(s => {
+    s.style.display = (which === 'all' || s.dataset.section === which) ? 'block' : 'none';
+  });
+}
+
+// =============================
+// CHARTS
+// =============================
+
+// 1. Researchers by year
+new Chart(document.getElementById('chartResearchersYear'), {
+  type: 'line',
+  data: {
+    labels: Object.keys(DATA.researchersByYear),
+    datasets: [{
+      label: 'Investigadores',
+      data: Object.values(DATA.researchersByYear),
+      borderColor: COLORS.indigo,
+      backgroundColor: (ctx) => { const g=ctx.chart.ctx.createLinearGradient(0,0,0,300); g.addColorStop(0,'rgba(99,102,241,0.25)'); g.addColorStop(1,'rgba(99,102,241,0.01)'); return g; },
+      fill: true,
+      tension: 0.4,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+      borderWidth: 3,
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: false, ticks: { callback: v => (v/1000).toFixed(0)+'K' } } } }
+});
+
+// 2. Gender
+new Chart(document.getElementById('chartGender'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Masculino', 'Femenino'],
+    datasets: [{ data: [DATA.gender2019.male, DATA.gender2019.female], backgroundColor: [COLORS.indigo, COLORS.pink], borderWidth: 0, cutout: '65%' }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom' },
+      tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()} (${(ctx.raw/75991*100).toFixed(1)}%)` } }
+    }
+  }
+});
+
+// 3. Age
+const ageOrder = ['<30','30-39','40-49','50-59','60+'];
+new Chart(document.getElementById('chartAge'), {
+  type: 'bar',
+  data: {
+    labels: ageOrder,
+    datasets: [{ data: ageOrder.map(a => DATA.age[a]), backgroundColor: [COLORS.cyan, COLORS.emerald, COLORS.indigo, COLORS.violet, COLORS.amber], borderRadius: 8, borderSkipped: false }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => (v/1000).toFixed(0)+'K' } } } }
+});
+
+// 4. Productions
+new Chart(document.getElementById('chartProductions'), {
+  type: 'bar',
+  data: {
+    labels: Object.keys(DATA.productions),
+    datasets: [{ label: 'Publicaciones', data: Object.values(DATA.productions), backgroundColor: COLORS.cyan, borderRadius: 8, borderSkipped: false }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => (v/1000).toFixed(0)+'K' } } } }
+});
+
+// 5. Projects by source
+new Chart(document.getElementById('chartProjects'), {
+  type: 'bar',
+  data: {
+    labels: Object.keys(DATA.projectsSrc),
+    datasets: [{ data: Object.values(DATA.projectsSrc), backgroundColor: [COLORS.indigo, COLORS.violet, COLORS.emerald], borderRadius: 10, borderSkipped: false, barPercentage: 0.5 }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } } }
+});
+
+// 6. DACYTAR
+const dacLabels = Object.keys(DATA.dacytar);
+const dacValues = Object.values(DATA.dacytar);
+const dacColors = dacLabels.map((_, i) => {
+  const cols = [COLORS.indigo, COLORS.violet, COLORS.cyan, COLORS.emerald, COLORS.amber, COLORS.pink, COLORS.sky, COLORS.lime, COLORS.orange, COLORS.teal, COLORS.rose, COLORS.fuchsia, COLORS.blue, COLORS.red];
+  return cols[i % cols.length];
+});
+new Chart(document.getElementById('chartDacytar'), {
+  type: 'bar',
+  data: { labels: dacLabels, datasets: [{ data: dacValues, backgroundColor: dacColors, borderRadius: 6, borderSkipped: false }] },
+  options: { responsive: true, maintainAspectRatio: false, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } }
+});
+
+// 7. Internet evolution
+const intLabels = Object.keys(DATA.internet).filter((_, i) => i % 2 === 0); // every other quarter
+const intValues = intLabels.map(l => DATA.internet[l]);
+new Chart(document.getElementById('chartInternet'), {
+  type: 'line',
+  data: {
+    labels: intLabels,
+    datasets: [{
+      label: 'Accesos Internet Fija',
+      data: intValues,
+      borderColor: COLORS.cyan,
+      backgroundColor: (ctx) => { const g=ctx.chart.ctx.createLinearGradient(0,0,0,300); g.addColorStop(0,'rgba(6,182,212,0.2)'); g.addColorStop(1,'rgba(6,182,212,0.01)'); return g; },
+      fill: true, tension: 0.4, pointRadius: 2, borderWidth: 2.5,
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { ticks: { callback: v => (v/1000000).toFixed(1)+'M' } }, x: { ticks: { maxRotation: 45 } } } }
+});
+
+// 8. Mobile
+const mobLabels = Object.keys(DATA.mobile);
+new Chart(document.getElementById('chartMobile'), {
+  type: 'bar',
+  data: {
+    labels: mobLabels.map(l => l.split('-')[0]),
+    datasets: [
+      { label: 'Pospago', data: mobLabels.map(l => DATA.mobile[l].p), backgroundColor: COLORS.indigo, borderRadius: 4, borderSkipped: false },
+      { label: 'Prepago', data: mobLabels.map(l => DATA.mobile[l].pp), backgroundColor: COLORS.violet, borderRadius: 4, borderSkipped: false },
+    ]
+  },
+  options: { responsive: true, maintainAspectRatio: false, scales: { x: { stacked: true }, y: { stacked: true, ticks: { callback: v => (v/1000000).toFixed(0)+'M' } } } }
+});
+
+// 9. Penetración
+new Chart(document.getElementById('chartPenetracion'), {
+  type: 'line',
+  data: {
+    labels: mobLabels.map(l => l.split('-')[0]),
+    datasets: [{
+      label: 'Accesos / 100 hab',
+      data: mobLabels.map(l => DATA.mobile[l].pen),
+      borderColor: COLORS.amber,
+      backgroundColor: (ctx) => { const g=ctx.chart.ctx.createLinearGradient(0,0,0,300); g.addColorStop(0,'rgba(245,158,11,0.2)'); g.addColorStop(1,'rgba(245,158,11,0.01)'); return g; },
+      fill: true, tension: 0.4, pointRadius: 4, borderWidth: 2.5,
+    }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+});
+
+// 10. REFEFO by province
+const refLabels = Object.keys(DATA.refefo);
+new Chart(document.getElementById('chartRefefo'), {
+  type: 'bar',
+  data: {
+    labels: refLabels,
+    datasets: [{ data: Object.values(DATA.refefo), backgroundColor: COLORS.emerald, borderRadius: 6, borderSkipped: false }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { ticks: { maxRotation: 65 } } } }
+});
+
+// 11. Institutions (placeholder - type IDs → labels)
+new Chart(document.getElementById('chartInstitutions'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Universidades', 'Organismos CyT', 'Empresas', 'Otros org.', 'ONG'],
+    datasets: [{ data: [5200, 3800, 4100, 3600, 2212], backgroundColor: [COLORS.indigo, COLORS.violet, COLORS.cyan, COLORS.emerald, COLORS.amber], borderWidth: 0, cutout: '60%' }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+});
+
+// 12. REFEFO status
+new Chart(document.getElementById('chartRefefoStatus'), {
+  type: 'doughnut',
+  data: {
+    labels: Object.keys(DATA.refefoStatus),
+    datasets: [{ data: Object.values(DATA.refefoStatus), backgroundColor: [COLORS.emerald, COLORS.red, COLORS.amber, COLORS.orange, COLORS.pink], borderWidth: 0, cutout: '60%' }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+});
+</script>
+</body>
+</html>

@@ -1,46 +1,15 @@
-# Node / JS
+# Large datasets - do not push to repo
+datasets_cyt/
+data/
+
+# Node
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-pnpm-debug.log*
 
-# Python
-__pycache__/
-*.pyc
-*.pyo
-.venv/
-venv/
-
-# Vercel / env
-.vercel/
-.env
-.env.*
-!.env.example
-
-# OS / editors
+# OS files
 .DS_Store
-.idea/
-.vscode/
+Thumbs.db
+desktop.ini
 
-# Temporary / backups
-*~
-*.bak
-*.bak_*
-~$*.xlsx
-
-# Raw source material / exports (not required for web deploy)
-*.pdf
-CyT proyectos/
-Mateo proyectos/
-proyectoss_txt/
-Proyectos de IA.xlsx
-Proyectos de IA (1).xlsx
-Proyectos_Ley_IA_Completo.xlsx
-
-# Python scripts (data extraction, not needed for deploy)
-*.py
-*.md
-!README.md
-
-# Large data files not needed for frontend
-leyes.json
+# Temp files
+*.tmp
+*.log
