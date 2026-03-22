@@ -19,8 +19,6 @@
     }
   ],
   "rewrites": [
-    { "source": "/dashboard-cyt", "destination": "/dashboard-cyt.html" },
-    { "source": "/landing-cyt", "destination": "/landing-cyt.html" },
-    { "source": "/dashboard", "destination": "/dashboard.html" }
+    { "source": "/dashboard", "destination": "/dashboard-cyt.html" }
   ]
 }

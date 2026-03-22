@@ -4,14 +4,12 @@ Análisis integral de los **75 proyectos legislativos** presentados ante la Comi
 
 ## 🌐 Deploy
 
-Este proyecto se despliega como sitio estático en **Vercel**. No requiere build.
+Sitio estático en **Vercel**. No requiere build.
 
 | Página | Ruta |
 |--------|------|
-| Landing CyT | `/landing-cyt` |
-| Dashboard CyT | `/dashboard-cyt` |
-| Landing General | `/` |
-| Dashboard IA | `/dashboard` |
+| Landing | `/` |
+| Dashboard | `/dashboard-cyt` |
 
 ## 📊 Datos
 
@@ -20,29 +18,12 @@ Este proyecto se despliega como sitio estático en **Vercel**. No requiere build
 - **14** bloques políticos representados
 - **12** ejes temáticos
 
-Fuentes: PDFs de proyectos (extracción de texto), dataset oficial HCDN (`proyectos_parlamentarios.json`, `diputados.json`).
-
 ## 🛠️ Stack
 
-- HTML / CSS / JavaScript (vanilla)
-- Chart.js (visualizaciones)
-- Datos: `cyt_bills_data.json` (generado por `extract_cyt_data.py`)
+HTML / CSS / JS (vanilla) + Chart.js
 
-## 📁 Estructura
-
-```
-├── landing-cyt.html      # Landing institucional CyT
-├── dashboard-cyt.html    # Dashboard interactivo CyT
-├── index.html            # Landing general
-├── dashboard.html        # Dashboard IA
-├── cyt_bills_data.json   # Datos de 75 proyectos CyT
-├── bills_data.json       # Datos proyectos IA
-├── vercel.json           # Config Vercel
-└── extract_cyt_data.py   # Script extracción (no se sube)
-```
-
-## 🚀 Desarrollo local
+## 🚀 Dev local
 
 ```bash
-npx http-server -p 8080 -c-1 --cors
+npx http-server -p 8080 -c-1
 ```
