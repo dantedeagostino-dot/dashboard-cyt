@@ -1,56 +1,1516 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ProyectosCyT · Dashboard Ciencia y Tecnología</title>
-<style>
-/* ── NECO FONT ───────────────────────────── */
-@font-face {
-  font-family: 'Neco';
-  src: url('fonts/Neco-Variable.woff2') format('woff2'),
-       url('fonts/Neco-Variable.woff') format('woff');
-  font-weight: 400 900;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
-  font-family: 'Neco';
-  src: url('fonts/Neco-VariableItalic.woff2') format('woff2'),
-       url('fonts/Neco-VariableItalic.woff') format('woff');
-  font-weight: 400 900;
-  font-display: swap;
-  font-style: italic;
-}
-  :root { --bg:#f5f0e8; --surface:#ede8df; --border:rgba(0,0,0,.1); --text:#1c1917; --muted:#78716c; --lime:#2d6a2d; --blue:#1a4a8a; }
-  * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:'Neco',system-ui,sans-serif; }
-  .wrap { max-width:900px; margin:0 auto; padding:28px 20px 40px; }
-  .top { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; }
-  .logo { font-weight:800; letter-spacing:.2px; }
-  .logo .lex { color:var(--lime); }
-  .logo .ar { color:#8a8f99; }
-  .back { color:var(--muted); text-decoration:none; border:1px solid var(--border); border-radius:10px; padding:8px 12px; font-size:13px; }
-  .back:hover { border-color:rgba(45,106,45,.4); color:var(--lime); }
-  .card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:26px; }
-  h1 { font-size:34px; line-height:1.1; margin-bottom:10px; font-weight:800; }
-  p { color:var(--muted); line-height:1.6; max-width:62ch; }
-  .tag { display:inline-block; margin-top:14px; font-size:12px; color:var(--blue); border:1px solid rgba(26,74,138,.35); border-radius:999px; padding:5px 10px; }
-</style>
-<link rel="stylesheet" href="smooth-cursor.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comisión de Ciencia, Tecnología e Innovación Productiva</title>
+    <meta name="description" content="Dashboard legislativo de la Comisión de Ciencia, Tecnología e Innovación Productiva — H. Cámara de Diputados de la Nación Argentina">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <style>
+        /* ═══════════════════════════════════════════════════════
+           DESIGN TOKENS — Institucional / Parlamentario
+           ═══════════════════════════════════════════════════════ */
+        :root {
+            --navy-900: #0c1b33;
+            --navy-800: #132744;
+            --navy-700: #1a3556;
+            --navy-600: #1e4175;
+            --navy-500: #2563a0;
+            --navy-400: #4a82b8;
+            --navy-300: #7ba3cc;
+            --navy-200: #b4cde0;
+            --navy-100: #dce8f2;
+            --navy-50: #f0f5fa;
+
+            --gold-600: #92700c;
+            --gold-500: #b8910f;
+            --gold-400: #d4a91a;
+            --gold-300: #e8c547;
+            --gold-200: #f0d97a;
+            --gold-100: #fdf3d1;
+
+            --gray-900: #111827;
+            --gray-800: #1f2937;
+            --gray-700: #374151;
+            --gray-600: #4b5563;
+            --gray-500: #6b7280;
+            --gray-400: #9ca3af;
+            --gray-300: #d1d5db;
+            --gray-200: #e5e7eb;
+            --gray-100: #f3f4f6;
+            --gray-50: #f9fafb;
+
+            --white: #ffffff;
+            --red-500: #ef4444;
+            --green-500: #22c55e;
+
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-serif: 'Source Serif 4', Georgia, serif;
+
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.04);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 8px 10px -6px rgba(0,0,0,0.04);
+
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+        }
+
+        /* ─── RESET & BASE ──────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--gray-50);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── HEADER ────────────────────────────────────── */
+        .header {
+            background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 50%, var(--navy-700) 100%);
+            color: var(--white);
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 32px;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .header-logo {
+            width: 48px;
+            height: 48px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            border: 2px solid var(--gold-400);
+        }
+
+        .header-text h1 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .header-text p {
+            font-size: 12px;
+            color: var(--navy-200);
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .header-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .badge {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--navy-100);
+        }
+
+        .badge strong {
+            color: var(--gold-300);
+            font-weight: 700;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--navy-200);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            transition: all 0.2s;
+        }
+
+        .btn-back:hover {
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+        }
+
+        /* ─── FILTERS BAR ───────────────────────────────── */
+        .filters-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 32px;
+            background: rgba(0,0,0,0.12);
+        }
+
+        .filters-bar label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--navy-300);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-select {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--white);
+            padding: 6px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-family: var(--font-sans);
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .filter-select:hover { border-color: rgba(255,255,255,0.25); }
+        .filter-select:focus { border-color: var(--gold-400); }
+        .filter-select option { background: var(--navy-800); color: var(--white); }
+
+        .filter-search {
+            flex: 1;
+            max-width: 320px;
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--white);
+            padding: 6px 12px 6px 32px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-family: var(--font-sans);
+            outline: none;
+            transition: border-color 0.2s;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%237ba3cc' stroke-width='2'%3E%3Cpath d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: 8px center;
+            background-size: 16px;
+        }
+
+        .filter-search::placeholder { color: var(--navy-300); }
+        .filter-search:focus { border-color: var(--gold-400); }
+
+        /* ─── MAIN LAYOUT ───────────────────────────────── */
+        .main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px 32px 64px;
+        }
+
+        /* ─── KPI CARDS ─────────────────────────────────── */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 20px 24px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s;
+        }
+
+        .kpi-card:hover { box-shadow: var(--shadow-md); }
+
+        .kpi-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-500);
+            margin-bottom: 4px;
+        }
+
+        .kpi-value {
+            font-family: var(--font-serif);
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--navy-800);
+            line-height: 1.1;
+        }
+
+        .kpi-sub {
+            font-size: 13px;
+            color: var(--gray-500);
+            margin-top: 4px;
+        }
+
+        /* ─── SECTION TITLES ────────────────────────────── */
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--navy-800);
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--navy-100);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title .accent-line {
+            width: 4px;
+            height: 22px;
+            background: var(--gold-400);
+            border-radius: 2px;
+        }
+
+        /* ─── PANORAMA TEMÁTICO ─────────────────────────── */
+        .panorama-section {
+            margin-bottom: 32px;
+        }
+
+        .eje-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .eje-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eje-card:hover {
+            box-shadow: var(--shadow-md);
+            border-color: var(--gray-300);
+            transform: translateY(-1px);
+        }
+
+        .eje-card.active {
+            border-color: var(--navy-500);
+            box-shadow: 0 0 0 2px rgba(37,99,160,0.15);
+        }
+
+        .eje-card-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .eje-icon {
+            font-size: 22px;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-sm);
+            background: var(--gray-50);
+        }
+
+        .eje-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-800);
+            line-height: 1.3;
+        }
+
+        .eje-stats {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .eje-count {
+            font-family: var(--font-serif);
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--navy-700);
+        }
+
+        .eje-bar-container {
+            flex: 1;
+            margin-left: 12px;
+            height: 6px;
+            background: var(--gray-100);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .eje-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ─── CHARTS ROW ────────────────────────────────── */
+        .charts-row {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .chart-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chart-card h3 {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--navy-800);
+            margin-bottom: 16px;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .chart-container canvas {
+            width: 100% !important;
+        }
+
+        /* ─── PROJECT TABLE ─────────────────────────────── */
+        .table-section {
+            margin-bottom: 32px;
+        }
+
+        .table-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .table-info {
+            font-size: 13px;
+            color: var(--gray-500);
+        }
+
+        .table-wrapper {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--navy-50);
+        }
+
+        th {
+            text-align: left;
+            padding: 12px 16px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--navy-600);
+            border-bottom: 2px solid var(--navy-100);
+            white-space: nowrap;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s;
+        }
+
+        th:hover { color: var(--navy-800); }
+
+        th .sort-arrow {
+            display: inline-block;
+            margin-left: 4px;
+            opacity: 0.3;
+            font-size: 10px;
+        }
+
+        th.sorted .sort-arrow { opacity: 1; color: var(--gold-500); }
+
+        td {
+            padding: 12px 16px;
+            font-size: 14px;
+            border-bottom: 1px solid var(--gray-100);
+            vertical-align: top;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        tr:hover td {
+            background: var(--navy-50);
+        }
+
+        tr { cursor: pointer; transition: background 0.15s; }
+
+        .td-expediente {
+            font-family: 'SF Mono', 'Consolas', monospace;
+            font-size: 12px;
+            color: var(--navy-600);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .td-titulo {
+            max-width: 380px;
+            font-weight: 500;
+            color: var(--gray-800);
+            line-height: 1.4;
+        }
+
+        .td-eje {
+            white-space: nowrap;
+        }
+
+        .eje-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .td-tipo {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            color: var(--gray-500);
+        }
+
+        .td-year {
+            font-weight: 600;
+            color: var(--gray-600);
+            text-align: center;
+        }
+
+        .td-pages {
+            text-align: center;
+            color: var(--gray-400);
+            font-size: 13px;
+        }
+
+        /* ─── PAGINATION ────────────────────────────────── */
+        .pagination {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 16px;
+            border-top: 1px solid var(--gray-100);
+        }
+
+        .page-btn {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            background: var(--white);
+            color: var(--gray-600);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: var(--font-sans);
+        }
+
+        .page-btn:hover { border-color: var(--navy-400); color: var(--navy-600); }
+        .page-btn.active {
+            background: var(--navy-700);
+            color: var(--white);
+            border-color: var(--navy-700);
+        }
+        .page-btn:disabled { opacity: 0.4; cursor: default; }
+
+        /* ─── MODAL ─────────────────────────────────────── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 32px;
+            animation: fadeIn 0.2s;
+        }
+
+        .modal-overlay.open { display: flex; }
+
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            max-width: 700px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+            animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-header {
+            padding: 24px 28px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .modal-header h2 {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--navy-800);
+            line-height: 1.4;
+            flex: 1;
+            padding-right: 16px;
+        }
+
+        .modal-close {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: var(--gray-100);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            font-size: 18px;
+            transition: all 0.15s;
+            flex-shrink: 0;
+        }
+
+        .modal-close:hover { background: var(--gray-200); color: var(--gray-700); }
+
+        .modal-body {
+            padding: 20px 28px 28px;
+        }
+
+        .modal-meta {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .modal-meta-item {
+            padding: 12px;
+            background: var(--gray-50);
+            border-radius: var(--radius-sm);
+        }
+
+        .modal-meta-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-500);
+            margin-bottom: 2px;
+        }
+
+        .modal-meta-value {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-800);
+        }
+
+        .modal-resumen {
+            padding: 16px;
+            background: var(--navy-50);
+            border-left: 3px solid var(--navy-400);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-bottom: 16px;
+        }
+
+        .modal-resumen-title {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--navy-600);
+            margin-bottom: 6px;
+        }
+
+        .modal-resumen-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--gray-700);
+        }
+
+        .modal-pdf-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--navy-700);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .modal-pdf-link:hover { background: var(--navy-600); }
+
+        /* ─── FOOTER ────────────────────────────────────── */
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--gray-400);
+            font-size: 12px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        /* ─── ANIMATIONS ────────────────────────────────── */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ─── RESPONSIVE ────────────────────────────────── */
+        @media (max-width: 1024px) {
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .charts-row { grid-template-columns: 1fr; }
+            .eje-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); }
+        }
+
+        @media (max-width: 768px) {
+            .header-top { flex-direction: column; gap: 12px; padding: 12px 16px; }
+            .filters-bar { flex-wrap: wrap; padding: 10px 16px; }
+            .filter-search { max-width: 100%; }
+            .main { padding: 16px; }
+            .kpi-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+            .kpi-value { font-size: 28px; }
+            .eje-grid { grid-template-columns: 1fr 1fr; }
+            .modal-meta { grid-template-columns: 1fr; }
+
+            /* Responsive table */
+            .table-wrapper { overflow-x: auto; }
+            table { min-width: 800px; }
+        }
+
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            .eje-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ─── SKELETON LOADER ───────────────────────────── */
+        .skeleton {
+            background: linear-gradient(90deg, var(--gray-100) 25%, var(--gray-200) 50%, var(--gray-100) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: var(--radius-sm);
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* ─── EMPTY STATE ───────────────────────────────── */
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            color: var(--gray-400);
+        }
+
+        .empty-state-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state-text {
+            font-size: 15px;
+        }
+
+        /* ─── EJE TAG COLORS ────────────────────────────── */
+        .eje-tag[data-color] {
+            border-left: 3px solid var(--tag-color, var(--gray-300));
+        }
+    </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="top">
-      <div class="logo">ProyectosCyT</div>
-      <a class="back" href="index.html">← Volver al inicio</a>
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="header">
+        <div class="header-top">
+            <div class="header-brand">
+                <div class="header-logo">🏛️</div>
+                <div class="header-text">
+                    <h1>Comisión de Ciencia, Tecnología<br>e Innovación Productiva</h1>
+                    <p>H. Cámara de Diputados de la Nación Argentina</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <span class="badge" id="badge-total">Cargando...</span>
+                <a href="index.html" class="btn-back">← Volver al inicio</a>
+            </div>
+        </div>
+        <div class="filters-bar">
+            <label>Filtros:</label>
+            <select class="filter-select" id="filter-year">
+                <option value="">Todos los años</option>
+            </select>
+            <select class="filter-select" id="filter-eje">
+                <option value="">Todos los ejes</option>
+            </select>
+            <select class="filter-select" id="filter-tipo">
+                <option value="">Todos los tipos</option>
+            </select>
+            <select class="filter-select" id="filter-bloque">
+                <option value="">Todos los bloques</option>
+            </select>
+            <input type="text" class="filter-search" id="filter-search" placeholder="Buscar por título, expediente, autor...">
+        </div>
+    </header>
+
+    <!-- ═══ MAIN ═══ -->
+    <main class="main">
+
+        <!-- KPI Cards -->
+        <section class="kpi-grid" id="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Proyectos de Ley</div>
+                <div class="kpi-value" id="kpi-total">—</div>
+                <div class="kpi-sub" id="kpi-periodo"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Ejes Temáticos</div>
+                <div class="kpi-value" id="kpi-ejes">—</div>
+                <div class="kpi-sub">áreas de trabajo identificadas</div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Tipo más frecuente</div>
+                <div class="kpi-value" id="kpi-tipo" style="font-size: 22px;">—</div>
+                <div class="kpi-sub" id="kpi-tipo-sub"></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-label">Año más activo</div>
+                <div class="kpi-value" id="kpi-year">—</div>
+                <div class="kpi-sub" id="kpi-year-sub"></div>
+            </div>
+        </section>
+
+        <!-- Panorama temático -->
+        <section class="panorama-section">
+            <h2 class="section-title">
+                <span class="accent-line"></span>
+                Panorama Temático
+            </h2>
+            <div class="eje-grid" id="eje-grid"></div>
+        </section>
+
+        <!-- Charts -->
+        <section class="charts-row">
+            <div class="chart-card">
+                <h3>Evolución por Año y Eje Temático</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="chart-timeline"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Distribución por Tipo Normativo</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="chart-tipos"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bloques & Autores -->
+        <section class="charts-row">
+            <div class="chart-card">
+                <h3>Distribución por Bloque Político</h3>
+                <div class="chart-container" style="height: 300px;">
+                    <canvas id="chart-bloques"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Principales Autores</h3>
+                <div id="autores-list" style="max-height: 300px; overflow-y: auto;"></div>
+            </div>
+        </section>
+
+        <!-- Table -->
+        <section class="table-section">
+            <div class="table-header">
+                <h2 class="section-title" style="border: none; margin: 0; padding: 0;">
+                    <span class="accent-line"></span>
+                    Proyectos de Ley
+                </h2>
+                <span class="table-info" id="table-info"></span>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th data-sort="id">Expediente <span class="sort-arrow">▼</span></th>
+                            <th data-sort="titulo">Título <span class="sort-arrow">▼</span></th>
+                            <th data-sort="eje">Eje Temático <span class="sort-arrow">▼</span></th>
+                            <th data-sort="autor_principal">Autor <span class="sort-arrow">▼</span></th>
+                            <th data-sort="bloque">Bloque <span class="sort-arrow">▼</span></th>
+                            <th data-sort="año">Año <span class="sort-arrow">▼</span></th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+                <div class="pagination" id="pagination"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button class="modal-close" id="modal-close">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-meta" id="modal-meta"></div>
+                <div class="modal-resumen">
+                    <div class="modal-resumen-title">Resumen / Artículo 1°</div>
+                    <div class="modal-resumen-text" id="modal-resumen"></div>
+                </div>
+                <a href="#" class="modal-pdf-link" id="modal-pdf" target="_blank">📄 Ver PDF original</a>
+            </div>
+        </div>
     </div>
-    <div class="card">
-      <h1>Dashboard de Ciencia y Tecnología</h1>
-      <p>Este apartado quedó listo como base para cargar los proyectos de Ciencia y Tecnología. Cuando me pases los datos, te lo conecto con estructura completa (KPIs, semáforo, tortas y tabla).</p>
-      <span class="tag">Próximamente</span>
-    </div>
-  </div>
-<script src="smooth-cursor.js"></script>
+
+    <footer class="footer">
+        Datos extraídos de proyectos presentados ante la Comisión de Ciencia, Tecnología e Innovación Productiva — H.C.D.N.
+    </footer>
+
+    <script>
+        // ═══════════════════════════════════════════════════════
+        // DATA & STATE
+        // ═══════════════════════════════════════════════════════
+        let DATA = null;
+        let filteredBills = [];
+        let currentPage = 1;
+        const PAGE_SIZE = 15;
+        let sortField = 'año';
+        let sortDir = -1; // -1 desc, 1 asc
+        let activeEje = '';
+
+        // Eje color map
+        const EJE_COLORS = {};
+
+        // ═══════════════════════════════════════════════════════
+        // INIT
+        // ═══════════════════════════════════════════════════════
+        async function init() {
+            try {
+                const resp = await fetch('cyt_bills_data.json');
+                DATA = await resp.json();
+            } catch (e) {
+                console.error('Error loading data:', e);
+                return;
+            }
+
+            // Build color map
+            (DATA.eje_stats || []).forEach(s => {
+                EJE_COLORS[s.eje] = s.color;
+            });
+
+            populateFilters();
+            renderKPIs();
+            renderPanorama();
+            renderCharts();
+            renderBloquesChart();
+            renderAutoresList();
+            applyFilters();
+
+            // Events
+            document.getElementById('filter-year').addEventListener('change', () => { currentPage = 1; applyFilters(); });
+            document.getElementById('filter-eje').addEventListener('change', () => { currentPage = 1; activeEje = ''; updateEjeCards(); applyFilters(); });
+            document.getElementById('filter-tipo').addEventListener('change', () => { currentPage = 1; applyFilters(); });
+            document.getElementById('filter-bloque').addEventListener('change', () => { currentPage = 1; applyFilters(); });
+            document.getElementById('filter-search').addEventListener('input', debounce(() => { currentPage = 1; applyFilters(); }, 250));
+
+            // Modal close
+            document.getElementById('modal-close').addEventListener('click', closeModal);
+            document.getElementById('modal-overlay').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) closeModal();
+            });
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+            // Table sort
+            document.querySelectorAll('th[data-sort]').forEach(th => {
+                th.addEventListener('click', () => {
+                    const field = th.dataset.sort;
+                    if (sortField === field) {
+                        sortDir *= -1;
+                    } else {
+                        sortField = field;
+                        sortDir = field === 'año' || field === 'paginas' ? -1 : 1;
+                    }
+                    applyFilters();
+                    updateSortIndicators();
+                });
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // FILTERS
+        // ═══════════════════════════════════════════════════════
+        function populateFilters() {
+            const yearSelect = document.getElementById('filter-year');
+            const ejeSelect = document.getElementById('filter-eje');
+            const tipoSelect = document.getElementById('filter-tipo');
+
+            // Years
+            const years = [...new Set(DATA.bills.map(b => b.año))].sort();
+            years.forEach(y => {
+                yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+            });
+
+            // Ejes
+            DATA.eje_stats.forEach(s => {
+                ejeSelect.innerHTML += `<option value="${s.eje}">${s.icon} ${s.eje} (${s.total})</option>`;
+            });
+
+            // Tipos
+            const tipos = {};
+            DATA.bills.forEach(b => { tipos[b.tipo] = (tipos[b.tipo] || 0) + 1; });
+            Object.entries(tipos).sort((a, b) => b[1] - a[1]).forEach(([t, c]) => {
+                tipoSelect.innerHTML += `<option value="${t}">${t} (${c})</option>`;
+            });
+
+            // Bloques
+            const bloqueSelect = document.getElementById('filter-bloque');
+            (DATA.bloque_stats || []).forEach(s => {
+                bloqueSelect.innerHTML += `<option value="${s.bloque}">${s.bloque} (${s.total})</option>`;
+            });
+        }
+
+        function applyFilters() {
+            const year = document.getElementById('filter-year').value;
+            const eje = document.getElementById('filter-eje').value || activeEje;
+            const tipo = document.getElementById('filter-tipo').value;
+            const bloque = document.getElementById('filter-bloque').value;
+            const search = document.getElementById('filter-search').value.toLowerCase().trim();
+
+            filteredBills = DATA.bills.filter(b => {
+                if (year && b.año !== parseInt(year)) return false;
+                if (eje && b.eje !== eje) return false;
+                if (tipo && b.tipo !== tipo) return false;
+                if (bloque && b.bloque !== bloque) return false;
+                if (search) {
+                    const haystack = `${b.id} ${b.titulo} ${b.resumen} ${b.autor_principal} ${b.bloque}`.toLowerCase();
+                    if (!haystack.includes(search)) return false;
+                }
+                return true;
+            });
+
+            // Sort
+            filteredBills.sort((a, b) => {
+                let va = a[sortField];
+                let vb = b[sortField];
+                if (typeof va === 'string') va = va.toLowerCase();
+                if (typeof vb === 'string') vb = vb.toLowerCase();
+                if (va < vb) return -1 * sortDir;
+                if (va > vb) return 1 * sortDir;
+                return 0;
+            });
+
+            renderTable();
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // KPIs
+        // ═══════════════════════════════════════════════════════
+        function renderKPIs() {
+            const bills = DATA.bills;
+            document.getElementById('kpi-total').textContent = bills.length;
+            document.getElementById('kpi-periodo').textContent = `Período ${DATA.metadata.periodo}`;
+            document.getElementById('kpi-ejes').textContent = DATA.eje_stats.length;
+            document.getElementById('badge-total').innerHTML = `<strong>${bills.length}</strong> proyectos analizados`;
+
+            // Most common tipo
+            const tipos = {};
+            bills.forEach(b => { tipos[b.tipo] = (tipos[b.tipo] || 0) + 1; });
+            const topTipo = Object.entries(tipos).sort((a, b) => b[1] - a[1])[0];
+            if (topTipo) {
+                document.getElementById('kpi-tipo').textContent = topTipo[0];
+                document.getElementById('kpi-tipo-sub').textContent = `${topTipo[1]} proyectos`;
+            }
+
+            // Most active year
+            const yearMax = DATA.year_stats.reduce((a, b) => a.total > b.total ? a : b);
+            document.getElementById('kpi-year').textContent = yearMax.año;
+            document.getElementById('kpi-year-sub').textContent = `${yearMax.total} proyectos presentados`;
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // PANORAMA
+        // ═══════════════════════════════════════════════════════
+        function renderPanorama() {
+            const grid = document.getElementById('eje-grid');
+            const maxCount = Math.max(...DATA.eje_stats.map(s => s.total));
+
+            grid.innerHTML = DATA.eje_stats.map(s => `
+                <div class="eje-card" data-eje="${s.eje}" onclick="toggleEje('${s.eje}')">
+                    <div class="eje-card-header">
+                        <span class="eje-icon">${s.icon}</span>
+                        <span class="eje-name">${s.eje}</span>
+                    </div>
+                    <div class="eje-stats">
+                        <span class="eje-count">${s.total}</span>
+                        <div class="eje-bar-container">
+                            <div class="eje-bar" style="width: ${(s.total / maxCount * 100)}%; background: ${s.color};"></div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleEje(eje) {
+            if (activeEje === eje) {
+                activeEje = '';
+            } else {
+                activeEje = eje;
+            }
+            document.getElementById('filter-eje').value = '';
+            currentPage = 1;
+            updateEjeCards();
+            applyFilters();
+        }
+
+        function updateEjeCards() {
+            document.querySelectorAll('.eje-card').forEach(card => {
+                card.classList.toggle('active', card.dataset.eje === activeEje);
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // CHARTS
+        // ═══════════════════════════════════════════════════════
+        function renderCharts() {
+            renderTimelineChart();
+            renderTiposChart();
+        }
+
+        function renderTimelineChart() {
+            const ctx = document.getElementById('chart-timeline').getContext('2d');
+            const matrix = DATA.year_eje_matrix;
+            const years = Object.keys(matrix).sort();
+
+            // Get top ejes for the stacked chart
+            const topEjes = DATA.eje_stats.slice(0, 6);
+
+            const datasets = topEjes.map(eje => ({
+                label: eje.eje,
+                data: years.map(yr => matrix[yr]?.[eje.eje] || 0),
+                backgroundColor: eje.color + 'cc',
+                borderColor: eje.color,
+                borderWidth: 1,
+                borderRadius: 3,
+            }));
+
+            // "Otros" category
+            const otrosEjes = DATA.eje_stats.slice(6).map(e => e.eje);
+            if (otrosEjes.length > 0) {
+                datasets.push({
+                    label: 'Otros',
+                    data: years.map(yr => {
+                        let sum = 0;
+                        otrosEjes.forEach(eje => { sum += matrix[yr]?.[eje] || 0; });
+                        return sum;
+                    }),
+                    backgroundColor: '#9ca3afcc',
+                    borderColor: '#9ca3af',
+                    borderWidth: 1,
+                    borderRadius: 3,
+                });
+            }
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: { labels: years, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        x: {
+                            stacked: true,
+                            grid: { display: false },
+                            ticks: { font: { family: "'Inter'", size: 13, weight: '600' } },
+                        },
+                        y: {
+                            stacked: true,
+                            beginAtZero: true,
+                            grid: { color: '#f3f4f6' },
+                            ticks: {
+                                stepSize: 5,
+                                font: { family: "'Inter'", size: 12 },
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 16,
+                                usePointStyle: true,
+                                pointStyle: 'rectRounded',
+                                font: { family: "'Inter'", size: 11 },
+                            },
+                        },
+                        tooltip: {
+                            backgroundColor: '#0c1b33',
+                            titleFont: { family: "'Inter'", size: 13 },
+                            bodyFont: { family: "'Inter'", size: 12 },
+                            padding: 12,
+                            cornerRadius: 6,
+                        },
+                    },
+                },
+            });
+        }
+
+        function renderTiposChart() {
+            const ctx = document.getElementById('chart-tipos').getContext('2d');
+            const tipos = {};
+            DATA.bills.forEach(b => { tipos[b.tipo] = (tipos[b.tipo] || 0) + 1; });
+            const sorted = Object.entries(tipos).sort((a, b) => b[1] - a[1]);
+
+            const colors = [
+                '#1a3556', '#2563a0', '#4a82b8', '#7ba3cc',
+                '#b8910f', '#d4a91a', '#e8c547', '#9ca3af',
+                '#6b7280', '#d1d5db'
+            ];
+
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: sorted.map(s => s[0]),
+                    datasets: [{
+                        data: sorted.map(s => s[1]),
+                        backgroundColor: colors.slice(0, sorted.length),
+                        borderWidth: 2,
+                        borderColor: '#fff',
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '55%',
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                padding: 12,
+                                usePointStyle: true,
+                                pointStyle: 'rectRounded',
+                                font: { family: "'Inter'", size: 11 },
+                            },
+                        },
+                        tooltip: {
+                            backgroundColor: '#0c1b33',
+                            titleFont: { family: "'Inter'", size: 13 },
+                            bodyFont: { family: "'Inter'", size: 12 },
+                            padding: 12,
+                            cornerRadius: 6,
+                            callbacks: {
+                                label: function(ctx) {
+                                    const total = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                                    const pct = ((ctx.parsed / total) * 100).toFixed(1);
+                                    return ` ${ctx.label}: ${ctx.parsed} (${pct}%)`;
+                                }
+                            }
+                        },
+                    },
+                },
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // BLOQUES & AUTORES
+        // ═══════════════════════════════════════════════════════
+        function renderBloquesChart() {
+            const ctx = document.getElementById('chart-bloques').getContext('2d');
+            const stats = (DATA.bloque_stats || []).filter(s => s.bloque !== 'Sin datos');
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: stats.map(s => s.bloque),
+                    datasets: [{
+                        data: stats.map(s => s.total),
+                        backgroundColor: stats.map(s => s.color + 'cc'),
+                        borderColor: stats.map(s => s.color),
+                        borderWidth: 1,
+                        borderRadius: 4,
+                    }],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0c1b33',
+                            titleFont: { family: "'Inter'", size: 13 },
+                            bodyFont: { family: "'Inter'", size: 12 },
+                            padding: 12,
+                            cornerRadius: 6,
+                        },
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: { color: '#f3f4f6' },
+                            ticks: { stepSize: 2, font: { family: "'Inter'", size: 11 } },
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { family: "'Inter'", size: 12, weight: '500' } },
+                        },
+                    },
+                },
+            });
+        }
+
+        function renderAutoresList() {
+            const container = document.getElementById('autores-list');
+            const top = DATA.top_autores || [];
+            if (top.length === 0) {
+                container.innerHTML = '<div class="empty-state"><div class="empty-state-text">No se encontraron datos de autores</div></div>';
+                return;
+            }
+            const maxC = Math.max(...top.map(a => a.total));
+            container.innerHTML = top.map(a => {
+                const bloque = DATA.bills.find(b => b.autor_principal === a.autor)?.bloque || '';
+                return `
+                <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--gray-100);">
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-size:13px;font-weight:600;color:var(--gray-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${a.autor}</div>
+                        <div style="font-size:11px;color:var(--gray-500);">${bloque}</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+                        <div style="width:60px;height:5px;background:var(--gray-100);border-radius:3px;overflow:hidden;">
+                            <div style="height:100%;width:${(a.total/maxC*100)}%;background:var(--navy-400);border-radius:3px;"></div>
+                        </div>
+                        <span style="font-size:14px;font-weight:700;color:var(--navy-700);min-width:20px;text-align:right;">${a.total}</span>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // TABLE
+        // ═══════════════════════════════════════════════════════
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+            const total = filteredBills.length;
+            const totalPages = Math.ceil(total / PAGE_SIZE);
+
+            if (currentPage > totalPages) currentPage = Math.max(1, totalPages);
+
+            const start = (currentPage - 1) * PAGE_SIZE;
+            const pageBills = filteredBills.slice(start, start + PAGE_SIZE);
+
+            document.getElementById('table-info').textContent =
+                `Mostrando ${Math.min(start + 1, total)}–${Math.min(start + PAGE_SIZE, total)} de ${total} proyectos`;
+
+            if (pageBills.length === 0) {
+                tbody.innerHTML = `
+                    <tr><td colspan="6">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">🔍</div>
+                            <div class="empty-state-text">No se encontraron proyectos con los filtros aplicados</div>
+                        </div>
+                    </td></tr>`;
+                document.getElementById('pagination').innerHTML = '';
+                return;
+            }
+
+            tbody.innerHTML = pageBills.map(b => `
+                <tr onclick="openModal('${b.id}')">
+                    <td class="td-expediente">${b.id}</td>
+                    <td class="td-titulo">${truncate(b.titulo, 60)}</td>
+                    <td class="td-eje">
+                        <span class="eje-tag" style="border-left-color: ${EJE_COLORS[b.eje] || '#999'}">
+                            ${getEjeIcon(b.eje)} ${b.eje}
+                        </span>
+                    </td>
+                    <td style="font-size:13px;color:var(--gray-700);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${b.autor_principal !== 'No disponible' ? b.autor_principal : '<span style="color:var(--gray-300)">—</span>'}</td>
+                    <td style="font-size:11px;font-weight:500;color:var(--gray-500);white-space:nowrap;">${b.bloque !== 'Sin datos' ? b.bloque : '<span style="color:var(--gray-300)">—</span>'}</td>
+                    <td class="td-year">${b.año}</td>
+                </tr>
+            `).join('');
+
+            renderPagination(totalPages);
+            updateSortIndicators();
+        }
+
+        function renderPagination(totalPages) {
+            const container = document.getElementById('pagination');
+            if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+            let html = `<button class="page-btn" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>‹</button>`;
+
+            for (let i = 1; i <= totalPages; i++) {
+                if (totalPages > 7 && i > 3 && i < totalPages - 1 && Math.abs(i - currentPage) > 1) {
+                    if (i === 4 || i === totalPages - 2) html += `<span style="padding: 0 4px; color: var(--gray-400);">…</span>`;
+                    continue;
+                }
+                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+            }
+
+            html += `<button class="page-btn" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>›</button>`;
+            container.innerHTML = html;
+        }
+
+        function goPage(p) {
+            const maxP = Math.ceil(filteredBills.length / PAGE_SIZE);
+            if (p < 1 || p > maxP) return;
+            currentPage = p;
+            renderTable();
+            document.querySelector('.table-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function updateSortIndicators() {
+            document.querySelectorAll('th[data-sort]').forEach(th => {
+                th.classList.toggle('sorted', th.dataset.sort === sortField);
+                const arrow = th.querySelector('.sort-arrow');
+                if (th.dataset.sort === sortField) {
+                    arrow.textContent = sortDir === 1 ? '▲' : '▼';
+                } else {
+                    arrow.textContent = '▼';
+                }
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // MODAL
+        // ═══════════════════════════════════════════════════════
+        function openModal(id) {
+            const bill = DATA.bills.find(b => b.id === id);
+            if (!bill) return;
+
+            document.getElementById('modal-title').textContent = bill.titulo;
+            document.getElementById('modal-resumen').textContent = bill.resumen;
+            document.getElementById('modal-pdf').href = bill.pdf_path;
+
+            document.getElementById('modal-meta').innerHTML = `
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Expediente</div>
+                    <div class="modal-meta-value">${bill.id}</div>
+                </div>
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Año</div>
+                    <div class="modal-meta-value">${bill.año}</div>
+                </div>
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Eje Temático</div>
+                    <div class="modal-meta-value">${getEjeIcon(bill.eje)} ${bill.eje}</div>
+                </div>
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Tipo Normativo</div>
+                    <div class="modal-meta-value">${bill.tipo}</div>
+                </div>
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Autor</div>
+                    <div class="modal-meta-value">${bill.autor_principal}</div>
+                </div>
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Bloque Político</div>
+                    <div class="modal-meta-value">${bill.bloque}</div>
+                </div>
+                <div class="modal-meta-item">
+                    <div class="modal-meta-label">Páginas</div>
+                    <div class="modal-meta-value">${bill.paginas || 'N/D'}</div>
+                </div>
+            `;
+
+            document.getElementById('modal-overlay').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // UTILS
+        // ═══════════════════════════════════════════════════════
+        function getEjeIcon(eje) {
+            const stat = (DATA.eje_stats || []).find(s => s.eje === eje);
+            return stat ? stat.icon : '📋';
+        }
+
+        function truncate(txt, len) {
+            if (!txt) return '';
+            return txt.length > len ? txt.slice(0, len) + '…' : txt;
+        }
+
+        function debounce(fn, ms) {
+            let timer;
+            return (...args) => { clearTimeout(timer); timer = setTimeout(() => fn(...args), ms); };
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // GO
+        // ═══════════════════════════════════════════════════════
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>

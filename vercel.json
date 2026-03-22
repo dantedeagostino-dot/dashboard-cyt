@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "headers": [
+    {
+      "source": "/(.*).json",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=300, s-maxage=600" }
+      ]
+    },
+    {
+      "source": "/(.*).html",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/dashboard-cyt", "destination": "/dashboard-cyt.html" },
+    { "source": "/landing-cyt", "destination": "/landing-cyt.html" },
+    { "source": "/dashboard", "destination": "/dashboard.html" }
+  ]
+}

@@ -30,8 +30,17 @@ venv/
 
 # Raw source material / exports (not required for web deploy)
 *.pdf
+CyT proyectos/
 Mateo proyectos/
 proyectoss_txt/
 Proyectos de IA.xlsx
 Proyectos de IA (1).xlsx
 Proyectos_Ley_IA_Completo.xlsx
+
+# Python scripts (data extraction, not needed for deploy)
+*.py
+*.md
+!README.md
+
+# Large data files not needed for frontend
+leyes.json
