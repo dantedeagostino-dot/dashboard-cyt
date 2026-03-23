@@ -838,6 +838,17 @@
         .sem-group-projects { display: flex; flex-wrap: wrap; gap: 6px; }
         .sem-project-chip { background: var(--gray-100); border: 1px solid var(--gray-200); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; transition: all 0.15s; font-weight: 500; }
         .sem-project-chip:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .sem-group-desc { font-size: 0.85rem; color: var(--gray-700); line-height: 1.55; margin-bottom: 12px; padding: 10px 14px; background: linear-gradient(135deg, rgba(37,99,160,0.04), rgba(124,58,237,0.04)); border-left: 3px solid var(--primary); border-radius: 0 8px 8px 0; }
+        .sem-group-keywords { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 10px; }
+        .sem-kw-tag { background: rgba(37,99,160,0.08); color: var(--primary); padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; }
+        .sem-project-card { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; background: #fff; border: 1px solid var(--gray-200); border-radius: 8px; cursor: pointer; transition: all 0.15s; }
+        .sem-project-card:hover { border-color: var(--primary); box-shadow: 0 2px 8px rgba(37,99,160,0.12); transform: translateY(-1px); }
+        .sem-project-card .sem-pc-id { font-weight: 700; font-size: 0.78rem; color: var(--primary); white-space: nowrap; min-width: 100px; }
+        .sem-project-card .sem-pc-title { font-size: 0.82rem; color: var(--gray-700); line-height: 1.3; flex: 1; }
+        .sem-project-card .sem-pc-tema { font-size: 0.72rem; color: var(--gray-400); white-space: nowrap; }
+        .sem-group-projects-list { display: flex; flex-direction: column; gap: 6px; }
+        .sem-group-stats { display: flex; gap: 16px; margin-bottom: 10px; font-size: 0.8rem; color: var(--gray-500); }
+        .sem-group-stats span { display: flex; align-items: center; gap: 4px; }
         /* ─── NETWORK GRAPH ───────────────────────────────── */
         .network-wrapper { max-width: 1340px; margin: 0 auto; padding: 32px 24px; }
         .network-header { text-align: center; margin-bottom: 20px; }
@@ -856,6 +867,29 @@
         .network-legend-item.dimmed { opacity: 0.35; }
         .network-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
         @media (max-width: 768px) { .network-container svg { height: 400px !important; } }
+        .network-controls { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; }
+        .network-search { flex: 1; max-width: 400px; padding: 10px 16px 10px 38px; border: 1px solid var(--gray-300); border-radius: 10px; font-size: 0.88rem; background: #fff; transition: border-color 0.2s; }
+        .network-search:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,160,0.1); }
+        .network-zoom-btns { display: flex; gap: 4px; }
+        .network-zoom-btn { width: 36px; height: 36px; border: 1px solid var(--gray-300); border-radius: 8px; background: #fff; font-size: 1.1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.15s; color: var(--gray-600); }
+        .network-zoom-btn:hover { background: var(--gray-100); border-color: var(--primary); color: var(--primary); }
+        .network-stats { display: flex; gap: 18px; font-size: 0.82rem; color: var(--gray-500); }
+        .network-stats span { display: flex; align-items: center; gap: 4px; }
+        .network-detail { position: absolute; top: 16px; right: 16px; width: 300px; max-height: calc(100% - 32px); overflow-y: auto; background: rgba(15,23,42,0.96); border: 1px solid rgba(165,180,252,0.2); border-radius: 14px; padding: 18px; color: #fff; z-index: 20; display: none; backdrop-filter: blur(8px); }
+        .network-detail.show { display: block; }
+        .network-detail-close { position: absolute; top: 8px; right: 12px; background: none; border: none; color: rgba(255,255,255,0.5); font-size: 18px; cursor: pointer; }
+        .network-detail-close:hover { color: #fff; }
+        .network-detail h3 { color: #a5b4fc; font-size: 0.9rem; margin-bottom: 4px; }
+        .network-detail .nd-title { font-size: 0.88rem; line-height: 1.4; margin-bottom: 10px; }
+        .network-detail .nd-meta { font-size: 0.78rem; color: #9ca3af; line-height: 1.5; margin-bottom: 12px; }
+        .network-detail .nd-connections { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; }
+        .network-detail .nd-conn-title { font-size: 0.78rem; color: #6b7280; margin-bottom: 8px; font-weight: 600; }
+        .network-detail .nd-conn-item { display: flex; justify-content: space-between; align-items: center; padding: 4px 6px; font-size: 0.76rem; cursor: pointer; border-radius: 4px; }
+        .network-detail .nd-conn-item:hover { background: rgba(165,180,252,0.1); }
+        .network-detail .nd-conn-id { color: #a5b4fc; font-weight: 600; }
+        .network-detail .nd-conn-score { color: #6b7280; font-size: 0.72rem; }
+        .network-detail .nd-btn { display: block; width: 100%; margin-top: 10px; padding: 8px; background: rgba(165,180,252,0.15); border: 1px solid rgba(165,180,252,0.3); border-radius: 8px; color: #a5b4fc; font-size: 0.82rem; cursor: pointer; text-align: center; transition: all 0.15s; }
+        .network-detail .nd-btn:hover { background: rgba(165,180,252,0.25); }
     </style>
 </head>
 <body>
@@ -1013,10 +1047,23 @@
     <div class="network-wrapper">
         <div class="network-header">
             <h2>🔗 Red de Similitudes</h2>
-            <p>Cada nodo es un proyecto. Las conexiones representan similitud de contenido (TF-IDF coseno). Hover sobre un nodo para ver detalles.</p>
+            <p>Cada nodo es un proyecto. Las conexiones representan similitud de contenido (TF-IDF coseno). <strong>Hacé click en un nodo</strong> para fijar los detalles y explorar sus conexiones.</p>
+        </div>
+        <div class="network-controls">
+            <input type="text" class="network-search" id="network-search" placeholder="Buscar proyecto por expediente, título o autor...">
+            <div class="network-stats" id="network-stats"></div>
+            <div class="network-zoom-btns">
+                <button class="network-zoom-btn" id="net-zoom-in" title="Acercar">+</button>
+                <button class="network-zoom-btn" id="net-zoom-out" title="Alejar">&minus;</button>
+                <button class="network-zoom-btn" id="net-zoom-reset" title="Reiniciar vista">&#x21BA;</button>
+            </div>
         </div>
         <div class="network-container" id="network-container">
             <div class="network-tooltip" id="network-tooltip"></div>
+            <div class="network-detail" id="network-detail">
+                <button class="network-detail-close" id="network-detail-close">&times;</button>
+                <div id="network-detail-content"></div>
+            </div>
             <svg id="network-svg"></svg>
         </div>
         <div class="network-legend" id="network-legend"></div>
@@ -1658,191 +1705,391 @@
         }
 
 
+        // ═══════════════════════════════════════════════════════
         // SEMÁFORO DE COINCIDENCIAS (automated)
         // ═══════════════════════════════════════════════════════
         const SEMAFORO_GROUPS = [
-            { key: 'regulacion-ia', title: 'Regulación de Inteligencia Artificial',
-              summary: 'Marco normativo para el uso de IA: ética, transparencia, responsabilidad y supervisión.',
-              keywords: ['inteligencia artificial','regulación','ética','transparencia','algoritmo','automatización','responsabilidad','sesgo','supervisión','marco normativo'],
-              level: 'verde' },
-            { key: 'deepfake-contenido', title: 'Deepfakes y contenido sintético',
-              summary: 'Iniciativas contra la generación de contenido falso mediante IA y protección de imagen.',
-              keywords: ['deepfake','contenido sintético','imagen falsa','video falso','manipulación digital','desinformación'],
-              level: 'verde' },
-            { key: 'financiamiento-cyt', title: 'Financiamiento de Ciencia y Tecnología',
-              summary: 'Necesidad de sostener y aumentar el financiamiento del sistema científico-tecnológico.',
-              keywords: ['financiamiento','presupuesto','fondo','inversión','i+d','emergencia presupuestaria','ley 27.614','sostenimiento','beca','conicet','incentivo'],
-              level: 'verde' },
-            { key: 'educacion-stem', title: 'Educación en Ciencia y Tecnología',
-              summary: 'Incorporación de contenidos STEM, programación y robótica en el sistema educativo.',
-              keywords: ['educación','currícula','formación','escuela','docente','programación','robótica','clubes de ciencia','alfabetización digital','stem','educativo'],
-              level: 'amarillo' },
-            { key: 'soberania-tech', title: 'Soberanía Tecnológica',
-              summary: 'Desarrollo de capacidades nacionales: espacial, nuclear, cuántica.',
-              keywords: ['soberanía','espacial','nuclear','satélite','arsat','conae','cuántic','estratégic','defensa','industria nacional'],
-              level: 'amarillo' },
-            { key: 'ecosistema-innovacion', title: 'Ecosistema de Innovación',
-              summary: 'Fomento de empresas tecnológicas, startups, innovación y desarrollo productivo.',
-              keywords: ['startup','emprendimiento','innovación','incubadora','aceleradora','pyme tecnológica','ecosistema','productiv','transferencia','parque'],
-              level: 'amarillo' },
-            { key: 'salud-tecnologia', title: 'Salud y Tecnología Médica',
-              summary: 'Proyectos de telemedicina, cannabis medicinal, dispositivos médicos y salud digital.',
-              keywords: ['telemedicina','salud digital','cannabis medicinal','dispositivo médico','biotecnología','medicamento','historia clínica','genómic'],
-              level: 'amarillo' },
-            { key: 'privacidad-datos', title: 'Privacidad y Derechos Digitales',
-              summary: 'Protección de datos personales, privacidad digital y neuroderechos.',
-              keywords: ['privacidad','datos personales','protección de datos','derecho digital','neuroderechos','reconocimiento facial','vigilancia','biométric'],
-              level: 'rojo' },
-            { key: 'gobernanza-institucional', title: 'Gobernanza Institucional CyT',
-              summary: 'Creación o reforma de organismos de ciencia y tecnología.',
-              keywords: ['organismo','institucional','ministerio','secretaría','sistema nacional','gobernanza','comisión','consejo','agencia','plan nacional'],
-              level: 'rojo' },
+            { key: "regulacion-ia", title: "Regulación de Inteligencia Artificial",
+              summary: "Marco normativo para el uso de IA: ética, transparencia, responsabilidad y supervisión.",
+              description: "Este grupo reúne proyectos que buscan establecer un marco regulatorio integral para la Inteligencia Artificial en Argentina. Los proyectos abordan temas como la transparencia algorítmica, la responsabilidad por decisiones automatizadas, la prevención de sesgos discriminatorios, y la supervisión humana de sistemas de IA. Se observa una fuerte convergencia legislativa en torno a la necesidad de regular el uso de IA tanto en el sector público como privado, con especial atención a los derechos fundamentales de los ciudadanos.",
+              keywords: ["inteligencia artificial","regulación","ética","transparencia","algoritmo","automatización","responsabilidad","sesgo","supervisión","marco normativo"],
+              level: "verde" },
+            { key: "deepfake-contenido", title: "Deepfakes y Contenido Sintético",
+              summary: "Iniciativas contra la generación de contenido falso mediante IA y protección de imagen.",
+              description: "Proyectos orientados a combatir la creación y difusión de contenido audiovisual falso generado por IA (deepfakes). Las iniciativas proponen medidas como la obligación de etiquetar contenido sintético, la penalización de la creación de deepfakes con intención de daño, y la protección de la imagen y la voz de las personas frente a la manipulación digital. Este tema ha ganado urgencia legislativa por su impacto en la desinformación y la integridad electoral.",
+              keywords: ["deepfake","contenido sintético","imagen falsa","video falso","manipulación digital","desinformación"],
+              level: "verde" },
+            { key: "financiamiento-cyt", title: "Financiamiento de Ciencia y Tecnología",
+              summary: "Necesidad de sostener y aumentar el financiamiento del sistema científico-tecnológico.",
+              description: "Conjunto de proyectos que buscan garantizar y ampliar el financiamiento del sistema científico-tecnológico argentino. Incluyen iniciativas para asegurar el cumplimiento de la Ley 27.614 de financiamiento del sistema CyT, la creación de fondos específicos para I+D, el sostenimiento de becas e incentivos para investigadores, y la declaración de emergencia presupuestaria para organismos como el CONICET. La coincidencia temática refleja la preocupación transversal por la sustentabilidad del sistema científico.",
+              keywords: ["financiamiento","presupuesto","fondo","inversión","i+d","emergencia presupuestaria","ley 27.614","sostenimiento","beca","conicet","incentivo"],
+              level: "verde" },
+            { key: "educacion-stem", title: "Educación en Ciencia y Tecnología",
+              summary: "Incorporación de contenidos STEM, programación y robótica en el sistema educativo.",
+              description: "Proyectos que promueven la integración de contenidos de ciencia, tecnología, ingeniería y matemáticas (STEM) en todos los niveles del sistema educativo. Las iniciativas abarcan desde la incorporación de programación y robótica en la currícula escolar, hasta la formación docente en competencias digitales y la creación de clubes de ciencia. Se destaca la convergencia en torno a la necesidad de preparar a las nuevas generaciones para la economía del conocimiento.",
+              keywords: ["educación","currícula","formación","escuela","docente","programación","robótica","clubes de ciencia","alfabetización digital","stem","educativo"],
+              level: "amarillo" },
+            { key: "soberania-tech", title: "Soberanía Tecnológica",
+              summary: "Desarrollo de capacidades nacionales: espacial, nuclear, cuántica.",
+              description: "Iniciativas orientadas a fortalecer las capacidades tecnológicas nacionales en áreas estratégicas como el sector espacial (CONAE, ARSAT), nuclear (CNEA), computación cuántica y defensa. Los proyectos buscan asegurar la soberanía tecnológica argentina mediante el desarrollo de infraestructura propia, la promoción de la industria nacional de alta tecnología, y la formulación de estrategias nacionales para sectores clave.",
+              keywords: ["soberanía","espacial","nuclear","satélite","arsat","conae","cuántic","estratégic","defensa","industria nacional"],
+              level: "amarillo" },
+            { key: "ecosistema-innovacion", title: "Ecosistema de Innovación",
+              summary: "Fomento de empresas tecnológicas, startups, innovación y desarrollo productivo.",
+              description: "Grupo de proyectos que buscan dinamizar el ecosistema de innovación y emprendimiento tecnológico. Las iniciativas incluyen la creación de incubadoras y aceleradoras, incentivos fiscales para startups y pymes tecnológicas, mecanismos de transferencia tecnológica entre universidades e industria, y el desarrollo de parques tecnológicos. La convergencia refleja el interés legislativo en fomentar la transformación productiva basada en conocimiento.",
+              keywords: ["startup","emprendimiento","innovación","incubadora","aceleradora","pyme tecnológica","ecosistema","productiv","transferencia","parque"],
+              level: "amarillo" },
+            { key: "salud-tecnologia", title: "Salud y Tecnología Médica",
+              summary: "Proyectos de telemedicina, cannabis medicinal, dispositivos médicos y salud digital.",
+              description: "Proyectos que vinculan la tecnología con el sector salud, abarcando desde la regulación de la telemedicina y la historia clínica electrónica, hasta el uso de biotecnología, genómica y dispositivos médicos innovadores. También incluye iniciativas sobre cannabis medicinal con enfoque tecnológico. La coincidencia señala un eje legislativo en torno a la modernización del sistema de salud mediante la tecnología.",
+              keywords: ["telemedicina","salud digital","cannabis medicinal","dispositivo médico","biotecnología","medicamento","historia clínica","genómic"],
+              level: "amarillo" },
+            { key: "privacidad-datos", title: "Privacidad y Derechos Digitales",
+              summary: "Protección de datos personales, privacidad digital y neuroderechos.",
+              description: "Iniciativas centradas en la protección de datos personales y los derechos en el entorno digital. Los proyectos abordan la actualización de marcos normativos sobre privacidad, la regulación del reconocimiento facial y la vigilancia biométrica, y la emergente cuestión de los neuroderechos (protección de los datos neurológicos). La baja coincidencia indica que son proyectos más específicos y de nicho, con menor superposición entre sí.",
+              keywords: ["privacidad","datos personales","protección de datos","derecho digital","neuroderechos","reconocimiento facial","vigilancia","biométric"],
+              level: "rojo" },
+            { key: "gobernanza-institucional", title: "Gobernanza Institucional CyT",
+              summary: "Creación o reforma de organismos de ciencia y tecnología.",
+              description: "Proyectos que proponen la creación, reforma o fortalecimiento de organismos e instituciones del sistema nacional de ciencia y tecnología. Incluyen iniciativas sobre la estructura ministerial, la creación de comisiones o consejos asesores, y la formulación de planes nacionales de CyT. La baja coincidencia refleja la diversidad de enfoques institucionales propuestos.",
+              keywords: ["organismo","institucional","ministerio","secretaría","sistema nacional","gobernanza","comisión","consejo","agencia","plan nacional"],
+              level: "rojo" },
         ];
 
         function classifySemaforo(bills) {
-            const buckets = { verde: [], amarillo: [], rojo: [] };
-            const assigned = new Set();
-            SEMAFORO_GROUPS.forEach(group => {
-                const matching = bills.filter(b => {
-                    if (assigned.has(b.id)) return false;
-                    const text = (b.titulo + ' ' + b.resumen + ' ' + b.tematica + ' ' + b.subtematica).toLowerCase();
-                    return group.keywords.some(kw => text.includes(kw));
+            var buckets = { verde: [], amarillo: [], rojo: [] };
+            var assigned = new Set();
+            SEMAFORO_GROUPS.forEach(function(group) {
+                var matching = [];
+                bills.forEach(function(b) {
+                    if (assigned.has(b.id)) return;
+                    var text = (b.titulo + " " + b.resumen + " " + b.tematica + " " + b.subtematica).toLowerCase();
+                    var matchedKw = group.keywords.filter(function(kw) { return text.includes(kw); });
+                    if (matchedKw.length > 0) {
+                        matching.push(Object.assign({}, b, { _matchedKw: matchedKw }));
+                    }
                 });
                 if (matching.length > 0) {
-                    matching.forEach(b => assigned.add(b.id));
+                    matching.forEach(function(b) { assigned.add(b.id); });
                     buckets[group.level].push(Object.assign({}, group, { bills: matching }));
                 }
             });
-            const unassigned = bills.filter(b => !assigned.has(b.id));
+            var unassigned = bills.filter(function(b) { return !assigned.has(b.id); });
             if (unassigned.length > 0) {
-                buckets.rojo.push({ key: 'otros', title: 'Otros proyectos',
-                    summary: 'Proyectos que no encajan en las categorías principales.', bills: unassigned });
+                buckets.rojo.push({ key: "otros", title: "Otros proyectos",
+                    summary: "Proyectos que no encajan en las categorías principales.",
+                    description: "Estos proyectos abordan temáticas específicas que no se agrupan bajo las categorías principales del semáforo. Pueden ser proyectos pioneros en áreas emergentes o iniciativas con un enfoque muy particular.",
+                    bills: unassigned.map(function(b) { return Object.assign({}, b, { _matchedKw: [] }); })
+                });
             }
             return buckets;
         }
 
         function renderSemaforo() {
-            const el = document.getElementById('semaforo-rows');
+            var el = document.getElementById("semaforo-rows");
             if (!el) return;
-            const bk = classifySemaforo(DATA.bills);
-            const lvls = [
-                { key: 'verde', label: '🟢 Alta Coincidencia', cls: 'verde' },
-                { key: 'amarillo', label: '🟡 Coincidencia Media', cls: 'amarillo' },
-                { key: 'rojo', label: '🔴 Baja Coincidencia / Únicos', cls: 'rojo' },
+            var bk = classifySemaforo(DATA.bills);
+            var lvls = [
+                { key: "verde", label: "\ud83d\udfe2 Alta Coincidencia", cls: "verde", desc: "Proyectos con fuerte convergencia temática \u2014 indican tendencias legislativas consolidadas que podrían tratarse en conjunto." },
+                { key: "amarillo", label: "\ud83d\udfe1 Coincidencia Media", cls: "amarillo", desc: "Áreas con solapamiento parcial \u2014 potencial para articular proyectos complementarios." },
+                { key: "rojo", label: "\ud83d\udd34 Baja Coincidencia / Únicos", cls: "rojo", desc: "Proyectos más específicos o de nicho \u2014 requieren tratamiento individual." },
             ];
-            el.innerHTML = lvls.map(lv => {
-                const gs = bk[lv.key];
-                const tot = gs.reduce((s, g) => s + g.bills.length, 0);
-                return '<div class="semaforo-row ' + lv.cls + ' open">' +
-                    '<div class="semaforo-row-header" onclick="this.parentElement.classList.toggle(\'open\')">' +
-                    '<span class="label">' + lv.label + '</span>' +
-                    '<span class="badge">' + tot + ' proyectos en ' + gs.length + ' grupo' + (gs.length !== 1 ? 's' : '') + '</span></div>' +
-                    '<div class="semaforo-row-body">' + gs.map(g =>
-                        '<div class="sem-group"><div class="sem-group-title">' + g.title + '</div>' +
-                        '<div class="sem-group-summary">' + g.summary + '</div>' +
-                        '<div class="sem-group-projects">' +
-                        g.bills.map(b => '<span class="sem-project-chip" onclick="openModal(\'' + b.id + '\')" title="' +
-                            (b.titulo || '').substring(0, 80).replace(/"/g, '&quot;') + '">' + b.id + '</span>').join('') +
-                        '</div></div>').join('') +
-                    '</div></div>';
-            }).join('');
+            var html = "";
+            lvls.forEach(function(lv) {
+                var gs = bk[lv.key];
+                var tot = gs.reduce(function(s, g) { return s + g.bills.length; }, 0);
+                if (tot === 0) return;
+                html += "<div class=\"semaforo-row " + lv.cls + " open\">";
+                html += "<div class=\"semaforo-row-header\" onclick=\"this.parentElement.classList.toggle(\x27open\x27)\">";
+                html += "<span class=\"label\">" + lv.label + "</span>";
+                html += "<span class=\"badge\">" + tot + " proyectos en " + gs.length + " grupo" + (gs.length !== 1 ? "s" : "") + "</span></div>";
+                html += "<div class=\"semaforo-row-body\">";
+                html += "<p style=\"font-size:0.85rem;color:var(--gray-500);margin:0 0 16px;font-style:italic;\">" + lv.desc + "</p>";
+                gs.forEach(function(g) {
+                    var uniqueTemas = []; 
+                    g.bills.forEach(function(b) { if (uniqueTemas.indexOf(b.tematica) === -1) uniqueTemas.push(b.tematica); });
+                    var uniqueYears = []; 
+                    g.bills.forEach(function(b) { if (uniqueYears.indexOf(b["año"]) === -1) uniqueYears.push(b["año"]); });
+                    uniqueYears.sort();
+                    html += "<div class=\"sem-group\">";
+                    html += "<div class=\"sem-group-title\">" + g.title + " <span style=\"font-weight:400;color:var(--gray-400);font-size:0.85rem;\">(" + g.bills.length + " proyecto" + (g.bills.length !== 1 ? "s" : "") + ")</span></div>";
+                    html += "<div class=\"sem-group-desc\">" + (g.description || g.summary) + "</div>";
+                    html += "<div class=\"sem-group-stats\">";
+                    html += "<span>\ud83d\udcc5 " + uniqueYears.join(", ") + "</span>";
+                    html += "<span>\ud83c\udff7\ufe0f " + uniqueTemas.join(", ") + "</span>";
+                    html += "</div>";
+                    html += "<div class=\"sem-group-keywords\">";
+                    (g.keywords || []).forEach(function(kw) { html += "<span class=\"sem-kw-tag\">" + kw + "</span>"; });
+                    html += "</div>";
+                    html += "<div class=\"sem-group-projects-list\">";
+                    g.bills.forEach(function(b) {
+                        html += "<div class=\"sem-project-card\" onclick=\"openModal(\x27" + b.id + "\x27)\">";
+                        html += "<span class=\"sem-pc-id\">" + b.id + "</span>";
+                        html += "<span class=\"sem-pc-title\">" + ((b.titulo || "").substring(0, 100) || "Sin título") + "</span>";
+                        html += "<span class=\"sem-pc-tema\">" + (b.tematica || "") + "</span>";
+                        html += "</div>";
+                    });
+                    html += "</div></div>";
+                });
+                html += "</div></div>";
+            });
+            el.innerHTML = html;
         }
 
         // ═══════════════════════════════════════════════════════
         // RED DE SIMILITUDES (D3.js force-directed graph)
         // ═══════════════════════════════════════════════════════
-        let networkInitialized = false;
+        var networkInitialized = false;
+        var netSim, netNode, netLink, netNodes, netLinkData, netColors, netZoom;
 
         function renderNetwork() {
             if (networkInitialized) return;
             networkInitialized = true;
 
-            const edges = DATA.similarity_edges || [];
-            const colors = DATA.tematica_colors || {};
-            const nodes = DATA.bills.map(b => ({
-                id: b.id, tematica: b.tematica, titulo: b.titulo,
-                autor: b.autor_principal, subtematica: b.subtematica, connections: 0,
-            }));
-            edges.forEach(e => {
-                const sn = nodes.find(n => n.id === e.source);
-                const tn = nodes.find(n => n.id === e.target);
+            var edges = DATA.similarity_edges || [];
+            netColors = DATA.tematica_colors || {};
+            netNodes = DATA.bills.map(function(b) {
+                return {
+                    id: b.id, tematica: b.tematica, titulo: b.titulo,
+                    autor: b.autor_principal, subtematica: b.subtematica,
+                    resumen: b.resumen, anio: b["año"], bloque: b.bloque,
+                    connections: 0
+                };
+            });
+            edges.forEach(function(e) {
+                var sn = netNodes.find(function(n) { return n.id === e.source; });
+                var tn = netNodes.find(function(n) { return n.id === e.target; });
                 if (sn) sn.connections++;
                 if (tn) tn.connections++;
             });
 
-            const container = document.getElementById('network-container');
-            const svg = d3.select('#network-svg');
-            const width = container.clientWidth;
-            const height = Math.max(600, width * 0.55);
-            svg.attr('viewBox', '0 0 ' + width + ' ' + height);
-            const tooltip = document.getElementById('network-tooltip');
+            var container = document.getElementById("network-container");
+            var svg = d3.select("#network-svg");
+            var width = container.clientWidth;
+            var height = Math.max(600, width * 0.55);
+            svg.attr("viewBox", "0 0 " + width + " " + height);
+            var tooltip = document.getElementById("network-tooltip");
+            var detail = document.getElementById("network-detail");
+            var detailContent = document.getElementById("network-detail-content");
 
-            function getR(d) { return Math.max(5, Math.min(18, 4 + d.connections * 1.5)); }
+            // Stats
+            var statsEl = document.getElementById("network-stats");
+            statsEl.innerHTML = "<span>\ud83d\udfe0 " + netNodes.length + " proyectos</span><span>\ud83d\udd17 " + edges.length + " conexiones</span>";
 
-            const linkData = edges.map(e => ({source: e.source, target: e.target, weight: e.weight}));
-            const sim = d3.forceSimulation(nodes)
-                .force('link', d3.forceLink(linkData).id(d => d.id).distance(d => 100 - d.weight * 60).strength(d => d.weight * 0.8))
-                .force('charge', d3.forceManyBody().strength(-80))
-                .force('center', d3.forceCenter(width / 2, height / 2))
-                .force('collision', d3.forceCollide().radius(d => getR(d) + 3))
-                .force('x', d3.forceX(width / 2).strength(0.03))
-                .force('y', d3.forceY(height / 2).strength(0.03));
+            function getR(d) { return Math.max(6, Math.min(20, 5 + d.connections * 1.8)); }
 
-            const link = svg.append('g').selectAll('line').data(linkData).join('line')
-                .attr('stroke', 'rgba(255,255,255,0.06)').attr('stroke-width', d => 0.5 + d.weight * 2);
+            netLinkData = edges.map(function(e) { return {source: e.source, target: e.target, weight: e.weight}; });
 
-            const node = svg.append('g').selectAll('circle').data(nodes).join('circle')
-                .attr('r', d => getR(d))
-                .attr('fill', d => colors[d.tematica] || '#9ca3af')
-                .attr('stroke', 'rgba(255,255,255,0.3)').attr('stroke-width', 1)
-                .style('cursor', 'pointer')
-                .on('mouseover', function(event, d) {
-                    d3.select(this).attr('stroke', '#fff').attr('stroke-width', 2.5);
-                    link.attr('stroke', l => (l.source.id===d.id||l.target.id===d.id)?'rgba(165,180,252,0.6)':'rgba(255,255,255,0.03)')
-                        .attr('stroke-width', l => (l.source.id===d.id||l.target.id===d.id)?2:0.5+l.weight*2);
-                    const ci = new Set([d.id]);
-                    linkData.forEach(l => { if(l.source.id===d.id) ci.add(l.target.id); if(l.target.id===d.id) ci.add(l.source.id); });
-                    node.attr('opacity', n => ci.has(n.id)?1:0.15);
-                    tooltip.innerHTML = '<div class="tt-id">'+d.id+'</div><div class="tt-title">'+(d.titulo||'').substring(0,100)+'</div><div class="tt-meta">'+d.tematica+' · '+(d.subtematica||'')+'<br>'+(d.autor||'')+'<br>'+d.connections+' conexiones</div>';
-                    tooltip.classList.add('show');
+            // Zoom/pan
+            var g = svg.append("g");
+            netZoom = d3.zoom()
+                .scaleExtent([0.3, 5])
+                .on("zoom", function(ev) { g.attr("transform", ev.transform); });
+            svg.call(netZoom);
+
+            netSim = d3.forceSimulation(netNodes)
+                .force("link", d3.forceLink(netLinkData).id(function(d) { return d.id; }).distance(function(d) { return 120 - d.weight * 70; }).strength(function(d) { return d.weight * 0.7; }))
+                .force("charge", d3.forceManyBody().strength(-100))
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .force("collision", d3.forceCollide().radius(function(d) { return getR(d) + 4; }))
+                .force("x", d3.forceX(width / 2).strength(0.03))
+                .force("y", d3.forceY(height / 2).strength(0.03));
+
+            netLink = g.append("g").selectAll("line").data(netLinkData).join("line")
+                .attr("stroke", "rgba(255,255,255,0.08)").attr("stroke-width", function(d) { return 0.5 + d.weight * 3; });
+
+            netNode = g.append("g").selectAll("circle").data(netNodes).join("circle")
+                .attr("r", function(d) { return getR(d); })
+                .attr("fill", function(d) { return netColors[d.tematica] || "#9ca3af"; })
+                .attr("stroke", "rgba(255,255,255,0.25)").attr("stroke-width", 1.5)
+                .style("cursor", "pointer")
+                .on("mouseover", function(event, d) {
+                    if (detail.classList.contains("show")) return;
+                    highlightNode(d);
+                    showTooltip(event, d, container, tooltip);
                 })
-                .on('mousemove', function(event) {
-                    const r = container.getBoundingClientRect();
-                    tooltip.style.left = (event.clientX-r.left+15)+'px';
-                    tooltip.style.top = (event.clientY-r.top-10)+'px';
+                .on("mousemove", function(event) {
+                    if (detail.classList.contains("show")) return;
+                    var r = container.getBoundingClientRect();
+                    tooltip.style.left = (event.clientX-r.left+15)+"px";
+                    tooltip.style.top = (event.clientY-r.top-10)+"px";
                 })
-                .on('mouseout', function() {
-                    d3.select(this).attr('stroke','rgba(255,255,255,0.3)').attr('stroke-width',1);
-                    link.attr('stroke','rgba(255,255,255,0.06)').attr('stroke-width',d=>0.5+d.weight*2);
-                    node.attr('opacity',1); tooltip.classList.remove('show');
+                .on("mouseout", function() {
+                    if (detail.classList.contains("show")) return;
+                    resetHighlight();
+                    tooltip.classList.remove("show");
                 })
-                .on('click', function(event, d) { openModal(d.id); })
+                .on("click", function(event, d) {
+                    event.stopPropagation();
+                    tooltip.classList.remove("show");
+                    pinNode(d, container, detail, detailContent);
+                })
                 .call(d3.drag()
-                    .on('start',(ev,d)=>{if(!ev.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
-                    .on('drag',(ev,d)=>{d.fx=ev.x;d.fy=ev.y;})
-                    .on('end',(ev,d)=>{if(!ev.active)sim.alphaTarget(0);d.fx=null;d.fy=null;})
+                    .on("start", function(ev, d) { if(!ev.active) netSim.alphaTarget(0.3).restart(); d.fx=d.x; d.fy=d.y; })
+                    .on("drag", function(ev, d) { d.fx=ev.x; d.fy=ev.y; })
+                    .on("end", function(ev, d) { if(!ev.active) netSim.alphaTarget(0); d.fx=null; d.fy=null; })
                 );
 
-            sim.on('tick', () => {
-                nodes.forEach(d => { d.x=Math.max(20,Math.min(width-20,d.x)); d.y=Math.max(20,Math.min(height-20,d.y)); });
-                link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-                node.attr('cx',d=>d.x).attr('cy',d=>d.y);
+            // Node labels for highly connected nodes
+            var labelThreshold = 3;
+            var labelNodes = netNodes.filter(function(n) { return n.connections >= labelThreshold; });
+            g.append("g").selectAll("text").data(labelNodes).join("text")
+                .attr("class", "node-label")
+                .text(function(d) { return d.id; })
+                .attr("fill", "rgba(255,255,255,0.6)")
+                .attr("font-size", "8px")
+                .attr("text-anchor", "middle")
+                .style("pointer-events", "none");
+
+            netSim.on("tick", function() {
+                netNodes.forEach(function(d) { d.x=Math.max(20,Math.min(width-20,d.x)); d.y=Math.max(20,Math.min(height-20,d.y)); });
+                netLink.attr("x1",function(d){return d.source.x;}).attr("y1",function(d){return d.source.y;}).attr("x2",function(d){return d.target.x;}).attr("y2",function(d){return d.target.y;});
+                netNode.attr("cx",function(d){return d.x;}).attr("cy",function(d){return d.y;});
+                g.selectAll(".node-label").attr("x",function(d){return d.x;}).attr("y",function(d){return d.y - getR(d) - 4;});
             });
 
             // Legend
-            const ts = [...new Set(DATA.bills.map(b=>b.tematica))].sort();
-            const leg = document.getElementById('network-legend');
-            leg.innerHTML = ts.map(t =>
-                '<div class="network-legend-item" data-tematica="'+t+'"><div class="network-legend-dot" style="background:'+(colors[t]||'#9ca3af')+'"></div>'+t+'</div>'
-            ).join('');
-            leg.querySelectorAll('.network-legend-item').forEach(it => {
-                it.addEventListener('click', () => {
-                    it.classList.toggle('dimmed');
-                    node.attr('opacity',d=>{const dm=leg.querySelector('[data-tematica="'+d.tematica+'"]');return(dm&&dm.classList.contains('dimmed'))?0.08:1;});
-                    link.attr('opacity',l=>{const s=leg.querySelector('[data-tematica="'+l.source.tematica+'"]'),t=leg.querySelector('[data-tematica="'+l.target.tematica+'"]');return((s&&s.classList.contains('dimmed'))||(t&&t.classList.contains('dimmed')))?0.02:1;});
+            var ts = [];
+            DATA.bills.forEach(function(b) { if (ts.indexOf(b.tematica) === -1) ts.push(b.tematica); });
+            ts.sort();
+            var leg = document.getElementById("network-legend");
+            leg.innerHTML = ts.map(function(t) {
+                return "<div class=\"network-legend-item\" data-tematica=\""+t+"\"><div class=\"network-legend-dot\" style=\"background:"+(netColors[t]||"#9ca3af")+"\"></div>"+t+"</div>";
+            }).join("");
+            leg.querySelectorAll(".network-legend-item").forEach(function(it) {
+                it.addEventListener("click", function() {
+                    it.classList.toggle("dimmed");
+                    netNode.attr("opacity", function(d) {
+                        var dm = leg.querySelector("[data-tematica=\""+d.tematica+"\"]");
+                        return (dm && dm.classList.contains("dimmed")) ? 0.08 : 1;
+                    });
+                    netLink.attr("opacity", function(l) {
+                        var s = leg.querySelector("[data-tematica=\""+l.source.tematica+"\"]");
+                        var t = leg.querySelector("[data-tematica=\""+l.target.tematica+"\"]");
+                        return ((s && s.classList.contains("dimmed")) || (t && t.classList.contains("dimmed"))) ? 0.02 : 1;
+                    });
                 });
             });
+
+            // Zoom buttons
+            document.getElementById("net-zoom-in").addEventListener("click", function() { svg.transition().duration(300).call(netZoom.scaleBy, 1.4); });
+            document.getElementById("net-zoom-out").addEventListener("click", function() { svg.transition().duration(300).call(netZoom.scaleBy, 0.7); });
+            document.getElementById("net-zoom-reset").addEventListener("click", function() { svg.transition().duration(500).call(netZoom.transform, d3.zoomIdentity); });
+
+            // Search
+            document.getElementById("network-search").addEventListener("input", debounce(function(e) {
+                var q = e.target.value.toLowerCase().trim();
+                if (!q) { resetHighlight(); return; }
+                var matches = new Set();
+                netNodes.forEach(function(n) {
+                    var text = (n.id + " " + n.titulo + " " + (n.autor||"")).toLowerCase();
+                    if (text.includes(q)) matches.add(n.id);
+                });
+                netNode.attr("opacity", function(d) { return matches.has(d.id) ? 1 : 0.08; })
+                    .attr("stroke", function(d) { return matches.has(d.id) ? "#fff" : "rgba(255,255,255,0.25)"; })
+                    .attr("stroke-width", function(d) { return matches.has(d.id) ? 2.5 : 1.5; });
+                netLink.attr("opacity", 0.03);
+                if (matches.size === 1) {
+                    var matchId = matches.values().next().value;
+                    var nd = netNodes.find(function(n) { return n.id === matchId; });
+                    if (nd) highlightNode(nd);
+                }
+            }, 200));
+
+            // Close detail panel
+            document.getElementById("network-detail-close").addEventListener("click", function() {
+                detail.classList.remove("show");
+                resetHighlight();
+            });
+
+            // Click SVG background to deselect
+            svg.on("click", function() {
+                detail.classList.remove("show");
+                resetHighlight();
+            });
         }
+
+        function showTooltip(event, d, container, tooltip) {
+            tooltip.innerHTML = "<div class=\"tt-id\">" + d.id + "</div><div class=\"tt-title\">" + (d.titulo || "").substring(0, 100) + "</div><div class=\"tt-meta\">" + d.tematica + " \u00b7 " + (d.subtematica || "") + "<br>" + (d.autor || "") + "<br>" + d.connections + " conexiones</div>";
+            tooltip.classList.add("show");
+            var r = container.getBoundingClientRect();
+            tooltip.style.left = (event.clientX - r.left + 15) + "px";
+            tooltip.style.top = (event.clientY - r.top - 10) + "px";
+        }
+
+        function highlightNode(d) {
+            var ci = new Set([d.id]);
+            netLinkData.forEach(function(l) {
+                var sid = typeof l.source === "object" ? l.source.id : l.source;
+                var tid = typeof l.target === "object" ? l.target.id : l.target;
+                if (sid === d.id) ci.add(tid);
+                if (tid === d.id) ci.add(sid);
+            });
+            netNode.attr("opacity", function(n) { return ci.has(n.id) ? 1 : 0.1; })
+                .attr("stroke", function(n) { return n.id === d.id ? "#fff" : ci.has(n.id) ? "rgba(165,180,252,0.7)" : "rgba(255,255,255,0.25)"; })
+                .attr("stroke-width", function(n) { return n.id === d.id ? 3 : ci.has(n.id) ? 2 : 1.5; });
+            netLink.attr("stroke", function(l) {
+                    var sid = typeof l.source === "object" ? l.source.id : l.source;
+                    var tid = typeof l.target === "object" ? l.target.id : l.target;
+                    return (sid === d.id || tid === d.id) ? "rgba(165,180,252,0.5)" : "rgba(255,255,255,0.02)";
+                })
+                .attr("stroke-width", function(l) {
+                    var sid = typeof l.source === "object" ? l.source.id : l.source;
+                    var tid = typeof l.target === "object" ? l.target.id : l.target;
+                    return (sid === d.id || tid === d.id) ? 2 + l.weight * 3 : 0.5 + l.weight * 2;
+                });
+        }
+
+        function resetHighlight() {
+            netNode.attr("opacity", 1)
+                .attr("stroke", "rgba(255,255,255,0.25)").attr("stroke-width", 1.5);
+            netLink.attr("stroke", "rgba(255,255,255,0.08)")
+                .attr("stroke-width", function(d) { return 0.5 + d.weight * 3; })
+                .attr("opacity", 1);
+        }
+
+        function pinNode(d, container, detail, detailContent) {
+            highlightNode(d);
+            var conns = [];
+            netLinkData.forEach(function(l) {
+                var sid = typeof l.source === "object" ? l.source.id : l.source;
+                var tid = typeof l.target === "object" ? l.target.id : l.target;
+                if (sid === d.id) conns.push({ id: tid, weight: l.weight });
+                if (tid === d.id) conns.push({ id: sid, weight: l.weight });
+            });
+            conns.sort(function(a, b) { return b.weight - a.weight; });
+
+            var h = "<h3>" + d.id + "</h3>";
+            h += "<div class=\"nd-title\">" + (d.titulo || "Sin título") + "</div>";
+            h += "<div class=\"nd-meta\">";
+            h += "<strong>Temática:</strong> " + (d.tematica || "-") + "<br>";
+            h += "<strong>Subtema:</strong> " + (d.subtematica || "-") + "<br>";
+            h += "<strong>Autor:</strong> " + (d.autor || "-") + "<br>";
+            h += "<strong>Bloque:</strong> " + (d.bloque || "-") + "<br>";
+            h += "<strong>Año:</strong> " + (d.anio || "-");
+            h += "</div>";
+            if (conns.length > 0) {
+                h += "<div class=\"nd-connections\">";
+                h += "<div class=\"nd-conn-title\">\ud83d\udd17 " + conns.length + " proyecto" + (conns.length !== 1 ? "s" : "") + " similares</div>";
+                conns.forEach(function(c) {
+                    var cn = netNodes.find(function(n) { return n.id === c.id; });
+                    var pct = Math.round(c.weight * 100);
+                    var ttl = cn ? cn.titulo : "";
+                    h += "<div class=\"nd-conn-item\" onclick=\"openModal(\x27" + c.id + "\x27)\">";
+                    h += "<span class=\"nd-conn-id\">" + c.id + "</span>";
+                    h += "<span class=\"nd-conn-score\" title=\"" + (ttl||"").substring(0,60).replace(/"/g, "&quot;") + "\">" + pct + "% similar</span>";
+                    h += "</div>";
+                });
+                h += "</div>";
+            } else {
+                h += "<div style=\"color:#6b7280;font-size:0.8rem;margin-top:8px;\">Sin conexiones detectadas</div>";
+            }
+            h += "<button class=\"nd-btn\" onclick=\"openModal(\x27" + d.id + "\x27)\">\ud83d\udcc4 Ver detalle completo</button>";
+
+            detailContent.innerHTML = h;
+            detail.classList.add("show");
+        }
+
     </script>
 </body>
 </html>
