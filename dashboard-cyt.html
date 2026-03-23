@@ -1220,7 +1220,7 @@
         </div>
         <div class="header-nav">
             <button class="header-nav-tab active" onclick="switchView('legislativo', this)">📋 Proyectos de Ley</button>
-            <button class="header-nav-tab" onclick="switchView('estado', this)">🔬 Estado de la Ciencia</button>
+            <!-- <button class="header-nav-tab" onclick="switchView('estado', this)">🔬 Estado de la Ciencia</button> -->
             <button class="header-nav-tab" onclick="switchView('semaforo', this)">🚦 Semáforo</button>
         </div>
         <div class="filters-bar" id="filters-bar">
@@ -1338,7 +1338,7 @@
     </main>
     </div><!-- /view-legislativo -->
 
-    <!-- ═══ VIEW: ESTADO DE LA CIENCIA Y TECNOLOGÍA ═══ -->
+    <!-- ═══ VIEW: ESTADO DE LA CIENCIA Y TECNOLOGÍA (oculto temporalmente, conservado en repo) ═══
     <div id="view-estado" class="view-container">
     <div class="estado-view-wrapper">
     <div class="estado-divider" style="margin:0; border-top:none; padding-top:0;">
@@ -1544,6 +1544,7 @@
     </div>
     </div><!-- /estado-view-wrapper -->
     </div><!-- /view-estado -->
+    ═══ FIN ESTADO DE LA CIENCIA (comentado) ═══ -->
 
     <!-- ═══ SEMÁFORO DE COINCIDENCIAS ═══ -->
     <div id="view-semaforo" class="view-container">
@@ -2201,11 +2202,11 @@
           document.getElementById('view-' + view).classList.add('active');
           // Hide filters bar when not on legislativo view
           document.getElementById('filters-bar').style.display = view === 'legislativo' ? 'flex' : 'none';
-          // Lazy-init estado charts on first view to avoid hidden canvas rendering issues
-          if (view === 'estado' && !estadoChartsInitialized) {
-            estadoChartsInitialized = true;
-            initEstadoCharts();
-          }
+          // Estado de la Ciencia tab oculto temporalmente
+          // if (view === 'estado' && !estadoChartsInitialized) {
+          //   estadoChartsInitialized = true;
+          //   initEstadoCharts();
+          // }
           // Lazy-init semáforo on first view
           if (view === 'semaforo' && !semaforoInitialized) {
             semaforoInitialized = true;
