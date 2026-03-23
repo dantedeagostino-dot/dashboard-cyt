@@ -4,6 +4,7 @@ Extrae texto de los PDFs de proyectos CyT y genera cyt_bills_data.json
 V3: Extracción mejorada de autores y bloques políticos.
 """
 
+import csv
 import json
 import re
 from pathlib import Path
@@ -425,6 +426,23 @@ def main():
         for b in ia_data.get("bills", []):
             ia_bills[b["id"]] = b
 
+    # Load curated CSV taxonomy
+    csv_path = base / "Proyectos_de_LeyCyT.xlsx - Proyectos de Ley.csv"
+    csv_lookup = {}
+    if csv_path.exists():
+        with open(csv_path, encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                exp = (row.get("Expediente") or "").strip()
+                if exp:
+                    csv_lookup[exp] = {
+                        "tematica": (row.get("Tipo / Temática") or "").strip(),
+                        "subtematica": (row.get("SUBTEMATICA") or "").strip(),
+                        "autor_csv": (row.get("Autor/es") or "").strip(),
+                        "bloque_csv": (row.get("Bloque") or "").strip(),
+                    }
+        print(f"CSV taxonomy loaded: {len(csv_lookup)} entries")
+
     pdfs_meta = json.loads(pdfs_json_path.read_text(encoding="utf-8"))
     pdf_entries = pdfs_meta.get("pdfs", [])
 
@@ -435,6 +453,8 @@ def main():
     eje_counts = {}
     year_counts = {}
     bloque_counts = {}
+    tematica_counts = {}
+    subtema_counts = {}
     autor_counts = {}
 
     for entry in pdf_entries:
@@ -493,6 +513,24 @@ def main():
         if autor_principal != "No disponible":
             autor_counts[autor_principal] = autor_counts.get(autor_principal, 0) + 1
 
+        # Merge curated CSV taxonomy
+        csv_row = csv_lookup.get(expediente, {})
+        tematica = csv_row.get("tematica", "") or eje  # fallback to auto eje
+        subtematica = csv_row.get("subtematica", "")
+        
+        # Override bloque from CSV if script didn't find one
+        if bloque == "Sin datos" and csv_row.get("bloque_csv"):
+            bloque = csv_row["bloque_csv"]
+        
+        # Override author from CSV if script didn't find one
+        if autor_principal == "No disponible" and csv_row.get("autor_csv") and csv_row["autor_csv"] != "—":
+            autor_principal = csv_row["autor_csv"]
+            authors = [autor_principal]
+
+        tematica_counts[tematica] = tematica_counts.get(tematica, 0) + 1
+        if subtematica:
+            subtema_counts[subtematica] = subtema_counts.get(subtematica, 0) + 1
+
         bill = {
             "id": expediente,
             "titulo": titulo,
@@ -503,6 +541,8 @@ def main():
             "año": year,
             "eje": eje,
             "eje_score": eje_score,
+            "tematica": tematica,
+            "subtematica": subtematica,
             "resumen": resumen,
             "tipo": tipo,
             "paginas": entry.get("pages", 0),
@@ -555,6 +595,23 @@ def main():
             year_eje_matrix[yr] = {}
         year_eje_matrix[yr][eje] = year_eje_matrix[yr].get(eje, 0) + 1
 
+    # Temática stats with colors
+    TEMATICA_COLORS = {
+        "IA": "#7c3aed",
+        "Estrategia Tecnologica Nacional": "#2563a0",
+        "Innovación y Desarrollo Productivo": "#059669",
+        "Tecnologías Estratégicas ": "#dc2626",
+        "Privacidad Digital / Derechos Digitales": "#d97706",
+    }
+    tipo_stats = [
+        {"tipo": t, "total": c, "color": TEMATICA_COLORS.get(t, "#9ca3af")}
+        for t, c in sorted(tematica_counts.items(), key=lambda x: -x[1])
+    ]
+    subtema_stats = [
+        {"subtema": s, "total": c}
+        for s, c in sorted(subtema_counts.items(), key=lambda x: -x[1])
+    ]
+
     output = {
         "metadata": {
             "generado": datetime.now().isoformat(),
@@ -569,6 +626,8 @@ def main():
         "bloque_stats": bloque_stats,
         "top_autores": top_autores,
         "year_eje_matrix": year_eje_matrix,
+        "tipo_stats": tipo_stats,
+        "subtema_stats": subtema_stats,
         "bills": bills,
     }
 

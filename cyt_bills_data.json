@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "generado": "2026-03-22T20:23:38.562473",
+    "generado": "2026-03-22T21:09:04.318477",
     "total": 75,
     "fuente": "Comisión de Ciencia, Tecnología e Innovación Productiva — H. Cámara de Diputados",
     "periodo": "2024–2026",
-    "con_autor": 42,
+    "con_autor": 60,
     "con_bloque": 35
   },
   "eje_stats": [
@@ -230,6 +230,164 @@
       "Espacio y Antártida": 1
     }
   },
+  "tipo_stats": [
+    {
+      "tipo": "IA",
+      "total": 25,
+      "color": "#7c3aed"
+    },
+    {
+      "tipo": "Estrategia Tecnologica Nacional",
+      "total": 20,
+      "color": "#2563a0"
+    },
+    {
+      "tipo": "Innovación y Desarrollo Productivo",
+      "total": 12,
+      "color": "#059669"
+    },
+    {
+      "tipo": "Tecnologías Estratégicas",
+      "total": 8,
+      "color": "#9ca3af"
+    },
+    {
+      "tipo": "Gobernanza e Institucionalidad CyT",
+      "total": 3,
+      "color": "#9ca3af"
+    },
+    {
+      "tipo": "Seguridad Vial y Transporte",
+      "total": 2,
+      "color": "#9ca3af"
+    },
+    {
+      "tipo": "Privacidad Digital / Derechos Digitales",
+      "total": 2,
+      "color": "#d97706"
+    },
+    {
+      "tipo": "I+D y Financiamiento",
+      "total": 1,
+      "color": "#9ca3af"
+    },
+    {
+      "tipo": "Salud y Tecnología Médica",
+      "total": 1,
+      "color": "#9ca3af"
+    },
+    {
+      "tipo": "Inteligencia Artificial",
+      "total": 1,
+      "color": "#9ca3af"
+    }
+  ],
+  "subtema_stats": [
+    {
+      "subtema": "Marco Regulatorio",
+      "total": 10
+    },
+    {
+      "subtema": "Estrategía Nacional de Ciencia y Tecnologia",
+      "total": 7
+    },
+    {
+      "subtema": "Sistema Nacional de Ciencía, Tecnología e Innovación (Sostenimiento y Financiación)",
+      "total": 5
+    },
+    {
+      "subtema": "Desarrollo Productivo",
+      "total": 5
+    },
+    {
+      "subtema": "Deepfake y generación de contenido",
+      "total": 5
+    },
+    {
+      "subtema": "Educación",
+      "total": 4
+    },
+    {
+      "subtema": "Utilización de la IA en el Sistema Educativo",
+      "total": 4
+    },
+    {
+      "subtema": "Salud",
+      "total": 3
+    },
+    {
+      "subtema": "Implementación de la IA por parte de la Administración Publica",
+      "total": 3
+    },
+    {
+      "subtema": "Ecosistema Startup",
+      "total": 2
+    },
+    {
+      "subtema": "Creación de Organismos especializados",
+      "total": 2
+    },
+    {
+      "subtema": "Programas de innovación",
+      "total": 2
+    },
+    {
+      "subtema": "Biotecnología",
+      "total": 2
+    },
+    {
+      "subtema": "Conmemoración",
+      "total": 1
+    },
+    {
+      "subtema": "Sandbox",
+      "total": 1
+    },
+    {
+      "subtema": "Plataformas de mensajeria",
+      "total": 1
+    },
+    {
+      "subtema": "Defensa del Consumidor",
+      "total": 1
+    },
+    {
+      "subtema": "I+D",
+      "total": 1
+    },
+    {
+      "subtema": "Politicas de Genero",
+      "total": 1
+    },
+    {
+      "subtema": "Reconocimiento Facil",
+      "total": 1
+    },
+    {
+      "subtema": "Brecha Digital",
+      "total": 1
+    },
+    {
+      "subtema": "Sector Antartico",
+      "total": 1
+    },
+    {
+      "subtema": "Tecnología Cuantica",
+      "total": 1
+    },
+    {
+      "subtema": "Neurederechos",
+      "total": 1
+    },
+    {
+      "subtema": "Nuclear",
+      "total": 1
+    },
+    {
+      "subtema": "Espcial",
+      "total": 1
+    }
+  ],
   "bills": [
     {
       "id": "0004-D-2026",
@@ -243,6 +401,8 @@
       "año": 2026,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "Objeto. La presente ley tiene por objeto promover el fomento, el desarrollo, la innovación e implementación de Sistemas de Inteligencia Artificial en la República Argentina en un marco de respeto de los derechos consagrados en la Constitución Nacional y los Tratados Internacionales sobre Derechos Hu...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 10,
@@ -260,6 +420,8 @@
       "año": 2026,
       "eje": "Inteligencia Artificial",
       "eje_score": 5,
+      "tematica": "IA",
+      "subtematica": "Deepfake y generación de contenido",
       "resumen": "— Objeto. La presente ley establece el marco jurídico integral para el desarrollo, adopción, regulación y supervisión de sistemas de inteligencia artificial (IA) en la República Argentina, con el fin de: a) garantizar el respeto de los derechos fundamentales, la seguridad pública y el interés genera...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 39,
@@ -277,6 +439,8 @@
       "año": 2026,
       "eje": "Biotecnología",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Salud",
       "resumen": "Objeto. Créase el Sistema Nacional de Acceso Acelerado a Terapias Génicas Individualizadas para Enfermedades Poco Frecuentes y Ultra- Raras (SNATIGEP), con el fin de establecer un procedimiento regulatorio especial que permita la evaluación y autorización acelerada de terapias génicas personalizadas...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 15,
@@ -294,6 +458,8 @@
       "año": 2026,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Ecosistema Startup",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Regimen Juridico para Startups Tecnologicas de la Republica Argentina, con la finalidad de: (a) establecer un registro nacional y una definicion legal de startup tecnologica; (b) simplificar la constitucion societaria; (c) crear un regimen especial d...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 19,
@@ -311,6 +477,8 @@
       "año": 2026,
       "eje": "I+D y Financiamiento",
       "eje_score": 10,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Desarrollo Productivo",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Fondo Soberano de Inversión Tecnológica (FOSIT) como instrumento de capital paciente de largo plazo, complementario del FONETEC y del FONIT, destinado exclusivamente a: (a) inversiones de largo plazo (horizonte de diez a veinte años) en emprendimient...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 9,
@@ -328,6 +496,8 @@
       "año": 2026,
       "eje": "Nuclear y Energía",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Nuclear",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Régimen de Promoción del Desarrollo Nuclear Tecnológico (REDNUCLEART), con la finalidad de: (a) acelerar el desarrollo, licenciamiento y comercialización de reactores modulares pequeños (SMR) de diseño argentino; (b) fortalecer la cadena industrial d...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 12,
@@ -345,6 +515,8 @@
       "año": 2026,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 12,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Sistema Nacional de Planificación y Ejecución Tecnológica Estratégica (SINPTE), destinado a orientar, coordinar y promover el desarrollo científico, tecnológico e industrial de la República Argentina con horizonte al año dos mil cuarenta.",
       "tipo": "FINANCIAMIENTO",
       "paginas": 20,
@@ -362,6 +534,8 @@
       "año": 2026,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Régimen Nacional de Promoción de la Transferencia de Conocimiento Científico y Tecnológico al Sector Productivo (RENTRANS), con la finalidad de: (a) operativizar el régimen de transferencia tecnológica y propiedad intelectual previsto en la Ley de Es...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 19,
@@ -379,6 +553,8 @@
       "año": 2026,
       "eje": "Espacio y Antártida",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Espcial",
       "resumen": "Objeto. La presente ley tiene por objeto establecer el marco jurídico integral de las actividades espaciales en la República Argentina, con la finalidad de: (a) regular el licenciamiento, la supervisión y el control de las actividades espaciales públicas y privadas; (b) establecer un régimen de resp...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 21,
@@ -396,6 +572,8 @@
       "año": 2026,
       "eje": "Biotecnología",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Biotecnología",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Régimen Nacional de Promoción de la Biotecnología Avanzada y la Bioeconomía Estratégica (RENBIOTECH), con la finalidad de: (a) acelerar la aprobación de innovaciones biotecnológicas conforme a estándares internacionales de bioseguridad; (b) crear un ...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 13,
@@ -413,6 +591,8 @@
       "año": 2026,
       "eje": "Inteligencia Artificial",
       "eje_score": 5,
+      "tematica": "IA",
+      "subtematica": "Implementación de la IA por parte de la Administración Publica",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Régimen Nacional de Promoción de la Inteligencia Artificial Aplicada a la Producción (RENIAPRO), con la finalidad de: (a) impulsar la adopción de IA en los sectores productivos estratégicos; (b) crear centros nacionales de IA aplicada; (c) establecer...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 21,
@@ -430,6 +610,8 @@
       "año": 2026,
       "eje": "I+D y Financiamiento",
       "eje_score": 10,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Programas de innovación",
       "resumen": "Objeto. La presente ley tiene por objeto crear el Ecosistema Nacional de Financiamiento de la Innovación (ENFI), con la finalidad de: (a) establecer un sistema integral de capital de riesgo tecnológico público-privado para emprendimientos de base científica y deep tech; (b) crear instrumentos de fin...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 14,
@@ -447,6 +629,8 @@
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 15,
+      "tematica": "IA",
+      "subtematica": "Creación de Organismos especializados",
       "resumen": "Créase el Consejo Federal de Inteligencia Artificial, en adelante “el Consejo”, que tendrá como tarea principal y misión incentivar y promover la investigación, estudio, concientización, sensibilización y difusión de información pertinente sobre temáticas relacionadas a la Inteligencia Artificial (e...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 8,
@@ -455,13 +639,17 @@
     {
       "id": "0389-D-2025",
       "titulo": "Plan Nacional de Nodos de Innovación",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Juan M. López y otros"
+      ],
+      "autor_principal": "Juan M. López y otros",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Programas de innovación",
       "resumen": "Objeto. La presente ley tiene por objeto establecer el marco legal y las medidas necesarias para la promoción de la creación y desarrollo de Nodos de Innovación en el territorio argentino, que permitan una complejización de la matriz productiva y exportadora argentina, creando nuevos puestos de trab...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 22,
@@ -470,13 +658,17 @@
     {
       "id": "0401-D-2025",
       "titulo": "Creación del Fondo Nacional para la Promoción de Inversiones en Investigación y Desarrollo Industrial",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Juan M. López y otros"
+      ],
+      "autor_principal": "Juan M. López y otros",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "I+D y Financiamiento",
       "eje_score": 20,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "I+D",
       "resumen": "Creación. Créase el Fondo Fiduciario Nacional para el FONDO NACIONAL PARA LA PROMOCIÓN DE INVERSIONES EN INVESTIGACIÓN Y DESARROLLO INDUSTRIAL (en adelante, el Fondo), el que se conformará como un fideicomiso financiero con los alcances y limitaciones establecidos en la presente ley y su reglamentac...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 16,
@@ -485,13 +677,17 @@
     {
       "id": "0419-D-2025",
       "titulo": "Sello Otheguy",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Juan M. López y otros"
+      ],
+      "autor_principal": "Juan M. López y otros",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 20,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Desarrollo Productivo",
       "resumen": "Objeto. La presente ley tiene por objeto incentivar la formación de capital humano, la generación, la aplicación y la gestión del conocimiento, promoviendo las buenas prácticas y entrelazando los sectores socio-productivos y gubernamentales para que, en conjunto, respondan a desafíos estratégicos na...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 16,
@@ -507,6 +703,8 @@
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Politicas de Genero",
       "resumen": "Modifícase el artículo 1º de la ley 25.467, el que quedará redactado de la siguiente forma: “Artículo 1º - El objeto de la presente ley es establecer un marco general que estructure, impulse y promueva las actividades de ciencia, tecnología e innovación, a fin de contribuir a incrementar el patrimon...",
       "tipo": "MODIFICA LEY",
       "paginas": 20,
@@ -515,13 +713,17 @@
     {
       "id": "1311-D-2025",
       "titulo": "Ley De Salvaguarda Y Protección Del Sistema Nacional De Ciencia, Tecnología E Innovación De La República Argentina",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Esteban Paulón / M. Fein"
+      ],
+      "autor_principal": "Esteban Paulón / M. Fein",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Sistema Nacional de Ciencía, Tecnología e Innovación (Sostenimiento y Financiación)",
       "resumen": "Objeto. La presente Ley tiene por objeto garantizar la salvaguarda y protección del Sistema Nacional de Ciencia, Tecnología e Innovación de la República Argentina (SNCTI), asegurando la ejecución efectiva de los recursos, la estabilidad del personal especializado, el acceso a insumos esenciales y la...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 6,
@@ -539,6 +741,8 @@
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 4,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "Objeto de la Ley La presente ley tiene como objeto regular el desarrollo, implementación y uso de la inteligencia artificial (IA) en el territorio nacional, garantizando la protección de los derechos fundamentales de las personas, en particular la protección de sus datos personales, y promoviendo un...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 6,
@@ -554,6 +758,8 @@
       "año": 2025,
       "eje": "I+D y Financiamiento",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Sistema Nacional de Ciencía, Tecnología e Innovación (Sostenimiento y Financiación)",
       "resumen": "Declárese la emergencia presupuestaria del sistema universitario nacional y del sistema de Ciencia y Técnica para el ejercicio 2025.",
       "tipo": "FINANCIAMIENTO",
       "paginas": 12,
@@ -562,13 +768,17 @@
     {
       "id": "2114-D-2025",
       "titulo": "Ley de Sostenimiento de la Ciencia",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Mónica Macha"
+      ],
+      "autor_principal": "Mónica Macha",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "I+D y Financiamiento",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Sistema Nacional de Ciencía, Tecnología e Innovación (Sostenimiento y Financiación)",
       "resumen": "Objeto. La presente Ley tiene por objeto garantizar el sostenimiento del financiamiento del Sistema Nacional de Ciencia, Tecnología e Innovación durante el ejercicio fiscal 2025, asegurando el cumplimiento de las responsabilidades indelegables que ha asumido el Estado nacional de conformidad con lo ...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 8,
@@ -590,6 +800,8 @@
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 9,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "OBJETO: El objeto de la presente ley es establecer un marco legal para el desarrollo, implementación y uso responsable de sistemas de inteligencia artificial (IA) en Argentina.",
       "tipo": "MARCO REGULATORIO",
       "paginas": 23,
@@ -605,6 +817,8 @@
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 6,
+      "tematica": "IA",
+      "subtematica": "Deepfake y generación de contenido",
       "resumen": "Objeto de la Ley. La presente ley tiene por objeto la protección de la privacidad, la dignidad y los derechos fundamentales de las personas frente a la manipulación de imágenes a través de la inteligencia artificial (IA) que alteren su imagen en situaciones de desnudez no consentida o en contextos d...",
       "tipo": "PENAL",
       "paginas": 8,
@@ -622,6 +836,8 @@
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 9,
+      "tematica": "IA",
+      "subtematica": "Implementación de la IA por parte de la Administración Publica",
       "resumen": "Objeto. El presente proyecto tiene por objeto establecer un marco legal para la implementación de sistemas de Inteligencia Artificial por parte de la Administración Pública Nacional.",
       "tipo": "MARCO REGULATORIO",
       "paginas": 7,
@@ -640,6 +856,8 @@
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 6,
+      "tematica": "IA",
+      "subtematica": "Deepfake y generación de contenido",
       "resumen": "Objeto La presente ley tiene por objeto regular el uso de inteligencia artificial (IA) en la generación de locuciones y producciones audiovisuales en la República Argentina, garantizando la protección de las fuentes laborales de los locutores profesionales, la transparencia en la utilización de voce...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 3,
@@ -648,13 +866,17 @@
     {
       "id": "3723-D-2025",
       "titulo": "Modificación del Directorio de Agencia",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Mercedes de Mendieta"
+      ],
+      "autor_principal": "Mercedes de Mendieta",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 20,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "° .- Anúlese el Decreto 447/2025 publicado en el Boletín Oficial con fecha 4 de julio de 2025.",
       "tipo": "FINANCIAMIENTO",
       "paginas": 6,
@@ -663,13 +885,17 @@
     {
       "id": "3836-D-2025",
       "titulo": "Programa Nacional Clubes de Ciencias y/o Digitales",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Ariel Rauschenberger y otros"
+      ],
+      "autor_principal": "Ariel Rauschenberger y otros",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Educación y Formación CyT",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Educación",
       "resumen": "Objeto. Créase el “Programa Nacional de Clubes de Ciencias y/o Digitales”, con el objeto de promover, fortalecer y garantizar el acceso de niños, niñas y jóvenes a experiencias significativas de alfabetización científica y tecnológica, mediante la creación y funcionamiento de Clubes de Ciencia en to...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 6,
@@ -687,6 +913,8 @@
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "IA",
+      "subtematica": "Deepfake y generación de contenido",
       "resumen": "Objeto La presente ley tiene por objeto establecer un marco regulatorio para el uso de imágenes creadas o modificadas por medios digitales, incluidas figuras humanas generadas mediante inteligencia artificial (IA), en la publicidad política, comercial pública o privada, con el fin de proteger los de...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 10,
@@ -704,6 +932,8 @@
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "IA",
+      "subtematica": "Utilización de la IA en el Sistema Educativo",
       "resumen": "Objeto: La presente ley establece el Régimen Nacional de Incorporación de Contenidos sobre Inteligencia Artificial (IA) en el sistema educativo con el objetivo de promover, en forma progresiva, integral y transversal, el conocimiento, la comprensión y el pensamiento crítico sobre la IA desde una eda...",
       "tipo": "EDUCATIVA",
       "paginas": 7,
@@ -721,6 +951,8 @@
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 4,
+      "tematica": "IA",
+      "subtematica": "Implementación de la IA por parte de la Administración Publica",
       "resumen": "Objeto. La presente ley tiene por objeto establecer el marco regulatorio para el desarrollo, implementación y uso de la Inteligencia Artificial (IA) en y desde la Administración Pública Nacional. A efectos de esta ley, se entenderá por “IA” a las tecnologías de información y comunicación basadas en ...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 5,
@@ -736,6 +968,8 @@
       "año": 2025,
       "eje": "Datos y Digitalización",
       "eje_score": 10,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "Objeto: La presente ley tiene por objeto regular la utilización de los datos personales de ciudadanos por parte de las personas humanas o jurídicas que desarrollen, operen, implementen o comercialicen Sistemas de Inteligencia Artificial.",
       "tipo": "PROYECTO DE LEY",
       "paginas": 8,
@@ -744,13 +978,17 @@
     {
       "id": "4412-D-2025",
       "titulo": "Proy. Derogación Decretos INA-INMET y otros",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Daniel Gollan y otros"
+      ],
+      "autor_principal": "Daniel Gollan y otros",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 40,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "Rechazar los decretos del Poder Ejecutivo 396/2025 del 17/06/2025, 447/2025 del 04/07/2025, 458/2025 y 459/2025 del 8/07/2025.",
       "tipo": "PROYECTO DE LEY",
       "paginas": 17,
@@ -759,13 +997,17 @@
     {
       "id": "4420-D-2025",
       "titulo": "Título I: Disposiciones Generales",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Martín Yeza"
+      ],
+      "autor_principal": "Martín Yeza",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Inteligencia Artificial",
       "eje_score": 10,
+      "tematica": "Privacidad Digital / Derechos Digitales",
+      "subtematica": "Reconocimiento Facil",
       "resumen": "Objeto de la Ley. La presente ley tiene por objeto establecer los principios y garantías fundamentales para el desarrollo, implementación, uso y gestión de las tecnologías de reconocimiento facial en el territorio nacional, con el fin de proteger los derechos fundamentales de las personas.",
       "tipo": "PENAL",
       "paginas": 17,
@@ -781,6 +1023,8 @@
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Brecha Digital",
       "resumen": "Objeto. Asígnese partidas subejecutadas por la Jefatura de Gabinete de Ministros en programas de conectividad, inclusión digital y formulación de políticas públicas que mediante nuevas tecnologías y herramientas digitales promueven una reducción de la brecha digital y el acceso al conocimiento de la...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 4,
@@ -789,13 +1033,17 @@
     {
       "id": "5765-D-2025",
       "titulo": "Derechos De Becarios Y Becarias De Formación Doctoral Y Postdoctoral Del Sistema Nacional De Ciencia, Tecnología E Innovación",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "José Pablo Carro"
+      ],
+      "autor_principal": "José Pablo Carro",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Educación y Formación CyT",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Educación",
       "resumen": "RÉGIMEN. Establécese un régimen especial para becarios doctorales y postdoctorales del Sistema Nacional de Ciencia, Tecnología e Innovación, que se regirá por las disposiciones de la presente Ley y sus normas reglamentarias y complementarias. Se trata de un modelo de formación de postgrado remunerad...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 6,
@@ -804,13 +1052,17 @@
     {
       "id": "5823-D-2025",
       "titulo": "Desarrollo Antártico Y Servicios Científicos Internacionales Título I – Disposiciones Generales",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Marcela M. Pagano"
+      ],
+      "autor_principal": "Marcela M. Pagano",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Espacio y Antártida",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Sector Antartico",
       "resumen": "Objeto Declárase de interés nacional y estratégico el desarrollo de la República Argentina como centro internacional de servicios científicos, logísticos y de infraestructura para actividades antárticas, en el marco del Tratado Antártico, sus protocolos complementarios y los compromisos internaciona...",
       "tipo": "DECLARATIVA",
       "paginas": 24,
@@ -828,6 +1080,8 @@
       "año": 2025,
       "eje": "Educación y Formación CyT",
       "eje_score": 15,
+      "tematica": "IA",
+      "subtematica": "Utilización de la IA en el Sistema Educativo",
       "resumen": "Créase el Programa Nacional de “Uso responsable de la Inteligencia Artificial en el ámbito educativo” (ResponsabIA) en el ámbito de la Secretaria de Educación del Ministerio de Capital Humano que tiene como objetivo la alfabetización en inteligencia artificial en el sistema educativo, la maximizació...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 6,
@@ -845,6 +1099,8 @@
       "año": 2025,
       "eje": "Tecnologías Cuánticas",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Tecnología Cuantica",
       "resumen": "Objeto. La presente ley tiene por objeto establecer el marco jurídico integral, soberano y federal para el desarrollo, adopción, investigación, industrialización, despliegue y gobernanza de tecnologías cuánticas en la República Argentina, incluyendo computación cuántica, comunicaciones cuánticas, cr...",
       "tipo": "DECLARATIVA",
       "paginas": 24,
@@ -862,6 +1118,8 @@
       "año": 2025,
       "eje": "Biotecnología",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Biotecnología",
       "resumen": "Objeto. Créase el Marco Nacional para el Desarrollo Federal y Competitivo de la Biotecnología Argentina, con el fin de consolidar un ecosistema federal, innovador y competitivo, basado en la cooperación público-privada, la soberanía científica y la inserción global del país en las cadenas de valor b...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 25,
@@ -879,6 +1137,8 @@
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 11,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "OBJETO: La presente ley tiene como objetivo asegurar equidad, transparencia y rendición de cuentas en los algoritmos utilizados en decisiones automatizadas, asegurando su uso ético y no discriminatorio.",
       "tipo": "PROYECTO DE LEY",
       "paginas": 5,
@@ -896,6 +1156,8 @@
       "año": 2025,
       "eje": "Educación y Formación CyT",
       "eje_score": 10,
+      "tematica": "IA",
+      "subtematica": "Utilización de la IA en el Sistema Educativo",
       "resumen": "Incorpórase como inciso w) del artículo 11° de la ley N°26.206, de Educación Nacional, el que quedará redactado de la siguiente manera: “w) Proporcionar contenidos de educación en inteligencia artificial (IA) y tecnologías digitales emergentes para el desarrollo de competencias tecnológicas, pensami...",
       "tipo": "EDUCATIVA",
       "paginas": 4,
@@ -913,6 +1175,8 @@
       "año": 2025,
       "eje": "Neuroderechos",
       "eje_score": 10,
+      "tematica": "Privacidad Digital / Derechos Digitales",
+      "subtematica": "Neurederechos",
       "resumen": "La presente ley tiene por objeto proteger los siguientes aspectos del cerebro humano: a) La actividad cerebral humana; b) la privacidad mental; c) la identidad mental y neurocognitiva; d) la libertad cognitiva; e) los neurodatos. Todo ello, a través de regular el desarrollo, uso y aplicación de neur...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 14,
@@ -921,13 +1185,17 @@
     {
       "id": "6954-D-2025",
       "titulo": "Protección De Activos Estratégicos De La Nación",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Eduardo Toniolli"
+      ],
+      "autor_principal": "Eduardo Toniolli",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "Se declara activo estratégico de la Nación por su relevancia para la soberanía nacional, el desarrollo económico y el bienestar social: a) El conocimiento científico y tecnológico, la capacidad de innovación y el desarrollo de tecnologías clave. b) Infraestructura crítica: redes de transporte, energ...",
       "tipo": "DECLARATIVA",
       "paginas": 5,
@@ -936,13 +1204,17 @@
     {
       "id": "7085-D-2025",
       "titulo": "Fundamentos",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Romina Del Plá y otros"
+      ],
+      "autor_principal": "Romina Del Plá y otros",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2025,
       "eje": "I+D y Financiamiento",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Educación",
       "resumen": "Restitúyase la vigencia del artículo 52 de la Ley 26.058 de Educación Técnico Profesional.",
       "tipo": "FINANCIAMIENTO",
       "paginas": 3,
@@ -960,6 +1232,8 @@
       "año": 2024,
       "eje": "Seguridad Vial y Transporte",
       "eje_score": 10,
+      "tematica": "Seguridad Vial y Transporte",
+      "subtematica": "",
       "resumen": "Modificase el último párrafo del",
       "tipo": "PROYECTO DE LEY",
       "paginas": 3,
@@ -975,6 +1249,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Gobernanza e Institucionalidad CyT",
+      "subtematica": "",
       "resumen": "Ámbito personal. El Estatuto del Trabajador de Plataformas Tecnológicas rige en todo el territorio de la República Argentina para las relaciones laborales que vinculen a las plataformas tecnológicas debidamente registradas, con las personas mayores de 18 años que ponen a disposición su fuerza de tra...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 24,
@@ -990,6 +1266,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Gobernanza e Institucionalidad CyT",
+      "subtematica": "",
       "resumen": "Incorpórese al Código Penal de la Nación como artículo 117 ter el siguiente: “Artículo 117 ter: Sera reprimido con pena de 6 meses a dos años de prisión quien, sin consentimiento expreso de la víctima, revelare, publicare, facilitare, o difundiere por cualquier medio o pusiera a disposición de terce...",
       "tipo": "PENAL",
       "paginas": 6,
@@ -1005,6 +1283,8 @@
       "año": 2024,
       "eje": "Seguridad Vial y Transporte",
       "eje_score": 18,
+      "tematica": "Seguridad Vial y Transporte",
+      "subtematica": "",
       "resumen": "Sr. Presidente Los aquí suscribientes ponemos nuevamente a su consideración el siguiente proyecto de ley modificatorio de la ley 24.653 de transporte automotor de cargas, proponiendo la implementación de cambios en su articulado que tiendan a su modernización y la atención de deficiencias que el sec...",
       "tipo": "MODIFICA LEY",
       "paginas": 10,
@@ -1025,6 +1305,8 @@
       "año": 2024,
       "eje": "I+D y Financiamiento",
       "eje_score": 20,
+      "tematica": "I+D y Financiamiento",
+      "subtematica": "",
       "resumen": "Objeto. Es objeto de la presente ley establecer un programa de incentivos para que las empresas e instituciones, tanto públicas como privadas, desarrollen productos y servicios de alto valor agregado tecnológico para la economía de la Nación Argentina.",
       "tipo": "PROMOCIÓN",
       "paginas": 8,
@@ -1040,6 +1322,8 @@
       "año": 2024,
       "eje": "Salud y Tecnología Médica",
       "eje_score": 10,
+      "tematica": "Salud y Tecnología Médica",
+      "subtematica": "",
       "resumen": "Objeto. La presente Ley tiene por objeto garantizar el acceso a los Medicamentos de Alto Precio, considerándose como tales a aquellos fármacos destinados a la atención de enfermedades de baja prevalencia que integran el Anexo III y IV de la Resolución 1200/2012 de la Superintendencia de Servicios de...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 10,
@@ -1055,6 +1339,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 12,
+      "tematica": "Inteligencia Artificial",
+      "subtematica": "",
       "resumen": "Objetivo: El objetivo de la presente ley es establecer un marco legal a los desarrollos de la inteligencia artificial con el objetivo de crear certificaciones de buenas prácticas, implementar un registro de riesgos significativos, promover la inteligencia artificial en pequeñas y medianas empresas, ...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 15,
@@ -1072,6 +1358,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Gobernanza e Institucionalidad CyT",
+      "subtematica": "",
       "resumen": "— Modifíquese el artículo 4° de la Ley 27.227, el cual quedará redactado de la siguiente forma: “ARTICULO 4°— “El Ministerio de Ciencia, Tecnología e Innovación junto con el Ministerio de Desarrollo Productivo, deberán evaluar e implementar estrategias tecnológicas a fin de propiciar la producción n...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 8,
@@ -1089,6 +1377,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 6,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "— Objeto. La presente ley tiene por objeto; a. Adecuar el marco normativo argentino por el impacto de la Inteligencia artificial; b. Proveer de normas armonizadas para la introducción en el mercado, la puesta en servicio y la utilización de sistemas de inteligencia artificial en el territorio de la ...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 15,
@@ -1097,13 +1387,17 @@
     {
       "id": "1269-D-2024",
       "titulo": "Ley De Sostenimiento Del Sistema Nacional De Ciencia, Tecnología E Innovación.",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Mónica Macha"
+      ],
+      "autor_principal": "Mónica Macha",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2024,
       "eje": "I+D y Financiamiento",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Sistema Nacional de Ciencía, Tecnología e Innovación (Sostenimiento y Financiación)",
       "resumen": "Objeto. La presente Ley tiene por objeto garantizar el sostenimiento del financiamiento del Sistema Nacional de Ciencia, Tecnología e Innovación durante el vigente ejercicio fiscal, asegurando el cumplimiento de las responsabilidades indelegables que ha asumido el Estado nacional de conformidad con ...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 7,
@@ -1119,6 +1413,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Conmemoración",
       "resumen": "Institu yase el 10 de abril de cada an o como “El Dí a Nacional del Investigador e Investigadora Cientí fico” en conmemoracio n del natalicio del Dr. Bernardo Alberto Houssay.",
       "tipo": "DECLARATIVA",
       "paginas": 5,
@@ -1136,6 +1432,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Ecosistema Startup",
       "resumen": "— Declárase a la Provincia de Misiones “Capital Nacional Start Up”. -",
       "tipo": "PROMOCIÓN",
       "paginas": 9,
@@ -1153,6 +1451,8 @@
       "año": 2024,
       "eje": "Educación y Formación CyT",
       "eje_score": 14,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Educación",
       "resumen": "Objeto. La presente ley tiene por objeto dar marco normativo a las Escuelas de Robótica, en el ámbito de la Nación, favoreciendo su creación, funcionamiento y desarrollo.",
       "tipo": "MARCO REGULATORIO",
       "paginas": 14,
@@ -1161,13 +1461,17 @@
     {
       "id": "1656-D-2024",
       "titulo": "Ley Para La Promoción De Publicaciones Científicas Argentinas En Salud",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Ana Carolina Gaillard"
+      ],
+      "autor_principal": "Ana Carolina Gaillard",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2024,
       "eje": "Salud y Tecnología Médica",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "Créase un Fondo Nacional de Publicaciones Científicas Periódicas (FNPCP), dentro de la órbita del Ministerio de Salud de la Nación, para incentivar la calidad, el desarrollo y la sustentabilidad de las ediciones argentinas especializadas en medicina y la salud.",
       "tipo": "CREA ÓRGANOS",
       "paginas": 9,
@@ -1176,13 +1480,17 @@
     {
       "id": "2435-D-2024",
       "titulo": "Ley De Declaración De Emergencia Del Sistema Nacional De Ciencia, Tecnología E Innovación",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Daniel G. Gollan"
+      ],
+      "autor_principal": "Daniel G. Gollan",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2024,
       "eje": "I+D y Financiamiento",
       "eje_score": 9,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Sistema Nacional de Ciencía, Tecnología e Innovación (Sostenimiento y Financiación)",
       "resumen": "Objeto. La presente Ley tiene por objeto declarar la emergencia del Sistema Nacional de Ciencia, Tecnología e Innovación durante el vigente ejercicio fiscal, asegurando el cumplimiento de las responsabilidades indelegables que ha asumido el Estado Nacional de conformidad con lo establecido por la no...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 14,
@@ -1198,6 +1506,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "Del Régimen Jurídico ESTABLECESE, por la presente el régimen legal aplicable para el uso responsable de la Inteligencia Artificial (I.A.) que fuera introducida, distribuida, utilizada, aplicada y comercializada en el territorio de la República Argentina.",
       "tipo": "MARCO REGULATORIO",
       "paginas": 17,
@@ -1213,6 +1523,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 10,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Sandbox",
       "resumen": "Creación. Créase el sistema de entornos regulatorios experimentales, denominados “sandbox regulatorios”, con el fin de impulsar el desarrollo de modelos de negocio y economía de alto valor agregado en distintos ámbitos, a partir del uso intensivo de la tecnología y la innovación por vía de sistemas ...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 7,
@@ -1230,6 +1542,8 @@
       "año": 2024,
       "eje": "Datos y Digitalización",
       "eje_score": 10,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Plataformas de mensajeria",
       "resumen": "Objeto: La presente ley tiene por objeto, establecer reglas adecuadas para promover el desarrollo de la economía de plataformas tecnológicas en el país, asegurando la independencia de los repartidores.",
       "tipo": "PROYECTO DE LEY",
       "paginas": 12,
@@ -1238,13 +1552,17 @@
     {
       "id": "3602-D-2024",
       "titulo": "Régimen De Fomento Para La Reconversión Industrial E Innovación Tecnológica De La Provincia De Tierra Del Fuego, Antártida E Islas Del Atlántico Sur (Regitec-Tdf)",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Jorge Neri Araujo Hdez."
+      ],
+      "autor_principal": "Jorge Neri Araujo Hdez.",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2024,
       "eje": "Espacio y Antártida",
       "eje_score": 10,
+      "tematica": "Estrategia Tecnologica Nacional",
+      "subtematica": "Estrategía Nacional de Ciencia y Tecnologia",
       "resumen": "CREACION.- Créase el Régimen de Fomento para la Reconversión Industrial e Innovación Tecnológica de la Provincia de Tierra Del Fuego, Antártida e Islas del Atlántico Sur (REGITEC-TDF). El presente régimen constituirá una política estratégica de desarrollo y a tal efecto tendrá vigencia durante el pl...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 14,
@@ -1253,13 +1571,17 @@
     {
       "id": "3709-D-2024",
       "titulo": "LEY YOZMA - ARGENTINA - ALL INCLUSIVE",
-      "autores": [],
-      "autor_principal": "No disponible",
+      "autores": [
+        "Martín Yeza"
+      ],
+      "autor_principal": "Martín Yeza",
       "bloque": "Sin datos",
       "camara": "Diputados",
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 20,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Desarrollo Productivo",
       "resumen": "Créase el Programa Iniciativa Argentina para el Fomento del desarrollo productivo industrial de uso intensivo de la ciencia y tecnología (en adelante, “el Programa”).",
       "tipo": "CREA ÓRGANOS",
       "paginas": 20,
@@ -1278,6 +1600,8 @@
       "año": 2024,
       "eje": "Salud y Tecnología Médica",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Salud",
       "resumen": "CREACIÓN - Créase el Instituto Nacional de Evaluación de Tecnologías Sanitarias (INETS) como organismo descentralizado de la Administración Pública Nacional con personería jurídica propia, y con un régimen de autarquía funcional, administrativa, económica y financiera, en jurisdicción del Ministerio...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 15,
@@ -1295,6 +1619,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 11,
+      "tematica": "IA",
+      "subtematica": "Creación de Organismos especializados",
       "resumen": "CREACIÓN. Créase el Observatorio Federal sobre Inteligencia Artificial (O.F.I.A.), en el ámbito del Poder Ejecutivo de la Nación Argentina.",
       "tipo": "CREA ÓRGANOS",
       "paginas": 8,
@@ -1310,6 +1636,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 4,
+      "tematica": "IA",
+      "subtematica": "Deepfake y generación de contenido",
       "resumen": "INCORPORASE el artículo 139 ter al Código Penal de la Nación, cuyo texto es el siguiente: “Artículo 139° ter: Será reprimido con prisión de cuatro (4) a ocho (8) años, quien utilizando tecnología de inteligencia artificial, sin el consentimiento informado y expreso de la persona implicada o de sus h...",
       "tipo": "PENAL",
       "paginas": 6,
@@ -1329,6 +1657,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 9,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "Objeto. La presente ley tiene por objeto promover el fomento, el desarrollo, la innovación e implementación de Sistemas de Inteligencia Artificial en la República Argentina en un marco de respeto de los derechos consagrados en la Constitución Nacional y los Tratados Internacionales sobre Derechos Hu...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 16,
@@ -1344,6 +1674,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "IA",
+      "subtematica": "Defensa del Consumidor",
       "resumen": "Incorpórese como artículo 1bis de la ley 24.240, el siguiente: Articulo 1bis: Se considera usuario directo de la IA a aquellos que interactúan directamente con los sistemas o aplicaciones que la utilizan, reciben resultados o beneficios directos de la misma, como así también a quienes utilizan produ...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 7,
@@ -1361,6 +1693,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 7,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "Objetivo. La presente Ley tiene por objeto definir el marco legal para el desarrollo, investigación y uso de Inteligencia Artificial dentro del territorio nacional con la finalidad de preservar la protección de los derechos humanos, la privacidad y la seguridad de los ciudadanos y asegurar la democr...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 15,
@@ -1382,6 +1716,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Desarrollo Productivo",
       "resumen": "Exímese de los derechos de importación y de las tasas por servicios portuarios, aeroportuarios, de estadística y de comprobación, que gravan la importación para consumo de bienes de capital, partes, componentes, insumos, repuestos y/o bienes intermedios en la cadena de valor, destinados a la producc...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 3,
@@ -1399,6 +1735,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 9,
+      "tematica": "IA",
+      "subtematica": "Utilización de la IA en el Sistema Educativo",
       "resumen": "Objeto. - Créase el Programa Nacional de Laboratorios de Informática e Inteligencia Artificial (IA) en los establecimientos educativos de nivel medio, públicos y privados, de todo el territorio de la República Argentina, con el objetivo de promover el desarrollo de habilidades digitales y el uso res...",
       "tipo": "CREA ÓRGANOS",
       "paginas": 9,
@@ -1416,6 +1754,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 7,
+      "tematica": "IA",
+      "subtematica": "Marco Regulatorio",
       "resumen": "modifíquese el Artículo 4 de la Ley 24.240, el que quedará redactado de la siguiente manera: “ Artículo 4° Información. El Proveedor está obligado a suministrar al consumidor en forma cierta, clara y detallada todo lo relacionado con las características esenciales de los bienes y servicios que prove...",
       "tipo": "MODIFICA LEY",
       "paginas": 5,
@@ -1433,6 +1773,8 @@
       "año": 2024,
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
+      "tematica": "Innovación y Desarrollo Productivo",
+      "subtematica": "Desarrollo Productivo",
       "resumen": "Objeto. La presente Ley tiene por objeto promover la correcta recuperación y reciclado de aceites vegetales y grasas de fritura usados, provenientes del uso comercial y/o doméstico.",
       "tipo": "PROMOCIÓN",
       "paginas": 9,
@@ -1450,6 +1792,8 @@
       "año": 2024,
       "eje": "Salud y Tecnología Médica",
       "eje_score": 10,
+      "tematica": "Tecnologías Estratégicas",
+      "subtematica": "Salud",
       "resumen": "OBJETIVOS. Son objetivos y principios rectores de esta ley: a. Establecer un marco normativo nacional que promueva la producción introducción de nuevas tecnologías de tratamientos, aparatología y/o fármacos, en materia de medicina, odontología y actividades de colaboración de la medicina y odontolog...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 8,

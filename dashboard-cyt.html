@@ -1228,11 +1228,11 @@
             <select class="filter-select" id="filter-year">
                 <option value="">Todos los años</option>
             </select>
-            <select class="filter-select" id="filter-eje">
-                <option value="">Todos los ejes</option>
+            <select class="filter-select" id="filter-tematica">
+                <option value="">Todas las temáticas</option>
             </select>
-            <select class="filter-select" id="filter-tipo">
-                <option value="">Todos los tipos</option>
+            <select class="filter-select" id="filter-subtema">
+                <option value="">Todos los subtemas</option>
             </select>
             <select class="filter-select" id="filter-bloque">
                 <option value="">Todos los bloques</option>
@@ -1254,12 +1254,12 @@
                 <div class="kpi-sub" id="kpi-periodo"></div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label">Ejes Temáticos</div>
+                <div class="kpi-label">Temáticas</div>
                 <div class="kpi-value" id="kpi-ejes">—</div>
-                <div class="kpi-sub">áreas de trabajo identificadas</div>
+                <div class="kpi-sub">categorías identificadas</div>
             </div>
             <div class="kpi-card">
-                <div class="kpi-label">Tipo más frecuente</div>
+                <div class="kpi-label">Temática principal</div>
                 <div class="kpi-value" id="kpi-tipo" style="font-size: 22px;">—</div>
                 <div class="kpi-sub" id="kpi-tipo-sub"></div>
             </div>
@@ -1282,13 +1282,13 @@
         <!-- Charts -->
         <section class="charts-row">
             <div class="chart-card">
-                <h3>Evolución por Año y Eje Temático</h3>
+                <h3>Evolución por Año y Temática</h3>
                 <div class="chart-container" style="height: 300px;">
                     <canvas id="chart-timeline"></canvas>
                 </div>
             </div>
             <div class="chart-card">
-                <h3>Distribución por Tipo Normativo</h3>
+                <h3>Distribución por Subtema</h3>
                 <div class="chart-container" style="height: 300px;">
                     <canvas id="chart-tipos"></canvas>
                 </div>
@@ -1324,7 +1324,7 @@
                         <tr>
                             <th data-sort="id">Expediente <span class="sort-arrow">▼</span></th>
                             <th data-sort="titulo">Título <span class="sort-arrow">▼</span></th>
-                            <th data-sort="eje">Eje Temático <span class="sort-arrow">▼</span></th>
+                            <th data-sort="tematica">Temática <span class="sort-arrow">▼</span></th>
                             <th data-sort="autor_principal">Autor <span class="sort-arrow">▼</span></th>
                             <th data-sort="bloque">Bloque <span class="sort-arrow">▼</span></th>
                             <th data-sort="año">Año <span class="sort-arrow">▼</span></th>
@@ -1635,8 +1635,8 @@
 
             // Events
             document.getElementById('filter-year').addEventListener('change', () => { currentPage = 1; applyFilters(); });
-            document.getElementById('filter-eje').addEventListener('change', () => { currentPage = 1; activeEje = ''; updateEjeCards(); applyFilters(); });
-            document.getElementById('filter-tipo').addEventListener('change', () => { currentPage = 1; applyFilters(); });
+            document.getElementById('filter-tematica').addEventListener('change', () => { currentPage = 1; activeEje = ''; updateEjeCards(); applyFilters(); });
+            document.getElementById('filter-subtema').addEventListener('change', () => { currentPage = 1; applyFilters(); });
             document.getElementById('filter-bloque').addEventListener('change', () => { currentPage = 1; applyFilters(); });
             document.getElementById('filter-search').addEventListener('input', debounce(() => { currentPage = 1; applyFilters(); }, 250));
 
@@ -1668,8 +1668,8 @@
         // ═══════════════════════════════════════════════════════
         function populateFilters() {
             const yearSelect = document.getElementById('filter-year');
-            const ejeSelect = document.getElementById('filter-eje');
-            const tipoSelect = document.getElementById('filter-tipo');
+            const tematicaSelect = document.getElementById('filter-tematica');
+            const subtemaSelect = document.getElementById('filter-subtema');
 
             // Years
             const years = [...new Set(DATA.bills.map(b => b.año))].sort();
@@ -1677,16 +1677,14 @@
                 yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
             });
 
-            // Ejes
-            DATA.eje_stats.forEach(s => {
-                ejeSelect.innerHTML += `<option value="${s.eje}">${s.icon} ${s.eje} (${s.total})</option>`;
+            // Temáticas (curated from CSV)
+            (DATA.tipo_stats || []).forEach(s => {
+                tematicaSelect.innerHTML += `<option value="${s.tipo}">${s.tipo} (${s.total})</option>`;
             });
 
-            // Tipos
-            const tipos = {};
-            DATA.bills.forEach(b => { tipos[b.tipo] = (tipos[b.tipo] || 0) + 1; });
-            Object.entries(tipos).sort((a, b) => b[1] - a[1]).forEach(([t, c]) => {
-                tipoSelect.innerHTML += `<option value="${t}">${t} (${c})</option>`;
+            // Subtemas
+            (DATA.subtema_stats || []).forEach(s => {
+                subtemaSelect.innerHTML += `<option value="${s.subtema}">${s.subtema} (${s.total})</option>`;
             });
 
             // Bloques
@@ -1698,18 +1696,18 @@
 
         function applyFilters() {
             const year = document.getElementById('filter-year').value;
-            const eje = document.getElementById('filter-eje').value || activeEje;
-            const tipo = document.getElementById('filter-tipo').value;
+            const tematica = document.getElementById('filter-tematica').value || activeEje;
+            const subtema = document.getElementById('filter-subtema').value;
             const bloque = document.getElementById('filter-bloque').value;
             const search = document.getElementById('filter-search').value.toLowerCase().trim();
 
             filteredBills = DATA.bills.filter(b => {
                 if (year && b.año !== parseInt(year)) return false;
-                if (eje && b.eje !== eje) return false;
-                if (tipo && b.tipo !== tipo) return false;
+                if (tematica && b.tematica !== tematica) return false;
+                if (subtema && b.subtematica !== subtema) return false;
                 if (bloque && b.bloque !== bloque) return false;
                 if (search) {
-                    const haystack = `${b.id} ${b.titulo} ${b.resumen} ${b.autor_principal} ${b.bloque}`.toLowerCase();
+                    const haystack = `${b.id} ${b.titulo} ${b.resumen} ${b.autor_principal} ${b.bloque} ${b.tematica} ${b.subtematica}`.toLowerCase();
                     if (!haystack.includes(search)) return false;
                 }
                 return true;
@@ -1736,16 +1734,14 @@
             const bills = DATA.bills;
             document.getElementById('kpi-total').textContent = bills.length;
             document.getElementById('kpi-periodo').textContent = `Período ${DATA.metadata.periodo}`;
-            document.getElementById('kpi-ejes').textContent = DATA.eje_stats.length;
+            document.getElementById('kpi-ejes').textContent = (DATA.tipo_stats || []).length;
             document.getElementById('badge-total').innerHTML = `<strong>${bills.length}</strong> proyectos analizados`;
 
-            // Most common tipo
-            const tipos = {};
-            bills.forEach(b => { tipos[b.tipo] = (tipos[b.tipo] || 0) + 1; });
-            const topTipo = Object.entries(tipos).sort((a, b) => b[1] - a[1])[0];
-            if (topTipo) {
-                document.getElementById('kpi-tipo').textContent = topTipo[0];
-                document.getElementById('kpi-tipo-sub').textContent = `${topTipo[1]} proyectos`;
+            // Most common temática
+            const topTematica = (DATA.tipo_stats || [])[0];
+            if (topTematica) {
+                document.getElementById('kpi-tipo').textContent = topTematica.tipo;
+                document.getElementById('kpi-tipo-sub').textContent = `${topTematica.total} proyectos`;
             }
 
             // Most active year
@@ -1757,15 +1753,22 @@
         // ═══════════════════════════════════════════════════════
         // PANORAMA
         // ═══════════════════════════════════════════════════════
+        const TEMATICA_ICONS = {
+            'IA': '🤖', 'Estrategia Tecnologica Nacional': '🏛️',
+            'Innovación y Desarrollo Productivo': '💰', 'Tecnologías Estratégicas ': '🚀',
+            'Privacidad Digital / Derechos Digitales': '🔐',
+        };
+
         function renderPanorama() {
             const grid = document.getElementById('eje-grid');
-            const maxCount = Math.max(...DATA.eje_stats.map(s => s.total));
+            const stats = DATA.tipo_stats || [];
+            const maxCount = Math.max(...stats.map(s => s.total));
 
-            grid.innerHTML = DATA.eje_stats.map(s => `
-                <div class="eje-card" data-eje="${s.eje}" onclick="toggleEje('${s.eje}')">
+            grid.innerHTML = stats.map(s => `
+                <div class="eje-card" data-eje="${s.tipo}" onclick="toggleEje('${s.tipo}')">
                     <div class="eje-card-header">
-                        <span class="eje-icon">${s.icon}</span>
-                        <span class="eje-name">${s.eje}</span>
+                        <span class="eje-icon">${TEMATICA_ICONS[s.tipo] || '📋'}</span>
+                        <span class="eje-name">${s.tipo}</span>
                     </div>
                     <div class="eje-stats">
                         <span class="eje-count">${s.total}</span>
@@ -1783,7 +1786,7 @@
             } else {
                 activeEje = eje;
             }
-            document.getElementById('filter-eje').value = '';
+            document.getElementById('filter-tematica').value = '';
             currentPage = 1;
             updateEjeCards();
             applyFilters();
@@ -1805,29 +1808,38 @@
 
         function renderTimelineChart() {
             const ctx = document.getElementById('chart-timeline').getContext('2d');
-            const matrix = DATA.year_eje_matrix;
+
+            // Build year-temática matrix client-side
+            const matrix = {};
+            DATA.bills.forEach(b => {
+                const yr = String(b.año);
+                if (!matrix[yr]) matrix[yr] = {};
+                matrix[yr][b.tematica] = (matrix[yr][b.tematica] || 0) + 1;
+            });
             const years = Object.keys(matrix).sort();
 
-            // Get top ejes for the stacked chart
-            const topEjes = DATA.eje_stats.slice(0, 6);
+            const tipoStats = DATA.tipo_stats || [];
+            const TEMATICA_CLR_CHART = {'IA':'#7c3aed','Estrategia Tecnologica Nacional':'#2563a0','Innovación y Desarrollo Productivo':'#059669','Tecnologías Estratégicas ':'#dc2626','Privacidad Digital / Derechos Digitales':'#d97706'};
 
-            const datasets = topEjes.map(eje => ({
-                label: eje.eje,
-                data: years.map(yr => matrix[yr]?.[eje.eje] || 0),
-                backgroundColor: eje.color + 'cc',
-                borderColor: eje.color,
+            // Top 5 temáticas get their own bar, rest go to "Otros"
+            const topTematicas = tipoStats.slice(0, 5);
+            const otrosTematicas = tipoStats.slice(5).map(t => t.tipo);
+
+            const datasets = topTematicas.map(t => ({
+                label: t.tipo,
+                data: years.map(yr => matrix[yr]?.[t.tipo] || 0),
+                backgroundColor: (TEMATICA_CLR_CHART[t.tipo] || '#9ca3af') + 'cc',
+                borderColor: TEMATICA_CLR_CHART[t.tipo] || '#9ca3af',
                 borderWidth: 1,
                 borderRadius: 3,
             }));
 
-            // "Otros" category
-            const otrosEjes = DATA.eje_stats.slice(6).map(e => e.eje);
-            if (otrosEjes.length > 0) {
+            if (otrosTematicas.length > 0) {
                 datasets.push({
                     label: 'Otros',
                     data: years.map(yr => {
                         let sum = 0;
-                        otrosEjes.forEach(eje => { sum += matrix[yr]?.[eje] || 0; });
+                        otrosTematicas.forEach(t => { sum += matrix[yr]?.[t] || 0; });
                         return sum;
                     }),
                     backgroundColor: '#9ca3afcc',
@@ -1884,23 +1896,21 @@
 
         function renderTiposChart() {
             const ctx = document.getElementById('chart-tipos').getContext('2d');
-            const tipos = {};
-            DATA.bills.forEach(b => { tipos[b.tipo] = (tipos[b.tipo] || 0) + 1; });
-            const sorted = Object.entries(tipos).sort((a, b) => b[1] - a[1]);
+            const stats = (DATA.subtema_stats || []).slice(0, 12);
 
             const colors = [
-                '#1a3556', '#2563a0', '#4a82b8', '#7ba3cc',
-                '#b8910f', '#d4a91a', '#e8c547', '#9ca3af',
-                '#6b7280', '#d1d5db'
+                '#7c3aed', '#2563a0', '#059669', '#dc2626',
+                '#d97706', '#0891b2', '#e11d48', '#16a34a',
+                '#a855f7', '#0284c7', '#9ca3af', '#6b7280'
             ];
 
             new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: sorted.map(s => s[0]),
+                    labels: stats.map(s => s.subtema),
                     datasets: [{
-                        data: sorted.map(s => s[1]),
-                        backgroundColor: colors.slice(0, sorted.length),
+                        data: stats.map(s => s.total),
+                        backgroundColor: colors.slice(0, stats.length),
                         borderWidth: 2,
                         borderColor: '#fff',
                     }],
@@ -2040,13 +2050,14 @@
                 return;
             }
 
+            const TEMATICA_CLR = {'IA':'#7c3aed','Estrategia Tecnologica Nacional':'#2563a0','Innovación y Desarrollo Productivo':'#059669','Tecnologías Estratégicas ':'#dc2626','Privacidad Digital / Derechos Digitales':'#d97706'};
             tbody.innerHTML = pageBills.map(b => `
                 <tr onclick="openModal('${b.id}')">
                     <td class="td-expediente">${b.id}</td>
                     <td class="td-titulo">${truncate(b.titulo, 60)}</td>
                     <td class="td-eje">
-                        <span class="eje-tag" style="border-left-color: ${EJE_COLORS[b.eje] || '#999'}">
-                            ${getEjeIcon(b.eje)} ${b.eje}
+                        <span class="eje-tag" style="border-left-color: ${TEMATICA_CLR[b.tematica] || '#999'}">
+                            ${TEMATICA_ICONS[b.tematica] || '📋'} ${b.tematica}${b.subtematica ? ' <small style="color:var(--gray-400)">· ' + b.subtematica + '</small>' : ''}
                         </span>
                     </td>
                     <td style="font-size:13px;color:var(--gray-700);max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${b.autor_principal !== 'No disponible' ? b.autor_principal : '<span style="color:var(--gray-300)">—</span>'}</td>
@@ -2118,12 +2129,12 @@
                     <div class="modal-meta-value">${bill.año}</div>
                 </div>
                 <div class="modal-meta-item">
-                    <div class="modal-meta-label">Eje Temático</div>
-                    <div class="modal-meta-value">${getEjeIcon(bill.eje)} ${bill.eje}</div>
+                    <div class="modal-meta-label">Temática</div>
+                    <div class="modal-meta-value">${TEMATICA_ICONS[bill.tematica] || '📋'} ${bill.tematica}</div>
                 </div>
                 <div class="modal-meta-item">
-                    <div class="modal-meta-label">Tipo Normativo</div>
-                    <div class="modal-meta-value">${bill.tipo}</div>
+                    <div class="modal-meta-label">Subtema</div>
+                    <div class="modal-meta-value">${bill.subtematica || '—'}</div>
                 </div>
                 <div class="modal-meta-item">
                     <div class="modal-meta-label">Autor</div>
@@ -2471,7 +2482,7 @@
           const kws = (group.keywords || []).map(k => k.toLowerCase());
           if (!kws.length || !DATA || !DATA.bills) return [];
           return DATA.bills.filter(b => {
-            const txt = `${b.titulo || ''} ${b.resumen || ''} ${b.eje || ''}`.toLowerCase();
+            const txt = `${b.titulo || ''} ${b.resumen || ''} ${b.tematica || ''} ${b.subtematica || ''}`.toLowerCase();
             return kws.some(k => txt.includes(k));
           });
         }
