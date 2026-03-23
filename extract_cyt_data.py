@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
 Extrae texto de los PDFs de proyectos CyT y genera cyt_bills_data.json
-V3: Extracción mejorada de autores y bloques políticos.
+V4: Taxonomy cleanup, similarity edges for network graph.
 """
 
 import csv
 import json
 import re
+import math
 from pathlib import Path
 from datetime import datetime
+from collections import Counter
 
 try:
     import fitz  # PyMuPDF
@@ -517,6 +519,13 @@ def main():
         csv_row = csv_lookup.get(expediente, {})
         tematica = csv_row.get("tematica", "") or eje  # fallback to auto eje
         subtematica = csv_row.get("subtematica", "")
+
+        # Normalize duplicates
+        if tematica == "Inteligencia Artificial":
+            tematica = "IA"
+        # Fill empty subtema
+        if not subtematica:
+            subtematica = "General"
         
         # Override bloque from CSV if script didn't find one
         if bloque == "Sin datos" and csv_row.get("bloque_csv"):
@@ -528,8 +537,7 @@ def main():
             authors = [autor_principal]
 
         tematica_counts[tematica] = tematica_counts.get(tematica, 0) + 1
-        if subtematica:
-            subtema_counts[subtematica] = subtema_counts.get(subtematica, 0) + 1
+        subtema_counts[subtematica] = subtema_counts.get(subtematica, 0) + 1
 
         bill = {
             "id": expediente,
@@ -586,22 +594,33 @@ def main():
         for a, c in sorted(autor_counts.items(), key=lambda x: -x[1])[:15]
     ]
 
-    # Year-eje matrix
-    year_eje_matrix = {}
+    # Year-tematica matrix (uses curated tematica, not auto eje)
+    year_tematica_matrix = {}
     for bill in bills:
         yr = str(bill["año"])
-        eje = bill["eje"]
-        if yr not in year_eje_matrix:
-            year_eje_matrix[yr] = {}
-        year_eje_matrix[yr][eje] = year_eje_matrix[yr].get(eje, 0) + 1
+        t = bill["tematica"]
+        if yr not in year_tematica_matrix:
+            year_tematica_matrix[yr] = {}
+        year_tematica_matrix[yr][t] = year_tematica_matrix[yr].get(t, 0) + 1
 
     # Temática stats with colors
     TEMATICA_COLORS = {
         "IA": "#7c3aed",
         "Estrategia Tecnologica Nacional": "#2563a0",
         "Innovación y Desarrollo Productivo": "#059669",
-        "Tecnologías Estratégicas ": "#dc2626",
+        "Tecnologías Estratégicas": "#dc2626",
         "Privacidad Digital / Derechos Digitales": "#d97706",
+        "Gobernanza e Institucionalidad CyT": "#0ea5e9",
+        "Seguridad Vial y Transporte": "#f97316",
+        "I+D y Financiamiento": "#14b8a6",
+        "Salud y Tecnología Médica": "#ec4899",
+        "Educación y Formación CyT": "#8b5cf6",
+        "Biotecnología": "#16a34a",
+        "Espacio y Antártida": "#0891b2",
+        "Datos y Digitalización": "#6366f1",
+        "Nuclear y Energía": "#b91c1c",
+        "Tecnologías Cuánticas": "#a855f7",
+        "Neuroderechos": "#be185d",
     }
     tipo_stats = [
         {"tipo": t, "total": c, "color": TEMATICA_COLORS.get(t, "#9ca3af")}
@@ -611,6 +630,63 @@ def main():
         {"subtema": s, "total": c}
         for s, c in sorted(subtema_counts.items(), key=lambda x: -x[1])
     ]
+
+    # ─── SIMILARITY EDGES (TF-IDF cosine) ────────────────────────
+    print("Computing similarity edges...")
+    STOP_WORDS = set("de la el los las en por para un una del al con se su que no es a o y".split())
+
+    def tokenize(text):
+        words = re.findall(r'[a-záéíóúñü]+', text.lower())
+        return [w for w in words if len(w) > 2 and w not in STOP_WORDS]
+
+    # Build corpus
+    corpus = []
+    bill_ids = []
+    for b in bills:
+        doc_text = f"{b.get('titulo','')} {b.get('resumen','')} {b.get('tematica','')} {b.get('subtematica','')}"
+        tokens = tokenize(doc_text)
+        corpus.append(tokens)
+        bill_ids.append(b['id'])
+
+    # IDF
+    N = len(corpus)
+    df = Counter()
+    for tokens in corpus:
+        for w in set(tokens):
+            df[w] += 1
+    idf = {w: math.log(N / (1 + count)) for w, count in df.items()}
+
+    # TF-IDF vectors as dicts
+    tfidf_vecs = []
+    for tokens in corpus:
+        tf = Counter(tokens)
+        total = len(tokens) if tokens else 1
+        vec = {w: (count / total) * idf.get(w, 0) for w, count in tf.items()}
+        tfidf_vecs.append(vec)
+
+    def cosine_sim(v1, v2):
+        common = set(v1.keys()) & set(v2.keys())
+        if not common:
+            return 0.0
+        dot = sum(v1[w] * v2[w] for w in common)
+        mag1 = math.sqrt(sum(v ** 2 for v in v1.values()))
+        mag2 = math.sqrt(sum(v ** 2 for v in v2.values()))
+        if mag1 == 0 or mag2 == 0:
+            return 0.0
+        return dot / (mag1 * mag2)
+
+    SIMILARITY_THRESHOLD = 0.15
+    similarity_edges = []
+    for i in range(N):
+        for j in range(i + 1, N):
+            sim = cosine_sim(tfidf_vecs[i], tfidf_vecs[j])
+            if sim >= SIMILARITY_THRESHOLD:
+                similarity_edges.append({
+                    "source": bill_ids[i],
+                    "target": bill_ids[j],
+                    "weight": round(sim, 3)
+                })
+    print(f"  → {len(similarity_edges)} edges (threshold={SIMILARITY_THRESHOLD})")
 
     output = {
         "metadata": {
@@ -625,9 +701,11 @@ def main():
         "year_stats": year_stats,
         "bloque_stats": bloque_stats,
         "top_autores": top_autores,
-        "year_eje_matrix": year_eje_matrix,
+        "year_tematica_matrix": year_tematica_matrix,
         "tipo_stats": tipo_stats,
         "subtema_stats": subtema_stats,
+        "tematica_colors": TEMATICA_COLORS,
+        "similarity_edges": similarity_edges,
         "bills": bills,
     }
 

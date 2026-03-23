@@ -989,240 +989,45 @@
             padding: 32px;
         }
 
-        /* ─── KANBAN PRIORITY BOARD ─────────────────────── */
-        .kanban-wrapper {
-            max-width: 1340px;
-            margin: 0 auto;
-            padding: 24px 32px;
-        }
-        .kanban-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .kanban-header h2 {
-            font-family: var(--font-serif);
-            font-size: 26px;
-            font-weight: 700;
-            color: var(--navy-800);
-            margin-bottom: 6px;
-        }
-        .kanban-header p {
-            font-size: 13px;
-            color: var(--gray-500);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
-        .kanban-toolbar {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-        .kanban-toolbar input[type='text'] {
-            padding: 8px 14px;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-md);
-            font-size: 13px;
-            width: 240px;
-            background: var(--white);
-            transition: border-color 0.2s;
-        }
-        .kanban-toolbar input[type='text']:focus {
-            outline: none;
-            border-color: var(--navy-400);
-        }
-        .kanban-toolbar select {
-            padding: 8px 12px;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-md);
-            font-size: 13px;
-            background: var(--white);
-            cursor: pointer;
-        }
-        .kanban-toolbar button {
-            padding: 8px 16px;
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-md);
-            font-size: 12px;
-            font-weight: 600;
-            background: var(--white);
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .kanban-toolbar button:hover {
-            background: var(--navy-50);
-            border-color: var(--navy-300);
-        }
-        .kanban-board {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            align-items: start;
-        }
-        .kanban-column {
-            background: var(--gray-50);
-            border-radius: var(--radius-lg);
-            min-height: 400px;
-            display: flex;
-            flex-direction: column;
-            border: 2px solid transparent;
-            transition: border-color 0.2s, background 0.2s;
-        }
-        .kanban-column.drag-over {
-            border-color: var(--navy-300);
-            background: rgba(37,99,160,0.04);
-        }
-        .kanban-col-header {
-            padding: 14px 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            border-bottom: 2px solid var(--gray-100);
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            background: inherit;
-            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-        }
-        .kanban-col-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-        .kanban-column[data-col='prioritario'] .kanban-col-dot { background: #ef4444; }
-        .kanban-column[data-col='agenda'] .kanban-col-dot { background: #eab308; }
-        .kanban-column[data-col='espera'] .kanban-col-dot { background: #22c55e; }
-        .kanban-column[data-col='prioritario'] .kanban-col-header { background: #fef2f2; border-bottom-color: #fecaca; }
-        .kanban-column[data-col='agenda'] .kanban-col-header { background: #fefce8; border-bottom-color: #fde68a; }
-        .kanban-column[data-col='espera'] .kanban-col-header { background: #f0fdf4; border-bottom-color: #bbf7d0; }
-        .kanban-col-title {
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .kanban-column[data-col='prioritario'] .kanban-col-title { color: #b91c1c; }
-        .kanban-column[data-col='agenda'] .kanban-col-title { color: #a16207; }
-        .kanban-column[data-col='espera'] .kanban-col-title { color: #15803d; }
-        .kanban-col-count {
-            font-size: 11px;
-            font-weight: 700;
-            padding: 1px 8px;
-            border-radius: 10px;
-            margin-left: auto;
-        }
-        .kanban-column[data-col='prioritario'] .kanban-col-count { background: #fee2e2; color: #991b1b; }
-        .kanban-column[data-col='agenda'] .kanban-col-count { background: #fef9c3; color: #854d0e; }
-        .kanban-column[data-col='espera'] .kanban-col-count { background: #dcfce7; color: #166534; }
-        .kanban-col-body {
-            padding: 10px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            overflow-y: auto;
-            max-height: 65vh;
-        }
-        .kanban-col-body::-webkit-scrollbar { width: 5px; }
-        .kanban-col-body::-webkit-scrollbar-thumb { background: var(--gray-300); border-radius: 3px; }
-        .kanban-col-empty {
-            text-align: center;
-            padding: 40px 16px;
-            font-size: 12px;
-            color: var(--gray-400);
-            font-style: italic;
-        }
-        .kanban-card {
-            background: var(--white);
-            border-radius: var(--radius-md);
-            padding: 12px 14px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
-            cursor: grab;
-            transition: box-shadow 0.2s, transform 0.15s;
-            border-left: 3px solid transparent;
-            position: relative;
-        }
-        .kanban-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-            transform: translateY(-1px);
-        }
-        .kanban-card:active {
-            cursor: grabbing;
-        }
-        .kanban-card.dragging {
-            opacity: 0.4;
-            transform: scale(0.96);
-        }
-        .kanban-card-id {
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--navy-600);
-            margin-bottom: 4px;
-        }
-        .kanban-card-title {
-            font-size: 12px;
-            color: var(--navy-800);
-            line-height: 1.4;
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-        .kanban-card-footer {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .kanban-card-tag {
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 7px;
-            border-radius: 8px;
-            background: var(--navy-50);
-            color: var(--navy-700);
-        }
-        .kanban-card-author {
-            font-size: 10px;
-            color: var(--gray-400);
-            margin-left: auto;
-            max-width: 120px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .kanban-card-actions {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
-        .kanban-card:hover .kanban-card-actions {
-            opacity: 1;
-        }
-        .kanban-card-actions button {
-            width: 22px;
-            height: 22px;
-            border: none;
-            background: var(--gray-100);
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 11px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.15s;
-        }
-        .kanban-card-actions button:hover {
-            background: var(--gray-200);
-        }
-        @media (max-width: 900px) {
-            .kanban-board { grid-template-columns: 1fr; }
-            .kanban-col-body { max-height: 50vh; }
-        }
+        /* ─── SEMÁFORO DE COINCIDENCIAS ─────────────────── */
+        .semaforo-wrapper { max-width: 1340px; margin: 0 auto; padding: 32px 24px; }
+        .semaforo-header { text-align: center; margin-bottom: 28px; }
+        .semaforo-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--gray-900); }
+        .semaforo-header p { color: var(--gray-500); margin-top: 6px; }
+        .semaforo-row { margin-bottom: 24px; border-radius: 14px; overflow: hidden; border: 1px solid var(--gray-200); }
+        .semaforo-row-header { padding: 14px 22px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: filter 0.15s; }
+        .semaforo-row-header:hover { filter: brightness(0.95); }
+        .semaforo-row-header .label { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 10px; }
+        .semaforo-row-header .badge { background: rgba(255,255,255,0.35); padding: 3px 12px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; }
+        .semaforo-row.verde .semaforo-row-header { background: linear-gradient(135deg, #059669, #10b981); color: #fff; }
+        .semaforo-row.amarillo .semaforo-row-header { background: linear-gradient(135deg, #d97706, #f59e0b); color: #fff; }
+        .semaforo-row.rojo .semaforo-row-header { background: linear-gradient(135deg, #dc2626, #ef4444); color: #fff; }
+        .semaforo-row-body { padding: 16px 22px; display: none; background: #fafbfc; }
+        .semaforo-row.open .semaforo-row-body { display: block; }
+        .sem-group { margin-bottom: 18px; padding: 14px 18px; background: #fff; border-radius: 10px; border: 1px solid var(--gray-200); }
+        .sem-group-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: var(--gray-800); }
+        .sem-group-summary { font-size: 0.88rem; color: var(--gray-600); margin-bottom: 10px; line-height: 1.4; }
+        .sem-group-projects { display: flex; flex-wrap: wrap; gap: 6px; }
+        .sem-project-chip { background: var(--gray-100); border: 1px solid var(--gray-200); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; transition: all 0.15s; font-weight: 500; }
+        .sem-project-chip:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+        /* ─── NETWORK GRAPH ───────────────────────────────── */
+        .network-wrapper { max-width: 1340px; margin: 0 auto; padding: 32px 24px; }
+        .network-header { text-align: center; margin-bottom: 20px; }
+        .network-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--gray-900); }
+        .network-header p { color: var(--gray-500); margin-top: 6px; }
+        .network-container { position: relative; background: #0f172a; border-radius: 16px; overflow: hidden; border: 1px solid var(--gray-200); }
+        .network-container svg { width: 100%; display: block; }
+        .network-tooltip { position: absolute; background: rgba(30,30,40,0.95); color: #fff; padding: 12px 16px; border-radius: 10px; font-size: 0.82rem; pointer-events: none; opacity: 0; transition: opacity 0.15s; max-width: 280px; z-index: 10; border: 1px solid rgba(255,255,255,0.1); }
+        .network-tooltip.show { opacity: 1; }
+        .network-tooltip .tt-id { color: #a5b4fc; font-weight: 700; margin-bottom: 4px; }
+        .network-tooltip .tt-title { margin-bottom: 6px; line-height: 1.3; }
+        .network-tooltip .tt-meta { color: #9ca3af; font-size: 0.76rem; }
+        .network-legend { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; padding: 14px 20px; background: var(--gray-50); border-top: 1px solid var(--gray-200); }
+        .network-legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--gray-600); cursor: pointer; padding: 4px 8px; border-radius: 6px; transition: background 0.15s; }
+        .network-legend-item:hover { background: var(--gray-200); }
+        .network-legend-item.dimmed { opacity: 0.35; }
+        .network-legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+        @media (max-width: 768px) { .network-container svg { height: 400px !important; } }
     </style>
 </head>
 <body>
@@ -1245,7 +1050,8 @@
         <div class="header-nav">
             <button class="header-nav-tab active" onclick="switchView('legislativo', this)">📋 Proyectos de Ley</button>
             <!-- <button class="header-nav-tab" onclick="switchView('estado', this)">🔬 Estado de la Ciencia</button> -->
-            <button class="header-nav-tab" onclick="switchView('semaforo', this)">📋 Prioridades</button>
+            <button class="header-nav-tab" onclick="switchView('semaforo', this)">🚦 Semáforo</button>
+            <button class="header-nav-tab" onclick="switchView('network', this)">🔗 Red de Similitudes</button>
         </div>
         <div class="filters-bar" id="filters-bar">
             <label>Filtros:</label>
@@ -1570,48 +1376,31 @@
     </div><!-- /view-estado -->
     <!-- fin estado de la ciencia (comentado) -->
 
-    <!-- ═══ KANBAN DE PRIORIDADES ═══ -->
+    <!-- ═══ SEMÁFORO DE COINCIDENCIAS ═══ -->
     <div id="view-semaforo" class="view-container">
-    <div class="kanban-wrapper">
-        <div class="kanban-header">
-            <h2>📋 Tablero de Prioridades</h2>
-            <p>Arrastrá los proyectos entre columnas para priorizar la agenda de la comisión. Los cambios se guardan automáticamente.</p>
+    <div class="semaforo-wrapper">
+        <div class="semaforo-header">
+            <h2>🚦 Semáforo de Coincidencias</h2>
+            <p>Análisis automático de convergencia temática entre proyectos.</p>
         </div>
-        <div class="kanban-toolbar">
-            <input type="text" id="kanban-search" placeholder="🔍 Buscar proyecto..." oninput="filterKanban()">
-            <select id="kanban-filter-tematica" onchange="filterKanban()">
-                <option value="">Todas las temáticas</option>
-            </select>
-            <button onclick="resetKanban()">↺ Reiniciar</button>
-        </div>
-        <div class="kanban-board">
-            <div class="kanban-column" data-col="prioritario">
-                <div class="kanban-col-header">
-                    <div class="kanban-col-dot"></div>
-                    <span class="kanban-col-title">Prioritario</span>
-                    <span class="kanban-col-count" id="cnt-prioritario">0</span>
-                </div>
-                <div class="kanban-col-body" id="col-prioritario"></div>
-            </div>
-            <div class="kanban-column" data-col="agenda">
-                <div class="kanban-col-header">
-                    <div class="kanban-col-dot"></div>
-                    <span class="kanban-col-title">En Agenda</span>
-                    <span class="kanban-col-count" id="cnt-agenda">0</span>
-                </div>
-                <div class="kanban-col-body" id="col-agenda"></div>
-            </div>
-            <div class="kanban-column" data-col="espera">
-                <div class="kanban-col-header">
-                    <div class="kanban-col-dot"></div>
-                    <span class="kanban-col-title">En Espera</span>
-                    <span class="kanban-col-count" id="cnt-espera">0</span>
-                </div>
-                <div class="kanban-col-body" id="col-espera"></div>
-            </div>
-        </div>
+        <div id="semaforo-rows"></div>
     </div>
     </div><!-- /view-semaforo -->
+
+    <!-- ═══ RED DE SIMILITUDES ═══ -->
+    <div id="view-network" class="view-container">
+    <div class="network-wrapper">
+        <div class="network-header">
+            <h2>🔗 Red de Similitudes</h2>
+            <p>Cada nodo es un proyecto. Las conexiones representan similitud de contenido (TF-IDF coseno). Hover sobre un nodo para ver detalles.</p>
+        </div>
+        <div class="network-container" id="network-container">
+            <div class="network-tooltip" id="network-tooltip"></div>
+            <svg id="network-svg"></svg>
+        </div>
+        <div class="network-legend" id="network-legend"></div>
+    </div>
+    </div><!-- /view-network -->
 
 
     <!-- Modal -->
@@ -1636,6 +1425,7 @@
         Datos extraídos de proyectos presentados ante la Comisión de Ciencia, Tecnología e Innovación Productiva — H.C.D.N.
     </footer>
 
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
         // ═══════════════════════════════════════════════════════
         // DATA & STATE
@@ -1862,7 +1652,7 @@
             const years = Object.keys(matrix).sort();
 
             const tipoStats = DATA.tipo_stats || [];
-            const TEMATICA_CLR_CHART = {'IA':'#7c3aed','Estrategia Tecnologica Nacional':'#2563a0','Innovación y Desarrollo Productivo':'#059669','Tecnologías Estratégicas ':'#dc2626','Privacidad Digital / Derechos Digitales':'#d97706'};
+            const TEMATICA_CLR_CHART = DATA.tematica_colors || {};
 
             // Top 5 temáticas get their own bar, rest go to "Otros"
             const topTematicas = tipoStats.slice(0, 5);
@@ -2249,11 +2039,8 @@
           //   estadoChartsInitialized = true;
           //   initEstadoCharts();
           // }
-          // Lazy-init semáforo on first view
-          if (view === 'semaforo' && !semaforoInitialized) {
-            semaforoInitialized = true;
-            renderSemaforo();
-          }
+          if (view === 'semaforo') renderSemaforo();
+          if (view === 'network') renderNetwork();
         }
 
         function toggleEstadoSection(which, btn) {
@@ -2450,196 +2237,191 @@
         }
 
         // ═══════════════════════════════════════════════════════
-        // KANBAN PRIORITY BOARD
+        // SEMÁFORO DE COINCIDENCIAS (automated)
         // ═══════════════════════════════════════════════════════
-        let semaforoInitialized = false;   // keep var name for switchView compat
-        let kanbanState = { prioritario: [], agenda: [], espera: [] };
-        const KANBAN_KEY = 'cyt_kanban_state';
+        const SEMAFORO_GROUPS = [
+            { key: 'regulacion-ia', title: 'Regulación de Inteligencia Artificial',
+              summary: 'Marco normativo para el uso de IA: ética, transparencia, responsabilidad y supervisión.',
+              keywords: ['inteligencia artificial','regulación','ética','transparencia','algoritmo','automatización','responsabilidad','sesgo','supervisión','marco normativo'],
+              level: 'verde' },
+            { key: 'deepfake-contenido', title: 'Deepfakes y contenido sintético',
+              summary: 'Iniciativas contra la generación de contenido falso mediante IA y protección de imagen.',
+              keywords: ['deepfake','contenido sintético','imagen falsa','video falso','manipulación digital','desinformación'],
+              level: 'verde' },
+            { key: 'financiamiento-cyt', title: 'Financiamiento de Ciencia y Tecnología',
+              summary: 'Necesidad de sostener y aumentar el financiamiento del sistema científico-tecnológico.',
+              keywords: ['financiamiento','presupuesto','fondo','inversión','i+d','emergencia presupuestaria','ley 27.614','sostenimiento','beca','conicet','incentivo'],
+              level: 'verde' },
+            { key: 'educacion-stem', title: 'Educación en Ciencia y Tecnología',
+              summary: 'Incorporación de contenidos STEM, programación y robótica en el sistema educativo.',
+              keywords: ['educación','currícula','formación','escuela','docente','programación','robótica','clubes de ciencia','alfabetización digital','stem','educativo'],
+              level: 'amarillo' },
+            { key: 'soberania-tech', title: 'Soberanía Tecnológica',
+              summary: 'Desarrollo de capacidades nacionales: espacial, nuclear, cuántica.',
+              keywords: ['soberanía','espacial','nuclear','satélite','arsat','conae','cuántic','estratégic','defensa','industria nacional'],
+              level: 'amarillo' },
+            { key: 'ecosistema-innovacion', title: 'Ecosistema de Innovación',
+              summary: 'Fomento de empresas tecnológicas, startups, innovación y desarrollo productivo.',
+              keywords: ['startup','emprendimiento','innovación','incubadora','aceleradora','pyme tecnológica','ecosistema','productiv','transferencia','parque'],
+              level: 'amarillo' },
+            { key: 'salud-tecnologia', title: 'Salud y Tecnología Médica',
+              summary: 'Proyectos de telemedicina, cannabis medicinal, dispositivos médicos y salud digital.',
+              keywords: ['telemedicina','salud digital','cannabis medicinal','dispositivo médico','biotecnología','medicamento','historia clínica','genómic'],
+              level: 'amarillo' },
+            { key: 'privacidad-datos', title: 'Privacidad y Derechos Digitales',
+              summary: 'Protección de datos personales, privacidad digital y neuroderechos.',
+              keywords: ['privacidad','datos personales','protección de datos','derecho digital','neuroderechos','reconocimiento facial','vigilancia','biométric'],
+              level: 'rojo' },
+            { key: 'gobernanza-institucional', title: 'Gobernanza Institucional CyT',
+              summary: 'Creación o reforma de organismos de ciencia y tecnología.',
+              keywords: ['organismo','institucional','ministerio','secretaría','sistema nacional','gobernanza','comisión','consejo','agencia','plan nacional'],
+              level: 'rojo' },
+        ];
 
-        const TEMATICA_TAG_COLORS = {
-          'IA': '#7c3aed',
-          'Estrategia Tecnologica Nacional': '#2563a0',
-          'Innovación y Desarrollo Productivo': '#059669',
-          'Tecnologías Estratégicas ': '#dc2626',
-          'Privacidad Digital / Derechos Digitales': '#d97706',
-        };
-
-        function loadKanbanState() {
-          try {
-            const raw = localStorage.getItem(KANBAN_KEY);
-            if (raw) {
-              const saved = JSON.parse(raw);
-              if (saved.prioritario && saved.agenda && saved.espera) {
-                kanbanState = saved;
-                return;
-              }
-            }
-          } catch(e) {}
-          // Default: all in espera
-          kanbanState = { prioritario: [], agenda: [], espera: DATA.bills.map(b => b.id) };
-        }
-
-        function saveKanbanState() {
-          localStorage.setItem(KANBAN_KEY, JSON.stringify(kanbanState));
-        }
-
-        function resetKanban() {
-          if (!confirm('¿Reiniciar todas las prioridades? Todos los proyectos volverán a "En Espera".')) return;
-          kanbanState = { prioritario: [], agenda: [], espera: DATA.bills.map(b => b.id) };
-          saveKanbanState();
-          renderKanban();
-        }
-
-        function renderKanbanCard(bill) {
-          const tColor = TEMATICA_TAG_COLORS[bill.tematica] || '#6b7280';
-          const card = document.createElement('div');
-          card.className = 'kanban-card';
-          card.draggable = true;
-          card.dataset.id = bill.id;
-          card.style.borderLeftColor = tColor;
-          card.innerHTML = `
-            <div class="kanban-card-id">${bill.id}</div>
-            <div class="kanban-card-title">${truncate(bill.titulo, 70)}</div>
-            <div class="kanban-card-footer">
-              <span class="kanban-card-tag" style="background:${tColor}20;color:${tColor}">${bill.tematica || '—'}</span>
-              <span class="kanban-card-author">${bill.autor_principal || ''}</span>
-            </div>
-            <div class="kanban-card-actions">
-              <button title="Ver detalle" onclick="event.stopPropagation();openModal('${bill.id}')">👁</button>
-            </div>
-          `;
-          // Click to open modal
-          card.addEventListener('click', () => openModal(bill.id));
-          // Drag events
-          card.addEventListener('dragstart', (e) => {
-            card.classList.add('dragging');
-            e.dataTransfer.setData('text/plain', bill.id);
-            e.dataTransfer.effectAllowed = 'move';
-          });
-          card.addEventListener('dragend', () => {
-            card.classList.remove('dragging');
-            document.querySelectorAll('.kanban-column').forEach(c => c.classList.remove('drag-over'));
-          });
-          return card;
-        }
-
-        function renderKanbanColumn(colId, billIds) {
-          const body = document.getElementById('col-' + colId);
-          const counter = document.getElementById('cnt-' + colId);
-          if (!body) return;
-
-          // Get filter values
-          const search = (document.getElementById('kanban-search')?.value || '').toLowerCase();
-          const tematicaFilter = document.getElementById('kanban-filter-tematica')?.value || '';
-
-          body.innerHTML = '';
-          let visibleCount = 0;
-
-          billIds.forEach(id => {
-            const bill = DATA.bills.find(b => b.id === id);
-            if (!bill) return;
-
-            // Apply filters
-            if (tematicaFilter && bill.tematica !== tematicaFilter) return;
-            if (search) {
-              const hay = `${bill.id} ${bill.titulo || ''} ${bill.resumen || ''} ${bill.tematica || ''} ${bill.autor_principal || ''}`.toLowerCase();
-              if (!hay.includes(search)) return;
-            }
-
-            body.appendChild(renderKanbanCard(bill));
-            visibleCount++;
-          });
-
-          if (visibleCount === 0) {
-            const empty = document.createElement('div');
-            empty.className = 'kanban-col-empty';
-            empty.textContent = search || tematicaFilter ? 'Sin resultados con filtros actuales' : 'Arrastrá proyectos aquí';
-            body.appendChild(empty);
-          }
-
-          counter.textContent = billIds.length;
-        }
-
-        function renderKanban() {
-          // Ensure all bill IDs are accounted for
-          const allKnown = new Set([...kanbanState.prioritario, ...kanbanState.agenda, ...kanbanState.espera]);
-          DATA.bills.forEach(b => {
-            if (!allKnown.has(b.id)) kanbanState.espera.push(b.id);
-          });
-
-          renderKanbanColumn('prioritario', kanbanState.prioritario);
-          renderKanbanColumn('agenda', kanbanState.agenda);
-          renderKanbanColumn('espera', kanbanState.espera);
-
-          // Populate temática filter if empty
-          const select = document.getElementById('kanban-filter-tematica');
-          if (select && select.options.length <= 1) {
-            const tematicas = [...new Set(DATA.bills.map(b => b.tematica).filter(Boolean))].sort();
-            tematicas.forEach(t => {
-              const opt = document.createElement('option');
-              opt.value = t;
-              opt.textContent = t;
-              select.appendChild(opt);
-            });
-          }
-        }
-
-        function filterKanban() {
-          renderKanbanColumn('prioritario', kanbanState.prioritario);
-          renderKanbanColumn('agenda', kanbanState.agenda);
-          renderKanbanColumn('espera', kanbanState.espera);
-        }
-
-        function initKanban() {
-          loadKanbanState();
-          renderKanban();
-
-          // Set up drop zones
-          document.querySelectorAll('.kanban-col-body').forEach(zone => {
-            zone.addEventListener('dragover', (e) => {
-              e.preventDefault();
-              e.dataTransfer.dropEffect = 'move';
-              zone.closest('.kanban-column').classList.add('drag-over');
-            });
-            zone.addEventListener('dragleave', (e) => {
-              // Only remove if we actually left the column
-              if (!zone.contains(e.relatedTarget)) {
-                zone.closest('.kanban-column').classList.remove('drag-over');
-              }
-            });
-            zone.addEventListener('drop', (e) => {
-              e.preventDefault();
-              zone.closest('.kanban-column').classList.remove('drag-over');
-              const billId = e.dataTransfer.getData('text/plain');
-              const targetCol = zone.id.replace('col-', '');
-
-              // Remove from source column
-              for (const col of ['prioritario', 'agenda', 'espera']) {
-                const idx = kanbanState[col].indexOf(billId);
-                if (idx > -1) { kanbanState[col].splice(idx, 1); break; }
-              }
-
-              // Determine insert position based on drop Y
-              const cards = [...zone.querySelectorAll('.kanban-card')];
-              let insertIdx = kanbanState[targetCol].length;
-              for (let i = 0; i < cards.length; i++) {
-                const rect = cards[i].getBoundingClientRect();
-                if (e.clientY < rect.top + rect.height / 2) {
-                  insertIdx = kanbanState[targetCol].indexOf(cards[i].dataset.id);
-                  if (insertIdx === -1) insertIdx = i;
-                  break;
+        function classifySemaforo(bills) {
+            const buckets = { verde: [], amarillo: [], rojo: [] };
+            const assigned = new Set();
+            SEMAFORO_GROUPS.forEach(group => {
+                const matching = bills.filter(b => {
+                    if (assigned.has(b.id)) return false;
+                    const text = (b.titulo + ' ' + b.resumen + ' ' + b.tematica + ' ' + b.subtematica).toLowerCase();
+                    return group.keywords.some(kw => text.includes(kw));
+                });
+                if (matching.length > 0) {
+                    matching.forEach(b => assigned.add(b.id));
+                    buckets[group.level].push(Object.assign({}, group, { bills: matching }));
                 }
-              }
-
-              kanbanState[targetCol].splice(insertIdx, 0, billId);
-              saveKanbanState();
-              renderKanban();
             });
-          });
+            const unassigned = bills.filter(b => !assigned.has(b.id));
+            if (unassigned.length > 0) {
+                buckets.rojo.push({ key: 'otros', title: 'Otros proyectos',
+                    summary: 'Proyectos que no encajan en las categorías principales.', bills: unassigned });
+            }
+            return buckets;
         }
 
-        // Alias for switchView compatibility
-        function renderSemaforo() { initKanban(); }
+        function renderSemaforo() {
+            const el = document.getElementById('semaforo-rows');
+            if (!el) return;
+            const bk = classifySemaforo(DATA.bills);
+            const lvls = [
+                { key: 'verde', label: '🟢 Alta Coincidencia', cls: 'verde' },
+                { key: 'amarillo', label: '🟡 Coincidencia Media', cls: 'amarillo' },
+                { key: 'rojo', label: '🔴 Baja Coincidencia / Únicos', cls: 'rojo' },
+            ];
+            el.innerHTML = lvls.map(lv => {
+                const gs = bk[lv.key];
+                const tot = gs.reduce((s, g) => s + g.bills.length, 0);
+                return '<div class="semaforo-row ' + lv.cls + ' open">' +
+                    '<div class="semaforo-row-header" onclick="this.parentElement.classList.toggle(\'open\')">' +
+                    '<span class="label">' + lv.label + '</span>' +
+                    '<span class="badge">' + tot + ' proyectos en ' + gs.length + ' grupo' + (gs.length !== 1 ? 's' : '') + '</span></div>' +
+                    '<div class="semaforo-row-body">' + gs.map(g =>
+                        '<div class="sem-group"><div class="sem-group-title">' + g.title + '</div>' +
+                        '<div class="sem-group-summary">' + g.summary + '</div>' +
+                        '<div class="sem-group-projects">' +
+                        g.bills.map(b => '<span class="sem-project-chip" onclick="openModal(\'' + b.id + '\')" title="' +
+                            (b.titulo || '').substring(0, 80).replace(/"/g, '&quot;') + '">' + b.id + '</span>').join('') +
+                        '</div></div>').join('') +
+                    '</div></div>';
+            }).join('');
+        }
+
+        // ═══════════════════════════════════════════════════════
+        // RED DE SIMILITUDES (D3.js force-directed graph)
+        // ═══════════════════════════════════════════════════════
+        let networkInitialized = false;
+
+        function renderNetwork() {
+            if (networkInitialized) return;
+            networkInitialized = true;
+
+            const edges = DATA.similarity_edges || [];
+            const colors = DATA.tematica_colors || {};
+            const nodes = DATA.bills.map(b => ({
+                id: b.id, tematica: b.tematica, titulo: b.titulo,
+                autor: b.autor_principal, subtematica: b.subtematica, connections: 0,
+            }));
+            edges.forEach(e => {
+                const sn = nodes.find(n => n.id === e.source);
+                const tn = nodes.find(n => n.id === e.target);
+                if (sn) sn.connections++;
+                if (tn) tn.connections++;
+            });
+
+            const container = document.getElementById('network-container');
+            const svg = d3.select('#network-svg');
+            const width = container.clientWidth;
+            const height = Math.max(600, width * 0.55);
+            svg.attr('viewBox', '0 0 ' + width + ' ' + height);
+            const tooltip = document.getElementById('network-tooltip');
+
+            function getR(d) { return Math.max(5, Math.min(18, 4 + d.connections * 1.5)); }
+
+            const linkData = edges.map(e => ({source: e.source, target: e.target, weight: e.weight}));
+            const sim = d3.forceSimulation(nodes)
+                .force('link', d3.forceLink(linkData).id(d => d.id).distance(d => 100 - d.weight * 60).strength(d => d.weight * 0.8))
+                .force('charge', d3.forceManyBody().strength(-80))
+                .force('center', d3.forceCenter(width / 2, height / 2))
+                .force('collision', d3.forceCollide().radius(d => getR(d) + 3))
+                .force('x', d3.forceX(width / 2).strength(0.03))
+                .force('y', d3.forceY(height / 2).strength(0.03));
+
+            const link = svg.append('g').selectAll('line').data(linkData).join('line')
+                .attr('stroke', 'rgba(255,255,255,0.06)').attr('stroke-width', d => 0.5 + d.weight * 2);
+
+            const node = svg.append('g').selectAll('circle').data(nodes).join('circle')
+                .attr('r', d => getR(d))
+                .attr('fill', d => colors[d.tematica] || '#9ca3af')
+                .attr('stroke', 'rgba(255,255,255,0.3)').attr('stroke-width', 1)
+                .style('cursor', 'pointer')
+                .on('mouseover', function(event, d) {
+                    d3.select(this).attr('stroke', '#fff').attr('stroke-width', 2.5);
+                    link.attr('stroke', l => (l.source.id===d.id||l.target.id===d.id)?'rgba(165,180,252,0.6)':'rgba(255,255,255,0.03)')
+                        .attr('stroke-width', l => (l.source.id===d.id||l.target.id===d.id)?2:0.5+l.weight*2);
+                    const ci = new Set([d.id]);
+                    linkData.forEach(l => { if(l.source.id===d.id) ci.add(l.target.id); if(l.target.id===d.id) ci.add(l.source.id); });
+                    node.attr('opacity', n => ci.has(n.id)?1:0.15);
+                    tooltip.innerHTML = '<div class="tt-id">'+d.id+'</div><div class="tt-title">'+(d.titulo||'').substring(0,100)+'</div><div class="tt-meta">'+d.tematica+' · '+(d.subtematica||'')+'<br>'+(d.autor||'')+'<br>'+d.connections+' conexiones</div>';
+                    tooltip.classList.add('show');
+                })
+                .on('mousemove', function(event) {
+                    const r = container.getBoundingClientRect();
+                    tooltip.style.left = (event.clientX-r.left+15)+'px';
+                    tooltip.style.top = (event.clientY-r.top-10)+'px';
+                })
+                .on('mouseout', function() {
+                    d3.select(this).attr('stroke','rgba(255,255,255,0.3)').attr('stroke-width',1);
+                    link.attr('stroke','rgba(255,255,255,0.06)').attr('stroke-width',d=>0.5+d.weight*2);
+                    node.attr('opacity',1); tooltip.classList.remove('show');
+                })
+                .on('click', function(event, d) { openModal(d.id); })
+                .call(d3.drag()
+                    .on('start',(ev,d)=>{if(!ev.active)sim.alphaTarget(0.3).restart();d.fx=d.x;d.fy=d.y;})
+                    .on('drag',(ev,d)=>{d.fx=ev.x;d.fy=ev.y;})
+                    .on('end',(ev,d)=>{if(!ev.active)sim.alphaTarget(0);d.fx=null;d.fy=null;})
+                );
+
+            sim.on('tick', () => {
+                nodes.forEach(d => { d.x=Math.max(20,Math.min(width-20,d.x)); d.y=Math.max(20,Math.min(height-20,d.y)); });
+                link.attr('x1',d=>d.source.x).attr('y1',d=>d.source.y).attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
+                node.attr('cx',d=>d.x).attr('cy',d=>d.y);
+            });
+
+            // Legend
+            const ts = [...new Set(DATA.bills.map(b=>b.tematica))].sort();
+            const leg = document.getElementById('network-legend');
+            leg.innerHTML = ts.map(t =>
+                '<div class="network-legend-item" data-tematica="'+t+'"><div class="network-legend-dot" style="background:'+(colors[t]||'#9ca3af')+'"></div>'+t+'</div>'
+            ).join('');
+            leg.querySelectorAll('.network-legend-item').forEach(it => {
+                it.addEventListener('click', () => {
+                    it.classList.toggle('dimmed');
+                    node.attr('opacity',d=>{const dm=leg.querySelector('[data-tematica="'+d.tematica+'"]');return(dm&&dm.classList.contains('dimmed'))?0.08:1;});
+                    link.attr('opacity',l=>{const s=leg.querySelector('[data-tematica="'+l.source.tematica+'"]'),t=leg.querySelector('[data-tematica="'+l.target.tematica+'"]');return((s&&s.classList.contains('dimmed'))||(t&&t.classList.contains('dimmed')))?0.02:1;});
+                });
+            });
+        }
     </script>
 </body>
 </html>

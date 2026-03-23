@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generado": "2026-03-22T21:09:04.318477",
+    "generado": "2026-03-22T22:36:30.903895",
     "total": 75,
     "fuente": "Comisión de Ciencia, Tecnología e Innovación Productiva — H. Cámara de Diputados",
     "periodo": "2024–2026",
@@ -199,41 +199,35 @@
       "total": 1
     }
   ],
-  "year_eje_matrix": {
+  "year_tematica_matrix": {
     "2026": {
-      "Gobernanza e Institucionalidad CyT": 4,
-      "Inteligencia Artificial": 2,
-      "Biotecnología": 2,
-      "I+D y Financiamiento": 2,
-      "Nuclear y Energía": 1,
-      "Espacio y Antártida": 1
+      "IA": 3,
+      "Tecnologías Estratégicas": 4,
+      "Innovación y Desarrollo Productivo": 3,
+      "Estrategia Tecnologica Nacional": 2
     },
     "2025": {
-      "Gobernanza e Institucionalidad CyT": 12,
-      "I+D y Financiamiento": 4,
-      "Inteligencia Artificial": 7,
-      "Educación y Formación CyT": 4,
-      "Datos y Digitalización": 1,
-      "Espacio y Antártida": 1,
-      "Tecnologías Cuánticas": 1,
-      "Biotecnología": 1,
-      "Neuroderechos": 1
+      "IA": 13,
+      "Innovación y Desarrollo Productivo": 3,
+      "Estrategia Tecnologica Nacional": 12,
+      "Privacidad Digital / Derechos Digitales": 2,
+      "Tecnologías Estratégicas": 2
     },
     "2024": {
       "Seguridad Vial y Transporte": 2,
-      "Gobernanza e Institucionalidad CyT": 12,
-      "I+D y Financiamiento": 3,
-      "Salud y Tecnología Médica": 4,
-      "Inteligencia Artificial": 7,
-      "Educación y Formación CyT": 1,
-      "Datos y Digitalización": 1,
-      "Espacio y Antártida": 1
+      "Gobernanza e Institucionalidad CyT": 3,
+      "I+D y Financiamiento": 1,
+      "Salud y Tecnología Médica": 1,
+      "IA": 10,
+      "Estrategia Tecnologica Nacional": 6,
+      "Innovación y Desarrollo Productivo": 6,
+      "Tecnologías Estratégicas": 2
     }
   },
   "tipo_stats": [
     {
       "tipo": "IA",
-      "total": 25,
+      "total": 26,
       "color": "#7c3aed"
     },
     {
@@ -249,17 +243,17 @@
     {
       "tipo": "Tecnologías Estratégicas",
       "total": 8,
-      "color": "#9ca3af"
+      "color": "#dc2626"
     },
     {
       "tipo": "Gobernanza e Institucionalidad CyT",
       "total": 3,
-      "color": "#9ca3af"
+      "color": "#0ea5e9"
     },
     {
       "tipo": "Seguridad Vial y Transporte",
       "total": 2,
-      "color": "#9ca3af"
+      "color": "#f97316"
     },
     {
       "tipo": "Privacidad Digital / Derechos Digitales",
@@ -269,23 +263,22 @@
     {
       "tipo": "I+D y Financiamiento",
       "total": 1,
-      "color": "#9ca3af"
+      "color": "#14b8a6"
     },
     {
       "tipo": "Salud y Tecnología Médica",
       "total": 1,
-      "color": "#9ca3af"
-    },
-    {
-      "tipo": "Inteligencia Artificial",
-      "total": 1,
-      "color": "#9ca3af"
+      "color": "#ec4899"
     }
   ],
   "subtema_stats": [
     {
       "subtema": "Marco Regulatorio",
       "total": 10
+    },
+    {
+      "subtema": "General",
+      "total": 8
     },
     {
       "subtema": "Estrategía Nacional de Ciencia y Tecnologia",
@@ -386,6 +379,476 @@
     {
       "subtema": "Espcial",
       "total": 1
+    }
+  ],
+  "tematica_colors": {
+    "IA": "#7c3aed",
+    "Estrategia Tecnologica Nacional": "#2563a0",
+    "Innovación y Desarrollo Productivo": "#059669",
+    "Tecnologías Estratégicas": "#dc2626",
+    "Privacidad Digital / Derechos Digitales": "#d97706",
+    "Gobernanza e Institucionalidad CyT": "#0ea5e9",
+    "Seguridad Vial y Transporte": "#f97316",
+    "I+D y Financiamiento": "#14b8a6",
+    "Salud y Tecnología Médica": "#ec4899",
+    "Educación y Formación CyT": "#8b5cf6",
+    "Biotecnología": "#16a34a",
+    "Espacio y Antártida": "#0891b2",
+    "Datos y Digitalización": "#6366f1",
+    "Nuclear y Energía": "#b91c1c",
+    "Tecnologías Cuánticas": "#a855f7",
+    "Neuroderechos": "#be185d"
+  },
+  "similarity_edges": [
+    {
+      "source": "0004-D-2026",
+      "target": "0253-D-2026",
+      "weight": 0.223
+    },
+    {
+      "source": "0004-D-2026",
+      "target": "1937-D-2025",
+      "weight": 0.178
+    },
+    {
+      "source": "0004-D-2026",
+      "target": "2130-D-2025",
+      "weight": 0.276
+    },
+    {
+      "source": "0004-D-2026",
+      "target": "2903-D-2025",
+      "weight": 0.181
+    },
+    {
+      "source": "0004-D-2026",
+      "target": "4079-D-2024",
+      "weight": 0.825
+    },
+    {
+      "source": "0004-D-2026",
+      "target": "6156-D-2024",
+      "weight": 0.167
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "0515-D-2026",
+      "weight": 0.193
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "2300-D-2025",
+      "weight": 0.185
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "2903-D-2025",
+      "weight": 0.16
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "3558-D-2025",
+      "weight": 0.221
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "4094-D-2025",
+      "weight": 0.175
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "4420-D-2025",
+      "weight": 0.226
+    },
+    {
+      "source": "0253-D-2026",
+      "target": "4079-D-2024",
+      "weight": 0.202
+    },
+    {
+      "source": "0478-D-2026",
+      "target": "0520-D-2026",
+      "weight": 0.178
+    },
+    {
+      "source": "0478-D-2026",
+      "target": "1635-D-2024",
+      "weight": 0.15
+    },
+    {
+      "source": "0511-D-2026",
+      "target": "0513-D-2026",
+      "weight": 0.195
+    },
+    {
+      "source": "0511-D-2026",
+      "target": "0401-D-2025",
+      "weight": 0.237
+    },
+    {
+      "source": "0512-D-2026",
+      "target": "0518-D-2026",
+      "weight": 0.229
+    },
+    {
+      "source": "0513-D-2026",
+      "target": "0514-D-2026",
+      "weight": 0.288
+    },
+    {
+      "source": "0513-D-2026",
+      "target": "1311-D-2025",
+      "weight": 0.156
+    },
+    {
+      "source": "0513-D-2026",
+      "target": "3602-D-2024",
+      "weight": 0.152
+    },
+    {
+      "source": "0514-D-2026",
+      "target": "0519-D-2026",
+      "weight": 0.156
+    },
+    {
+      "source": "0514-D-2026",
+      "target": "0520-D-2026",
+      "weight": 0.159
+    },
+    {
+      "source": "0518-D-2026",
+      "target": "0519-D-2026",
+      "weight": 0.167
+    },
+    {
+      "source": "0518-D-2026",
+      "target": "6548-D-2025",
+      "weight": 0.305
+    },
+    {
+      "source": "0519-D-2026",
+      "target": "0520-D-2026",
+      "weight": 0.156
+    },
+    {
+      "source": "0519-D-2026",
+      "target": "2903-D-2025",
+      "weight": 0.323
+    },
+    {
+      "source": "0519-D-2026",
+      "target": "4219-D-2025",
+      "weight": 0.241
+    },
+    {
+      "source": "0519-D-2026",
+      "target": "3003-D-2024",
+      "weight": 0.165
+    },
+    {
+      "source": "0520-D-2026",
+      "target": "1635-D-2024",
+      "weight": 0.167
+    },
+    {
+      "source": "0345-D-2025",
+      "target": "3900-D-2024",
+      "weight": 0.328
+    },
+    {
+      "source": "0401-D-2025",
+      "target": "3709-D-2024",
+      "weight": 0.156
+    },
+    {
+      "source": "0903-D-2025",
+      "target": "6656-D-2025",
+      "weight": 0.159
+    },
+    {
+      "source": "0903-D-2025",
+      "target": "0925-D-2024",
+      "weight": 0.192
+    },
+    {
+      "source": "0903-D-2025",
+      "target": "7045-D-2024",
+      "weight": 0.163
+    },
+    {
+      "source": "1311-D-2025",
+      "target": "2079-D-2025",
+      "weight": 0.27
+    },
+    {
+      "source": "1311-D-2025",
+      "target": "2114-D-2025",
+      "weight": 0.384
+    },
+    {
+      "source": "1311-D-2025",
+      "target": "5765-D-2025",
+      "weight": 0.152
+    },
+    {
+      "source": "1311-D-2025",
+      "target": "1269-D-2024",
+      "weight": 0.419
+    },
+    {
+      "source": "1311-D-2025",
+      "target": "2435-D-2024",
+      "weight": 0.34
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "2130-D-2025",
+      "weight": 0.207
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "2300-D-2025",
+      "weight": 0.212
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "3558-D-2025",
+      "weight": 0.225
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "4243-D-2025",
+      "weight": 0.281
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "4420-D-2025",
+      "weight": 0.225
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "4079-D-2024",
+      "weight": 0.168
+    },
+    {
+      "source": "1937-D-2025",
+      "target": "6156-D-2024",
+      "weight": 0.249
+    },
+    {
+      "source": "2079-D-2025",
+      "target": "2114-D-2025",
+      "weight": 0.417
+    },
+    {
+      "source": "2079-D-2025",
+      "target": "1269-D-2024",
+      "weight": 0.436
+    },
+    {
+      "source": "2079-D-2025",
+      "target": "2435-D-2024",
+      "weight": 0.429
+    },
+    {
+      "source": "2114-D-2025",
+      "target": "1269-D-2024",
+      "weight": 0.967
+    },
+    {
+      "source": "2114-D-2025",
+      "target": "2435-D-2024",
+      "weight": 0.718
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "2903-D-2025",
+      "weight": 0.383
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "4219-D-2025",
+      "weight": 0.249
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "6189-D-2025",
+      "weight": 0.262
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "1013-D-2024",
+      "weight": 0.2
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "3003-D-2024",
+      "weight": 0.348
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "4079-D-2024",
+      "weight": 0.25
+    },
+    {
+      "source": "2130-D-2025",
+      "target": "6156-D-2024",
+      "weight": 0.239
+    },
+    {
+      "source": "2300-D-2025",
+      "target": "3558-D-2025",
+      "weight": 0.169
+    },
+    {
+      "source": "2300-D-2025",
+      "target": "4094-D-2025",
+      "weight": 0.165
+    },
+    {
+      "source": "2300-D-2025",
+      "target": "4420-D-2025",
+      "weight": 0.181
+    },
+    {
+      "source": "2903-D-2025",
+      "target": "4219-D-2025",
+      "weight": 0.676
+    },
+    {
+      "source": "2903-D-2025",
+      "target": "4079-D-2024",
+      "weight": 0.172
+    },
+    {
+      "source": "3558-D-2025",
+      "target": "4094-D-2025",
+      "weight": 0.15
+    },
+    {
+      "source": "4145-D-2025",
+      "target": "6189-D-2025",
+      "weight": 0.271
+    },
+    {
+      "source": "4145-D-2025",
+      "target": "6656-D-2025",
+      "weight": 0.165
+    },
+    {
+      "source": "4145-D-2025",
+      "target": "6976-D-2024",
+      "weight": 0.159
+    },
+    {
+      "source": "4420-D-2025",
+      "target": "6880-D-2025",
+      "weight": 0.172
+    },
+    {
+      "source": "5765-D-2025",
+      "target": "1269-D-2024",
+      "weight": 0.173
+    },
+    {
+      "source": "5765-D-2025",
+      "target": "2435-D-2024",
+      "weight": 0.167
+    },
+    {
+      "source": "6189-D-2025",
+      "target": "6656-D-2025",
+      "weight": 0.235
+    },
+    {
+      "source": "6189-D-2025",
+      "target": "3003-D-2024",
+      "weight": 0.198
+    },
+    {
+      "source": "6189-D-2025",
+      "target": "6976-D-2024",
+      "weight": 0.252
+    },
+    {
+      "source": "6655-D-2025",
+      "target": "0805-D-2024",
+      "weight": 0.197
+    },
+    {
+      "source": "6656-D-2025",
+      "target": "7085-D-2025",
+      "weight": 0.277
+    },
+    {
+      "source": "6656-D-2025",
+      "target": "7045-D-2024",
+      "weight": 0.159
+    },
+    {
+      "source": "0157-D-2024",
+      "target": "0383-D-2024",
+      "weight": 0.257
+    },
+    {
+      "source": "0367-D-2024",
+      "target": "3441-D-2024",
+      "weight": 0.303
+    },
+    {
+      "source": "0372-D-2024",
+      "target": "3955-D-2024",
+      "weight": 0.472
+    },
+    {
+      "source": "0805-D-2024",
+      "target": "6156-D-2024",
+      "weight": 0.157
+    },
+    {
+      "source": "0925-D-2024",
+      "target": "1635-D-2024",
+      "weight": 0.225
+    },
+    {
+      "source": "0925-D-2024",
+      "target": "1636-D-2024",
+      "weight": 0.185
+    },
+    {
+      "source": "0925-D-2024",
+      "target": "7045-D-2024",
+      "weight": 0.158
+    },
+    {
+      "source": "1013-D-2024",
+      "target": "6156-D-2024",
+      "weight": 0.156
+    },
+    {
+      "source": "1269-D-2024",
+      "target": "2435-D-2024",
+      "weight": 0.769
+    },
+    {
+      "source": "1635-D-2024",
+      "target": "1636-D-2024",
+      "weight": 0.286
+    },
+    {
+      "source": "1635-D-2024",
+      "target": "4079-D-2024",
+      "weight": 0.223
+    },
+    {
+      "source": "1636-D-2024",
+      "target": "4079-D-2024",
+      "weight": 0.227
+    },
+    {
+      "source": "4079-D-2024",
+      "target": "6156-D-2024",
+      "weight": 0.158
     }
   ],
   "bills": [
@@ -1233,7 +1696,7 @@
       "eje": "Seguridad Vial y Transporte",
       "eje_score": 10,
       "tematica": "Seguridad Vial y Transporte",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "Modificase el último párrafo del",
       "tipo": "PROYECTO DE LEY",
       "paginas": 3,
@@ -1250,7 +1713,7 @@
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
       "tematica": "Gobernanza e Institucionalidad CyT",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "Ámbito personal. El Estatuto del Trabajador de Plataformas Tecnológicas rige en todo el territorio de la República Argentina para las relaciones laborales que vinculen a las plataformas tecnológicas debidamente registradas, con las personas mayores de 18 años que ponen a disposición su fuerza de tra...",
       "tipo": "PROYECTO DE LEY",
       "paginas": 24,
@@ -1267,7 +1730,7 @@
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
       "tematica": "Gobernanza e Institucionalidad CyT",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "Incorpórese al Código Penal de la Nación como artículo 117 ter el siguiente: “Artículo 117 ter: Sera reprimido con pena de 6 meses a dos años de prisión quien, sin consentimiento expreso de la víctima, revelare, publicare, facilitare, o difundiere por cualquier medio o pusiera a disposición de terce...",
       "tipo": "PENAL",
       "paginas": 6,
@@ -1284,7 +1747,7 @@
       "eje": "Seguridad Vial y Transporte",
       "eje_score": 18,
       "tematica": "Seguridad Vial y Transporte",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "Sr. Presidente Los aquí suscribientes ponemos nuevamente a su consideración el siguiente proyecto de ley modificatorio de la ley 24.653 de transporte automotor de cargas, proponiendo la implementación de cambios en su articulado que tiendan a su modernización y la atención de deficiencias que el sec...",
       "tipo": "MODIFICA LEY",
       "paginas": 10,
@@ -1306,7 +1769,7 @@
       "eje": "I+D y Financiamiento",
       "eje_score": 20,
       "tematica": "I+D y Financiamiento",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "Objeto. Es objeto de la presente ley establecer un programa de incentivos para que las empresas e instituciones, tanto públicas como privadas, desarrollen productos y servicios de alto valor agregado tecnológico para la economía de la Nación Argentina.",
       "tipo": "PROMOCIÓN",
       "paginas": 8,
@@ -1323,7 +1786,7 @@
       "eje": "Salud y Tecnología Médica",
       "eje_score": 10,
       "tematica": "Salud y Tecnología Médica",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "Objeto. La presente Ley tiene por objeto garantizar el acceso a los Medicamentos de Alto Precio, considerándose como tales a aquellos fármacos destinados a la atención de enfermedades de baja prevalencia que integran el Anexo III y IV de la Resolución 1200/2012 de la Superintendencia de Servicios de...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 10,
@@ -1339,8 +1802,8 @@
       "año": 2024,
       "eje": "Inteligencia Artificial",
       "eje_score": 12,
-      "tematica": "Inteligencia Artificial",
-      "subtematica": "",
+      "tematica": "IA",
+      "subtematica": "General",
       "resumen": "Objetivo: El objetivo de la presente ley es establecer un marco legal a los desarrollos de la inteligencia artificial con el objetivo de crear certificaciones de buenas prácticas, implementar un registro de riesgos significativos, promover la inteligencia artificial en pequeñas y medianas empresas, ...",
       "tipo": "MARCO REGULATORIO",
       "paginas": 15,
@@ -1359,7 +1822,7 @@
       "eje": "Gobernanza e Institucionalidad CyT",
       "eje_score": 0,
       "tematica": "Gobernanza e Institucionalidad CyT",
-      "subtematica": "",
+      "subtematica": "General",
       "resumen": "— Modifíquese el artículo 4° de la Ley 27.227, el cual quedará redactado de la siguiente forma: “ARTICULO 4°— “El Ministerio de Ciencia, Tecnología e Innovación junto con el Ministerio de Desarrollo Productivo, deberán evaluar e implementar estrategias tecnológicas a fin de propiciar la producción n...",
       "tipo": "FINANCIAMIENTO",
       "paginas": 8,
